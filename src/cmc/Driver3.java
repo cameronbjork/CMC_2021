@@ -1,5 +1,7 @@
 package cmc;
 
+import java.util.List;
+
 import cmc.account.user.UserInteraction;
 
 /**
@@ -49,7 +51,7 @@ public class Driver3 {
 		// test searchUniversity() alternate scenario (null)
 		System.out.println("Testing viewSavedUniversities main scenario...");
 		result = ui.searchUniversity("", "");
-		System.out.println("Expected: null; Result: " + result);
+		System.out.println("Expected: false; Result: " + result);
 		
 	}	
 	/**
@@ -96,9 +98,9 @@ public class Driver3 {
 	 * 
 	 * Test scenario for the viewSavedUniversities use case
 	 */
-	private static void runViewSavedUniversities(UserInteraction ui) {
+	private static void runDisplaySavedUniversities(UserInteraction ui, String username) {
 		System.out.println("Testing viewSavedUniversities main scenario...");
-		Boolean result = ui.searchUniversity("MN", "3000");
+		Boolean result = ui.displaySavedUniversities(ui);
 		System.out.println("Expected: true; Result: " + result);
 	}
 
@@ -121,6 +123,7 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
+		String username = "username";
 		
 		runLogin(ui);
 		runViewSavedUniversities(ui);

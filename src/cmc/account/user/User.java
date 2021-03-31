@@ -32,6 +32,11 @@ public class User extends Account {
 		super(userName, passWord, accountType, firstName, lastName, loginStatus);
 		this.isActive = true;
 	}
+	public ArrayList<University> getSavedUniversities() {
+		return this.savedUniversities;
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

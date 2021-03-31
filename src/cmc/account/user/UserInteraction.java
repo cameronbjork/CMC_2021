@@ -20,11 +20,11 @@ public class UserInteraction {
 	}
 
 	public Boolean searchUniversity(String string, String string2) {
-		ArrayList<University> universities = SC.searchUniversities(string,string2);
-		if (string != null && string2 != null) {
-		return true;
+		ArrayList<University> universities = SC.searchUniversities(string,string2); 
+		if (universities == null) {
+		return false;
 		} else {
-			return false;
+			return true;
 		}
 	}
 }

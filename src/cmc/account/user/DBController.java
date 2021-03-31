@@ -21,4 +21,9 @@ public class DBController {
 		User user2 = new User("peter", "securepassword",'u', "peter","Ohmann");
 		return user2;
 }
+
+	public void getUniversities(String state, String numStudents) {
+		
+		
+	}
 }

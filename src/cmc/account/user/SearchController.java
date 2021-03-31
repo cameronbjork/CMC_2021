@@ -16,6 +16,7 @@ public class SearchController {
 	private DBController DBC;
 
 	public ArrayList<University> searchUniversities(String string, String string2) {
+		DBC.getUniversities(string,string2)
 		return null;
 		
 	}

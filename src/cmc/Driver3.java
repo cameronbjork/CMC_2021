@@ -1,6 +1,6 @@
-package CMC;
+package cmc;
 
-import CMC.user.UserInteraction;
+import cmc.account.user.UserInteraction;
 
 /**
  * An example of a CMC Driver...demoing only the Login use case.

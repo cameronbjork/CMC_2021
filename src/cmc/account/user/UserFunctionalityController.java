@@ -14,9 +14,9 @@ import cmc.university.University;
 public class UserFunctionalityController {
 	private DBController DBC;
 
-	public User displaySavedUniversities(String username) {
+	public void displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
-		ArrayList<University> = u2.getSavedUniversities();
+		ArrayList<University> savedUniversities = new ArrayList<>(u2.getSavedUniversities());
 		//Must connect to the web interface
 	}
 }

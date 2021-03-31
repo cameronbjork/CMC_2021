@@ -24,4 +24,13 @@ public class UserInteraction {
 			return false;
 		}
 	}
+	
+	public boolean logOn(String userName, String passWord) {
+		return AC.logOn(userName, passWord);
+	}
+	
+	public void displayProfile(String userName) {
+		AC.displayProfile(userName);
+	}
+	
 }

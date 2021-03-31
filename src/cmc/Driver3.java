@@ -42,14 +42,14 @@ public class Driver3 {
 	 * Test scenario for the searchUniversity use case
 	 */	
 	
-	private static void searchUniversity(UserInteraction ui) {
+	private static void runSearchUniversity(UserInteraction ui) {
 		// test searchUniversity() main scenario
-		System.out.println("Testing viewSavedUniversities main scenario...");
+		System.out.println("Testing searchUniversity main scenario...");
 		Boolean result = ui.searchUniversity("MN", "3000");
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
-		System.out.println("Testing viewSavedUniversities main scenario...");
+		System.out.println("Testing searchUniversity main scenario...");
 		result = ui.searchUniversity("", "");
 		System.out.println("Expected: false; Result: " + result);
 		
@@ -125,11 +125,11 @@ public class Driver3 {
 		UserInteraction ui = new UserInteraction();
 		String username = "username";
 		
-		runLogin(ui);
-		runViewSavedUniversities(ui);
-		runsearchUniversity(ui);
-		runlogOut(ui);
-		runViewSearchResults(ui);
+		//runLogin(ui);
+		//runViewSavedUniversities(ui,username);
+		runSearchUniversity(ui);
+		//runlogOut(ui);
+		//runViewSearchResults(ui);
 	}
 
 }

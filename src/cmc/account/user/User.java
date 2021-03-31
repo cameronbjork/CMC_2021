@@ -27,9 +27,8 @@ public class User extends Account {
 	 * @param savedUniversities
 	 * @param recentUniversity
 	 */
-	public User(String userName, String passWord, char accountType, String firstName, String lastName,
-			boolean loginStatus) {
-		super(userName, passWord, accountType, firstName, lastName, loginStatus);
+	public User(String userName, String passWord, char accountType, String firstName, String lastName) {
+		super(userName, passWord, accountType, firstName, lastName);
 		this.isActive = true;
 	}
 	

@@ -36,6 +36,10 @@ public class User extends Account {
 		// TODO Auto-generated method stub
 		
 	}
+	public University getRecentUniversity() {
+		// TODO Auto-generated method stub
+		return this.recentUniversity;
+	}
 	
 	
 	

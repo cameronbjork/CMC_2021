@@ -4,6 +4,7 @@
 package cmc.account.user;
 
 import cmc.account.Account;
+import cmc.university.University;
 
 /**
  * @author cbjork001
@@ -21,4 +22,9 @@ public class DBController {
 		User user2 = new User("peter", "securepassword",'u', "peter","Ohmann");
 		return user2;
 }
+
+	public University getUniversity(uni) {
+		University uni1 = new U
+		return  ;
+	}
 }

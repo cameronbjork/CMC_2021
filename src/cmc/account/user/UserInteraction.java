@@ -2,6 +2,8 @@ package cmc.account.user;
 
 import java.util.List;
 
+import cmc.university.University;
+
 public class UserInteraction {
 	private UserFunctionalityController UFC;
 	private SearchController SC;
@@ -23,5 +25,11 @@ public class UserInteraction {
 		} else {
 			return false;
 		}
+	}
+	
+	public University getRecentUniversity(String u) {
+		return SC.getRecentUniversity(u);
+		
+		
 	}
 }

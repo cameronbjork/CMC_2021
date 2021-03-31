@@ -1,6 +1,9 @@
 package cmc.account.user;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import cmc.university.University;
 
 public class UserInteraction {
 	private UserFunctionalityController UFC;
@@ -17,14 +20,15 @@ public class UserInteraction {
 	}
 
 	public Boolean searchUniversity(String string, String string2) {
-		SC.searchUniversities(string,string2);
-		if (string != null && string2 != null) {
-		return true;
+		ArrayList<University> universities = SC.searchUniversities(string,string2); 
+		if (universities == null) {
+		return false;
 		} else {
-			return false;
+			return true;
 		}
 	}
 	
+<<<<<<< HEAD
 	public boolean logOn(String userName, String passWord) {
 		return AC.logOn(userName, passWord);
 	}
@@ -33,4 +37,11 @@ public class UserInteraction {
 		AC.displayProfile(userName);
 	}
 	
+=======
+	public University getRecentUniversity(String u) {
+		return SC.getRecentUniversity(u);
+		
+		
+	}
+>>>>>>> d23a4357b69a89a5773c70cf6db9ce947833bce4
 }

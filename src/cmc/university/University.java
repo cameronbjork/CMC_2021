@@ -91,7 +91,9 @@ public class University {
 		this.emphasisStudy4 = emphasisStudy4;
 		this.emphasisStudy5 = emphasisStudy5;
 	}
-	
+	public University(String uniName) {
+		this.uniName = uniName;
+	}
 	
 	
 }

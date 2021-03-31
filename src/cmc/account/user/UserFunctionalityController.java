@@ -19,4 +19,11 @@ public class UserFunctionalityController {
 		ArrayList<University> savedUniversities = new ArrayList<>(u2.getSavedUniversities());
 		//Must connect to the web interface
 	}
+	
+	public saveUnversity(String u, University uni) {
+		User u1 = DBC.getUser(u);
+		University uni1 = DBC.getUniversity();
+		u1.setSavedUniversities(uni1);
+	}
+	//FINISH THIS
 }

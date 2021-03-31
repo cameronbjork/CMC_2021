@@ -27,4 +27,10 @@ public class UserInteraction {
 			return true;
 		}
 	}
+	
+	public University getRecentUniversity(String u) {
+		return SC.getRecentUniversity(u);
+		
+		
+	}
 }

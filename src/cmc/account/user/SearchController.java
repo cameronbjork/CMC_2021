@@ -20,4 +20,10 @@ public class SearchController {
 		return null;
 		
 	}
+
+	public void getRecentUniversity(String u) {
+		User u1 = (DBC.getUser(u));
+		University uni1 = u1.getRecentUniversity();
+		// Implement to Web Interface
+	}
 }

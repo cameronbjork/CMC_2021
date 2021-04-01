@@ -14,10 +14,14 @@ import cmc.university.University;
  */
 public class SearchController {
 	private DBController DBC;
+	
+	public SearchController() {
+		this.DBC = new DBController();
+	}
 
 	public ArrayList<University> searchUniversities(String string, int numStudents) {
-		DBC.getUniversities(string, numStudents);
-		return null;
+		return this.DBC.getUniversities(string, numStudents);
+		
 		
 	}
 

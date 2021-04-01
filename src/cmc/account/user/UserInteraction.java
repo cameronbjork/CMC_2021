@@ -16,13 +16,17 @@ public class UserInteraction {
 		this.AC= new AccountController();
 	}
 	
-	public void userEditUser(String userName, String firstName, String lastName, String passWord) {
-		this.AC.userEditUser(userName, firstName, lastName, passWord);
+	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
+		return this.AC.userEditUser(userName, firstName, lastName, passWord);
 	}
 
 	public boolean displaySavedUniversities(String username) {
-		ArrayList<University> saved = this.UFC.displaySavedUniversities(username));
+		ArrayList<University> saved = this.UFC.displaySavedUniversities(username);
+		if (saved != null) {
 		return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean searchUniversities(String string, int numStudents) {
@@ -30,17 +34,11 @@ public class UserInteraction {
 		
 		ArrayList<University> recUniSearch = new ArrayList<University>();
 		recUniSearch.add(universities.get(0));
-		recUniSearch.add(recommendedSearch(universities.get(0)));
 		
 		for (int i =0; i < universities.size(); i++) {
 			this.displaySearchResult(universities, i);
 		}
-		
-		if (universities == null) {
-		return false;
-		} else {
-			return true;
-		}
+		return true;
 	}
 	
 	private University displaySearchResult(ArrayList<University> unis, int i) {
@@ -51,6 +49,10 @@ public class UserInteraction {
 	public boolean logOn(String userName, String passWord) {
 		boolean result = this.AC.logOn(userName, passWord);
 		return result;
+	}
+	
+	public void logOut(String userName) {
+		this.AC.logOut(userName);
 	}
 	
 	public boolean displayProfile(String userName) {

@@ -30,6 +30,7 @@ public class User extends Account {
 	public User(String userName, String passWord, char accountType, String firstName, String lastName) {
 		super(userName, passWord, accountType, firstName, lastName);
 		this.isActive = true;
+		this.savedUniversities = new ArrayList<University>();
 	}
 	public ArrayList<University> getSavedUniversities() {
 		return this.savedUniversities;

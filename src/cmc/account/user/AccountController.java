@@ -16,18 +16,30 @@ public class AccountController {
 		this.DBC = new DBController();
 	}
 
-	public void userEditUser(String userName, String firstName, String lastName, String passWord) {
+	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
 		User u2 = this.DBC.getUser(userName);
+		boolean bool = false;
 		if (u2 != null) {
 			if (firstName != null) {
 				u2.setFirstName(firstName);
-			}else if (lastName != null) {
+				System.out.println("First changed to: " + firstName);
+				bool = true;} else {
+					return false;
+			}if (lastName != null) {
 				u2.setLastName(lastName);
-			}else if (passWord != null){
+				System.out.println("last changed to: " + lastName);
+				bool = true; } else {
+					return false;
+				}
+			}if (passWord != null){
+				System.out.println("Pass changed to: " + passWord);
 				u2.setPassWord(passWord);
-			}			
+				bool = true;
+			} else {
+				return false;
 		}
 		DBC.setUser(u2);
+		return bool;
 	}
 	
 	public boolean logOn(String userName, String passWord) {
@@ -43,6 +55,11 @@ public class AccountController {
 
 	public User displayProfile(String userName) {
 		return DBC.getUser(userName);
+	}
+
+	public void logOut(String userName) {
+		Account acc = this.DBC.getUser(userName);
+		acc.setLoginStatus(false);
 	}
 	
 }

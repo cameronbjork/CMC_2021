@@ -19,10 +19,10 @@ public class DBController {
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
 		this.uni1 = new University("Sample");
+		this.user1.setSavedUniversities(this.uni1);
 	}
 
 	public User getUser(String userName) {
-		// TODO Auto-generated method stub
 		return this.user1;
 	}
 	
@@ -32,7 +32,7 @@ public class DBController {
 
 	public ArrayList<University> getUniversities(String state, int numStudents) {
 		ArrayList<University> searchResults = new  ArrayList<>();
-		
+		searchResults.add(uni1);
 		return searchResults;
 	}
 	
@@ -44,4 +44,5 @@ public class DBController {
 		// TODO store user back to database
 		
 	}
+	
 }

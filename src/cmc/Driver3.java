@@ -94,6 +94,12 @@ public class Driver3 {
 		System.out.println("Expected: true; Result: " + result);
 	}
 	
+	private static void runEditProfile(UserInteraction ui) {
+		System.out.println("Testing editProfile main scenario...");
+		boolean result = ui.userEditUser("peter", "p", "last", "password");
+		System.out.println("Expected: true; Result: " + result);
+	}
+	
 	/**
 	 * 
 	 * Test scenario for the viewSavedUniversities use case
@@ -123,11 +129,19 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
+		try {
 		runLogin(ui);
-		runDisplaySavedUniversities(ui);
-		//runSearchUniversity(ui);
+		runViewProfile(ui);
+		runEditProfile(ui);
+		runSearchUniversity(ui);
+		runViewSearchResults(ui);
+		//runDisplaySavedUniversities(ui);
+		} catch (NullPointerException e) {
+			System.out.println("Null");
+		}
+		
 		//runlogOut(ui);
-		//runViewSearchResults(ui);
+		
 	}
 
 }

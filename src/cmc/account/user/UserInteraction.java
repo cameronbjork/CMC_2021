@@ -19,8 +19,13 @@ public class UserInteraction {
 		return true;
 	}
 
-	public boolean searchUniversities(String string, String string2) {
-		ArrayList<University> universities = SC.searchUniversities(string,string2); 
+	public boolean searchUniversities(String string, int numStudents) {
+		ArrayList<University> universities = SC.searchUniversities(string, numStudents); 
+		
+		for (int i =0; i < universities.size(); i++) {
+			this.displaySearchResult(universities, i);
+		}
+		
 		if (universities == null) {
 		return false;
 		} else {
@@ -28,6 +33,11 @@ public class UserInteraction {
 		}
 	}
 	
+	private University displaySearchResult(ArrayList<University> unis, int i) {
+		return unis.get(i);
+		
+	}
+
 	public boolean logOn(String userName, String passWord) {
 		return AC.logOn(userName, passWord);
 	}

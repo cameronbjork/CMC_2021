@@ -14,12 +14,12 @@ public class UserInteraction {
 		AC.userEditUser(userName, firstName, lastName, passWord);
 	}
 
-	public Boolean displaySavedUniversities(String username) {
+	public boolean displaySavedUniversities(String username) {
 		UFC.displaySavedUniversities(username);
 		return true;
 	}
 
-	public Boolean searchUniversity(String string, String string2) {
+	public boolean searchUniversities(String string, String string2) {
 		ArrayList<University> universities = SC.searchUniversities(string,string2); 
 		if (universities == null) {
 		return false;
@@ -28,9 +28,20 @@ public class UserInteraction {
 		}
 	}
 	
+	public boolean logOn(String userName, String passWord) {
+		return AC.logOn(userName, passWord);
+	}
+	
+	public void displayProfile(String userName) {
+		AC.displayProfile(userName);
+	}
+	
 	public University getRecentUniversity(String u) {
 		return SC.getRecentUniversity(u);
-		
-		
 	}
+	
+	public void removeSavedUniversity(String userName, University uni) {
+		UFC.removeSavedUniversity(userName, uni);
+	}
+	
 }

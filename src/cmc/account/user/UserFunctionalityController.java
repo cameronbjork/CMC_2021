@@ -14,16 +14,21 @@ import cmc.university.University;
 public class UserFunctionalityController {
 	private DBController DBC;
 
-	public User displaySavedUniversities(String username) {
+	public void displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
-		ArrayList<University> = u2.getSavedUniversities();
+		ArrayList<University> savedUniversities = new ArrayList<>(u2.getSavedUniversities());
 		//Must connect to the web interface
 	}
 	
-	public saveUnversity(String u, University uni) {
+	public void saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
-		University uni1 = DBC.getUniversity();
+		University uni1 = DBC.getUniversity(uni);
 		u1.setSavedUniversities(uni1);
 	}
-	//FINISH THIS
+
+	public void removeSavedUniversity(String userName, University uni) {
+		User u1 = DBC.getUser(userName);
+		
+		
+	}
 }

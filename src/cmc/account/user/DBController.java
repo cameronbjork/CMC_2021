@@ -11,26 +11,34 @@ import cmc.university.University;
  *
  */
 public class DBController {
-	private User user1;
+	private User user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
+	private University uni1 = new University("Sample");
 
 	public User getUser(String userName) {
 		// TODO Auto-generated method stub
-		return user1;
+		return this.user1;
 	}
 	
 	public User getAccount(String userName) {
-		User user2 = new User("peter", "securepassword",'u', "peter","Ohmann");
-		return user2;
+		return this.user1;
 }
 
+	public void getUniversities(String state, int numStudents) {
+		
+	}
+	
+	public University getUniversity(University uni) {
+		return this.uni1;
+	}
+
+	public void setUser(User u2) {
+		// TODO store user back to database
+		
 <<<<<<< HEAD
-	public void getUniversities(String state, String numStudents) {
-		
-		
 =======
 	public University getUniversity(uni) {
-		University uni1 = new U
+		University uni1 = new U;
 		return  null;
->>>>>>> 3156174263e38ec44cfd57bbb6e0877e68fe8255
+=======
 	}
 }

@@ -20,14 +20,25 @@ public class AccountController {
 			}else if (lastName != null) {
 				u2.setLastName(lastName);
 			}else if (passWord != null){
-				u2.setpassWord(passWord);
+				u2.setPassWord(passWord);
 			}			
 		}
+		DBC.setUser(u2);
 	}
 	
-	public void logOn(String userName, String passWord) {
-		Account acc = DBC.getAccount(userName);
+	public boolean logOn(String userName, String passWord) {
+		User acc = DBC.getAccount(userName);
+		String p2 = acc.getPassWord();
+		if (p2.equals(passWord)) {
+			acc.setLoginStatus(true);
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
+
+	public User displayProfile(String userName) {
+		return DBC.getUser(userName);
+	}
 	
 }

@@ -30,7 +30,7 @@ public class DBController {
 =======
 	public University getUniversity(uni) {
 		University uni1 = new U
-		return  ;
+		return  null;
 >>>>>>> 3156174263e38ec44cfd57bbb6e0877e68fe8255
 	}
 }

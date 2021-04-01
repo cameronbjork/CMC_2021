@@ -13,8 +13,13 @@ import cmc.university.University;
  *
  */
 public class DBController {
-	private User user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
-	private University uni1 = new University("Sample");
+	private User user1;
+	private University uni1;
+	
+	public DBController() {
+		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
+		this.uni1 = new University("Sample");
+	}
 
 	public User getUser(String userName) {
 		// TODO Auto-generated method stub

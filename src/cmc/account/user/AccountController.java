@@ -11,9 +11,13 @@ import cmc.account.Account;
  */
 public class AccountController {
 	private DBController DBC;
+	
+	public AccountController() {
+		this.DBC = new DBController();
+	}
 
 	public void userEditUser(String userName, String firstName, String lastName, String passWord) {
-		User u2 = DBC.getUser(userName);
+		User u2 = this.DBC.getUser(userName);
 		if (u2 != null) {
 			if (firstName != null) {
 				u2.setFirstName(firstName);
@@ -27,7 +31,7 @@ public class AccountController {
 	}
 	
 	public boolean logOn(String userName, String passWord) {
-		User acc = DBC.getAccount(userName);
+		User acc = this.DBC.getAccount(userName);
 		String p2 = acc.getPassWord();
 		if (p2.equals(passWord)) {
 			acc.setLoginStatus(true);

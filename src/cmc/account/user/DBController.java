@@ -24,6 +24,7 @@ public class DBController {
 	private University uni6;
 	private User user1;
 	private University uni1;
+	private University newUni;
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
@@ -60,8 +61,29 @@ public class DBController {
 		return this.uni1;
 	}
 
-	public void setUser(User u2) {
+	//public void setUser(User u2) { ---- DO ANYTHING TO THIS?
 		// TODO store user back to database
+
+	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
+	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
+	int numApplicants, int percentAdmit, int percentEnrolled, int academicScale, int socialScale, int qOLScale, 
+	String emphasisStudy1, String emphasisStudy2, String emphasisStudy3, String emphasisStudy4, String emphasisStudy5) {
+		this.newUni = new University( uniName,  uniState,  uniLocation,  uniControl,
+				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
+				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale, 
+				 emphasisStudy1,  emphasisStudy2,  emphasisStudy3,  emphasisStudy4,  emphasisStudy5);
+
+	}
+
+
+
+
+	public void setUserData(String userName, String firstName, String lastName, String passWord, char type) {
+		this.user1.setFirstName(firstName); 
+		this.user1.setLastName(lastName);
+		this.user1.setAccountType(type);
+		
 	}
 	
 }
+

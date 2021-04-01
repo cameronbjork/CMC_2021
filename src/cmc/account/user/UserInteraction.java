@@ -99,5 +99,10 @@ public class UserInteraction {
 	public void recommendedSearch(University uni) {
 		this.SC.recommendedSearch(uni);
 	}
+
+	public boolean displayUniversity(University uni) {
+		this.UFC.displayUniversity(uni);
+		return true;
+	}
 	
 }

@@ -27,4 +27,11 @@ public class SearchController {
 		return uni1;
 		// Implement to Web Interface
 	}
+	
+	public ArrayList<University> recommendedSearch(University uni) {
+		DBC.checkState(uni);
+			
+		}
+	}
+	
 }

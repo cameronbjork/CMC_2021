@@ -10,6 +10,7 @@ public class UserInteraction {
 	private SearchController SC;
 	private AccountController AC;
 	
+	
 	public void userEditUser(String userName, String firstName, String lastName, String passWord) {
 		AC.userEditUser(userName, firstName, lastName, passWord);
 	}
@@ -19,13 +20,8 @@ public class UserInteraction {
 		return true;
 	}
 
-	public boolean searchUniversities(String string, int numStudents) {
-		ArrayList<University> universities = SC.searchUniversities(string, numStudents); 
-		
-		for (int i =0; i < universities.size(); i++) {
-			this.displaySearchResult(universities, i);
-		}
-		
+	public boolean searchUniversities(String string, String string2) {
+		ArrayList<University> universities = SC.searchUniversities(string,string2); 
 		if (universities == null) {
 		return false;
 		} else {
@@ -33,11 +29,6 @@ public class UserInteraction {
 		}
 	}
 	
-	private University displaySearchResult(ArrayList<University> unis, int i) {
-		return unis.get(i);
-		
-	}
-
 	public boolean logOn(String userName, String passWord) {
 		return AC.logOn(userName, passWord);
 	}
@@ -52,6 +43,10 @@ public class UserInteraction {
 	
 	public void removeSavedUniversity(String userName, University uni) {
 		UFC.removeSavedUniversity(userName, uni);
+	}
+	
+	public void recommendedSearch(University uni) {
+		this.SC.recommendedSearch(uni);
 	}
 	
 }

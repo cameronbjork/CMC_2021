@@ -10,6 +10,7 @@ public class UserInteraction {
 	private SearchController SC;
 	private AccountController AC;
 	
+	
 	public UserInteraction() {
 		this.UFC = new UserFunctionalityController();
 		this.SC = new SearchController();
@@ -18,6 +19,7 @@ public class UserInteraction {
 	
 	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
 		return this.AC.userEditUser(userName, firstName, lastName, passWord);
+
 	}
 
 	public boolean displaySavedUniversities(String username) {
@@ -29,6 +31,7 @@ public class UserInteraction {
 		}
 	}
 
+
 	public boolean searchUniversities(String string, int numStudents) {
 		ArrayList<University> universities = this.SC.searchUniversities(string, numStudents); 
 		
@@ -39,10 +42,12 @@ public class UserInteraction {
 			this.displaySearchResult(universities, i);
 		}
 		return true;
+
 	}
 	
-	private University displaySearchResult(ArrayList<University> unis, int i) {
-		return unis.get(i);
+	
+	private University displaySearchResult(ArrayList<University> universities, int i) {
+		return universities.get(i);
 		
 	}
 
@@ -74,6 +79,10 @@ public class UserInteraction {
 	public boolean searchUniversities() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public void recommendedSearch(University uni) {
+		this.SC.recommendedSearch(uni);
 	}
 	
 }

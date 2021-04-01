@@ -31,4 +31,10 @@ public class SearchController {
 		return uni1;
 		// Implement to Web Interface
 	}
-}
+	
+	public boolean recommendedSearch(University uni) {
+		return DBC.checkState(uni);
+			
+		}
+	}
+	

@@ -144,4 +144,14 @@ public class Driver3 {
 		
 	}
 
+	//Running editing user
+	public static void runAdminEditUser(a
+			dminInteraction ui) {
+		System.out.println("First name was peter");
+		boolean result = ui.adminEditUser("peter", "jake", "FromStateFarm", "notSecure", 'u');
+// NEEDS WORK COME BACK TO ME MIKEL
+		
+		
+	}
+	
 }

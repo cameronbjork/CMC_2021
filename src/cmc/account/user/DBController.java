@@ -24,6 +24,7 @@ public class DBController {
 	private University uni6;
 	private User user1;
 	private University uni1;
+	private University newUni;
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
@@ -63,39 +64,28 @@ public class DBController {
 		return this.uni1;
 	}
 
-	public void setUser(User u2) {
+	//public void setUser(User u2) { ---- DO ANYTHING TO THIS?
 		// TODO store user back to database
-		
-<<<<<<< HEAD
-=======
-	public University getUniversity(uni) {
-		University uni1 = new U;
-		return  null;
-=======
+	
+	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
+	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
+	int numApplicants, int percentAdmit, int percentEnrolled, int academicScale, int socialScale, int qOLScale, 
+	String emphasisStudy1, String emphasisStudy2, String emphasisStudy3, String emphasisStudy4, String emphasisStudy5) {
+		this.newUni = new University( uniName,  uniState,  uniLocation,  uniControl,
+				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
+				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale, 
+				 emphasisStudy1,  emphasisStudy2,  emphasisStudy3,  emphasisStudy4,  emphasisStudy5);
 	}
 
-//Search by state
-	public ArrayList<University> checkState(University uni) {
+
+
+	public void setUserData(String userName, String firstName, String lastName, String passWord, char type) {
+		this.user1.setFirstName(firstName); 
+		this.user1.setLastName(lastName);
+		this.user1.setAccountType(type);
 		
-		ArrayList<String> uniList = new ArrayList<String>();
-		ArrayList<University> similarResults = new ArrayList<University>();
-		uniList.add(uni2.getUniState());
-		uniList.add(uni3.getUniState());
-		uniList.add(uni4.getUniState());
-		uniList.add(uni5.getUniState());
-		uniList.add(uni6.getUniState());
-		for(int i = 0; i < uniList.size() - 1;i++) {
-			String searchByState = uni.getUniState();
-			String individual = searchByState.substring(0, i);
-			uniList.get(i);
-			if(uniList.get(i).contains(individual) && !similarResults.contains(uniDB.get(i))) {
-				similarResults.add(uniDB.get(i));
-				else {
-					distance += 1;
-					//calculate distance for recommended(Not here because this is for search
-				}
-			}
-		}
-		return similarResults;
+		
 	}
+	
 }
+

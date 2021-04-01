@@ -35,8 +35,9 @@ public class UserFunctionalityController {
 		
 	}
 
-	public void displayUniversity(University uni) {
-		this.DBC.getUniversity(uni);
+	public University displayUniversity(University uni) {
+		return this.DBC.getUniversity(uni);
 		
 	}
+
 }

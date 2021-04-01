@@ -3,6 +3,7 @@ package cmc;
 import java.util.List;
 
 import cmc.account.user.UserInteraction;
+import cmc.university.University;
 
 /**
  * An example of a CMC Driver...demoing only the Login use case.
@@ -109,17 +110,16 @@ public class Driver3 {
 		boolean result = ui.displaySavedUniversities("peter");
 		System.out.println("Expected: true; Result: " + result);
 	}
-
 	/**
 	 * 
-	 * Test scenario for the logOut use case
-	 */		
-	private static void logOut(UserInteraction ui) {
-		// test logOut() main scenario
-		System.out.println("Testing logOut() main scenario...");
-		boolean result = ui.logOut();
-		System.out.println("Expected: false; Result: " + result);		
+	 * Test scenario for the displayUniversities use case
+	 */
+	private static void runDisplayUniversity(UserInteraction ui, University uni) {
+		System.out.println("Testing displayUniversity main scenario...");
+		boolean result = ui.displayUniversity(uni);
+		System.out.println("Expected: true; Result: " + result);
 	}
+		
 	
 
 	/**
@@ -129,6 +129,7 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
+		University uni = new University("University Name");
 		try {
 		runLogin(ui);
 		runViewProfile(ui);
@@ -136,12 +137,12 @@ public class Driver3 {
 		runSearchUniversity(ui);
 		runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
+		runDisplayUniversity(ui,uni);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}
 		
 		//runlogOut(ui);
-		
 	}
 
 }

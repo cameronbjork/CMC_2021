@@ -67,10 +67,7 @@ public class DBController {
 		// TODO store user back to database
 	}
 
-	public University getUniversity(uni) {
-		University uni1 = new U();
-		return  ;
-	}
+
 
 //Search by state
 	public ArrayList<University> checkState(University uni) {

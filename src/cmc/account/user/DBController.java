@@ -59,13 +59,11 @@ public class DBController {
 
 	public void setUser(User u2) {
 		// TODO store user back to database
-		
-<<<<<<< HEAD
-=======
+	}
+
 	public University getUniversity(uni) {
-		University uni1 = new U;
-		return  null;
-=======
+		University uni1 = new U();
+		return  ;
 	}
 
 

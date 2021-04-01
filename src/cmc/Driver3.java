@@ -49,8 +49,8 @@ public class Driver3 {
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
-		System.out.println("Testing searchUniversity main scenario...");
-		boolean result2 = ui.searchUniversities("", 0);
+		System.out.println("Testing searchUniversity null data...");
+		boolean result2 = ui.searchUniversities();
 		System.out.println("Expected: false; Result: " + result2);
 		
 	}	
@@ -66,7 +66,7 @@ public class Driver3 {
 		// test viewSearchResults main scenario
 		System.out.println("Testing viewSearchResults alternate scenario #1 (null fields)");
 		result = ui.searchUniversities();
-		System.out.println("Expected: true; Result: " + result);		
+		System.out.println("Expected: false; Result: " + result);		
 	}
 	/**
 	 * 

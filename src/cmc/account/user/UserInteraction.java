@@ -73,7 +73,7 @@ public class UserInteraction {
 
 	public boolean searchUniversities() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 	
 }

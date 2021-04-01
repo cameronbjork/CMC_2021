@@ -16,6 +16,7 @@ import cmc.university.University;
  */
 public class DBController {
 
+	private ArrayList<University> uniDB;
 	private University uni2;
 	private University uni3;
 	private University uni4;
@@ -33,7 +34,12 @@ public class DBController {
 		this.uni4 = new University ("MinSchool", "Nebraska", "LINCOLN", "COMMUNITY", 12000, 42, 2, 5, 7000, 62, 900, 34, 62, 2, 1, 1, "COMMUNICATION", "MATH", "ENVIROMENTAL STUDIES", "", "");
 		this.uni5 = new University ("Jacked School", "Idaho", "BOISE", "PRIVATE", 10000, 67, 1, 5, 700, 35, 900, 43, 49, 5, 4, 3, "COMPUTER SCIENCE", "NURSING", "EXCERSICE STUDY", "", "");
 		this.uni6 = new University ("Drugs School", "California", "SAN FRANCISCO", "COMMUNITY", 2000, 99, 4, 5, 6000, 35, 900, 60, 67, 4, 0, 3, "NUMERICAL COMPUTING", "PRE MED", "MUSIC", "", "");
-			
+		this.uniDB = new ArrayList<University>();	
+		this.uniDB.add(uni2);
+		this.uniDB.add(uni3);
+		this.uniDB.add(uni4);
+		this.uniDB.add(uni5);
+		this.uniDB.add(uni6);
 	}
 
 	
@@ -66,18 +72,28 @@ public class DBController {
 		return  ;
 	}
 
-
-	public boolean checkState(University uni) {
+//Search by state
+	public ArrayList<University> checkState(University uni) {
 		
 		ArrayList<String> uniList = new ArrayList<String>();
+		ArrayList<University> similarResults = new ArrayList<University>();
 		uniList.add(uni2.getUniState());
 		uniList.add(uni3.getUniState());
 		uniList.add(uni4.getUniState());
 		uniList.add(uni5.getUniState());
 		uniList.add(uni6.getUniState());
-		for(int i = 0;uniList.contains(uni.subString());i++) {
-			boolean isAMatch = true;
+		for(int i = 0; i < uniList.size() - 1;i++) {
+			String searchByState = uni.getUniState();
+			String individual = searchByState.substring(0, i);
+			uniList.get(i);
+			if(uniList.get(i).contains(individual) && !similarResults.contains(uniDB.get(i))) {
+				similarResults.add(uniDB.get(i));
+				else {
+					distance += 1;
+					//calculate distance for recommended(Not here because this is for search
+				}
+			}
 		}
-		
+		return similarResults;
 	}
 }

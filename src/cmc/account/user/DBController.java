@@ -75,7 +75,9 @@ public class DBController {
 				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
 				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale, 
 				 emphasisStudy1,  emphasisStudy2,  emphasisStudy3,  emphasisStudy4,  emphasisStudy5);
+
 	}
+
 
 
 
@@ -84,7 +86,7 @@ public class DBController {
 		this.user1.setLastName(lastName);
 		this.user1.setAccountType(type);
 		
-		
+
 	}
 	
 }

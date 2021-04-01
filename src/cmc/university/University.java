@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class University {
 	private String uniName;
 	private String uniState;
-	private static String uniLocation;
-	private static String uniControl;
+	public String uniLocation;
+	public String uniControl;
 	private int numOfStudents;
 	private int percentFemale;
 	private int satVerbal;
@@ -27,6 +27,7 @@ public class University {
 	private int academicScale;
 	private int socialScale;
 	private int qOLScale;
+	private String [][] emphasisArray;
 	private String emphasisStudy1;
 	private String emphasisStudy2;
 	private String emphasisStudy3;
@@ -77,6 +78,7 @@ public class University {
 		this.academicScale = academicScale;
 		this.socialScale = socialScale;
 		this.qOLScale = qOLScale;
+		
 		this.emphasisStudy1 = emphasisStudy1;
 		this.emphasisStudy2 = emphasisStudy2;
 		this.emphasisStudy3 = emphasisStudy3;
@@ -198,8 +200,14 @@ public class University {
 	public void setEmphasisStudy5(String emphasisStudy5) {
 		this.emphasisStudy5 = emphasisStudy5;
 	}
-	public University(String uniName) {
-		this.uniName = uniName;
+
+	public String getUniLocation() {
+		return this.uniLocation;
+	}
+
+	public String getControl() {
+		// TODO Auto-generated method stub
+		return this.uniControl;
 	}
 	
 	

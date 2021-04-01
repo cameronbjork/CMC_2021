@@ -45,7 +45,7 @@ public class Driver3 {
 	private static void runSearchUniversity(UserInteraction ui) {
 		// test searchUniversity() main scenario
 		System.out.println("Testing searchUniversity main scenario...");
-		boolean result = ui.searchUniversities("Minnesota", 3000);
+		boolean result = ui.searchUniversities("St", "Minnesota","CHICAGO", 1000, 3000);
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
@@ -130,11 +130,11 @@ public class Driver3 {
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
 		try {
-		runLogin(ui);
-		runViewProfile(ui);
-		runEditProfile(ui);
+		//runLogin(ui);
+		//runViewProfile(ui);
+		//runEditProfile(ui);
 		runSearchUniversity(ui);
-		runViewSearchResults(ui);
+		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");

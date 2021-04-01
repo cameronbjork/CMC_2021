@@ -17,6 +17,7 @@ public class UserInteraction {
 		this.AC= new AccountController();
 	}
 	
+	//Admin can edit type and activate/deactivate account
 	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
 		return this.AC.userEditUser(userName, firstName, lastName, passWord);
 
@@ -32,16 +33,30 @@ public class UserInteraction {
 	}
 
 
-	public boolean searchUniversities(String string, int numStudents) {
-		ArrayList<University> universities = this.SC.searchUniversities(string, numStudents); 
+	//Create most recent search method
+	
+	public boolean searchUniversities(String school, String state, String location, String control, int minNumStudents, 
+			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, int minAnnualExpenses, 
+			int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, int maxNumApplicants,
+			int minPercentAdmit, int maxPercentAdmit, int minPercentEnrolled, int maxPercentEnrolled, int minAcademicScale, int maxAcademicScale, 
+			int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale) {
 		
-		ArrayList<University> recUniSearch = new ArrayList<University>();
-		recUniSearch.add(universities.get(0));
+		ArrayList<University> universities = this.SC.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
+				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
+				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
+				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale);
 		
+		System.out.println(universities.get(0).getUniName());
+		System.out.println(universities.get(1).getUniName());
 		for (int i =0; i < universities.size(); i++) {
 			this.displaySearchResult(universities, i);
 		}
-		return true;
+		
+		if (universities != null) {
+			return true;
+		} else {
+			return false;
+		}
 
 	}
 	

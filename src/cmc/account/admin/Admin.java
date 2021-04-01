@@ -11,9 +11,8 @@ import cmc.account.Account;
  */
 public class Admin extends Account {
 	
-	public Admin(String userName, String passWord, char accountType, String firstName, String lastName,
-			boolean loginStatus) {
-		super(userName, passWord, accountType, firstName, lastName, loginStatus);
+	public Admin(String userName, String passWord, char accountType, String firstName, String lastName) {
+		super(userName, passWord, accountType, firstName, lastName);
 	}
 	
 }

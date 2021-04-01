@@ -18,22 +18,22 @@ public class Driver3 {
 	private static void runLogin(UserInteraction ui) {
 		// test login main scenario (successful login)
 		System.out.println("Testing login main scenario...");
-		boolean result = ui.login("peter", "securepassword");
+		boolean result = ui.logOn("peter", "securepassword");
 		System.out.println("Expected: true; Result: " + result);
 
 		// test login alternate scenario #1 (bad password)
 		System.out.println("Testing login alternate scenario #1...");
-		result = ui.login("peter", "password123");
+		result = ui.logOn("peter", "password123");
 		System.out.println("Expected: false; Result: " + result);
 		
 		// test login alternate scenario #2 (unknown username)
 		System.out.println("Testing login alternate scenario #2...");
-		result = ui.login("doorknob", "password123");
+		result = ui.logOn("doorknob", "password123");
 		System.out.println("Expected: false; Result: " + result);
 	
 		// test login alternate scenario #3 (Inactive Status)
 		System.out.println("Testing login alternate scenario #2...");
-		result = ui.login("_______", "________");
+		result = ui.logOn("_______", "________");
 		System.out.println("Expected: false; Result: " + result);		
 	}
 
@@ -60,12 +60,12 @@ public class Driver3 {
 	private static void runViewSearchResults(UserInteraction ui) {
 		// test viewSearchResults main scenario
 		System.out.println("Testing viewSearchResults main scenario...");
-		Boolean result = ui.viewSearchResults();
+		Boolean result = ui.searchUniversities("state", "1000");
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test viewSearchResults main scenario
 		System.out.println("Testing viewSearchResults alternate scenario #1 (null fields)");
-		result = ui.viewSearchResults();
+		result = ui.searchUniversities();
 		System.out.println("Expected: true; Result: " + result);		
 	}
 	/**

@@ -40,6 +40,14 @@ public class User extends Account {
 		// TODO Auto-generated method stub
 		return this.recentUniversity;
 	}
+	public void setSavedUniversities(University uni1) {
+		this.savedUniversities.add(uni1);
+		
+	}
+	public void removeSavedUniversity(University uni) {
+		this.savedUniversities.remove(uni);
+		
+	}
 	
 	
 	

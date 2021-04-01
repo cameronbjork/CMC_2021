@@ -23,6 +23,7 @@ public class AccountController {
 				u2.setPassWord(passWord);
 			}			
 		}
+		DBC.setUser(u2);
 	}
 	
 	public boolean logOn(String userName, String passWord) {
@@ -36,9 +37,8 @@ public class AccountController {
 		}
 	}
 
-	public void displayProfile(String userName) {
-		// TODO Auto-generated method stub
-		
+	public User displayProfile(String userName) {
+		return DBC.getUser(userName);
 	}
 	
 }

@@ -20,10 +20,15 @@ public class UserFunctionalityController {
 		//Must connect to the web interface
 	}
 	
-	public saveUnversity(String u, University uni) {
+	public void saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
-		University uni1 = DBC.getUniversity();
+		University uni1 = DBC.getUniversity(uni);
 		u1.setSavedUniversities(uni1);
 	}
-	//FINISH THIS
+
+	public void removeSavedUniversity(String userName, University uni) {
+		User u1 = DBC.getUser(userName);
+		
+		
+	}
 }

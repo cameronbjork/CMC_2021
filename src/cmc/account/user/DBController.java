@@ -3,6 +3,8 @@
  */
 package cmc.account.user;
 
+import java.util.ArrayList;
+
 import cmc.account.Account;
 import cmc.university.University;
 
@@ -23,8 +25,10 @@ public class DBController {
 		return this.user1;
 }
 
-	public void getUniversities(String state, int numStudents) {
+	public ArrayList<University> getUniversities(String state, int numStudents) {
+		ArrayList<University> searchResults = new  ArrayList<>();
 		
+		return searchResults;
 	}
 	
 	public University getUniversity(University uni) {

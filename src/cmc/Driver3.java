@@ -45,12 +45,12 @@ public class Driver3 {
 	private static void runSearchUniversity(UserInteraction ui) {
 		// test searchUniversity() main scenario
 		System.out.println("Testing searchUniversity main scenario...");
-		Boolean result = ui.searchUniversity("MN", "3000");
+		Boolean result = ui.searchUniversities("MN", 3000);
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
 		System.out.println("Testing searchUniversity main scenario...");
-		result = ui.searchUniversity("", "");
+		result = ui.searchUniversities("", 0);
 		System.out.println("Expected: false; Result: " + result);
 		
 	}	

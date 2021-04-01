@@ -13,11 +13,14 @@ import cmc.university.University;
  */
 public class UserFunctionalityController {
 	private DBController DBC;
+	
+	public UserFunctionalityController() {
+		this.DBC = new DBController();
+	}
 
-	public void displaySavedUniversities(String username) {
+	public ArrayList<University> displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
-		ArrayList<University> savedUniversities = new ArrayList<>(u2.getSavedUniversities());
-		//Must connect to the web interface
+		return u2.getSavedUniversities();
 	}
 	
 	public void saveUnversity(String u, University uni) {
@@ -28,7 +31,12 @@ public class UserFunctionalityController {
 
 	public void removeSavedUniversity(String userName, University uni) {
 		User u1 = DBC.getUser(userName);
+		u1.removeSavedUniversity(uni);
 		
+	}
+
+	public void displayUniversity(University uni) {
+		this.DBC.getUniversity(uni);
 		
 	}
 }

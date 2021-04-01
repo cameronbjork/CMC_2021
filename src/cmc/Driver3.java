@@ -23,18 +23,18 @@ public class Driver3 {
 
 		// test login alternate scenario #1 (bad password)
 		System.out.println("Testing login alternate scenario #1...");
-		result = ui.logOn("peter", "password123");
-		System.out.println("Expected: false; Result: " + result);
+		boolean result2 = ui.logOn("peter", "password123");
+		System.out.println("Expected: false; Result: " + result2);
 		
 		// test login alternate scenario #2 (unknown username)
 		System.out.println("Testing login alternate scenario #2...");
-		result = ui.logOn("doorknob", "password123");
-		System.out.println("Expected: false; Result: " + result);
+		boolean result3 = ui.logOn("doorknob", "password123");
+		System.out.println("Expected: false; Result: " + result3);
 	
 		// test login alternate scenario #3 (Inactive Status)
 		System.out.println("Testing login alternate scenario #2...");
-		result = ui.logOn("_______", "________");
-		System.out.println("Expected: false; Result: " + result);		
+		boolean result4 = ui.logOn("_______", "________");
+		System.out.println("Expected: false; Result: " + result4);		
 	}
 
 	/**
@@ -45,13 +45,13 @@ public class Driver3 {
 	private static void runSearchUniversity(UserInteraction ui) {
 		// test searchUniversity() main scenario
 		System.out.println("Testing searchUniversity main scenario...");
-		Boolean result = ui.searchUniversities("MN", 3000);
+		boolean result = ui.searchUniversities("Minnesota", 3000);
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
-		System.out.println("Testing searchUniversity main scenario...");
-		result = ui.searchUniversities("", 0);
-		System.out.println("Expected: false; Result: " + result);
+		System.out.println("Testing searchUniversity null data...");
+		boolean result2 = ui.searchUniversities();
+		System.out.println("Expected: false; Result: " + result2);
 		
 	}	
 	/**
@@ -60,13 +60,13 @@ public class Driver3 {
 	private static void runViewSearchResults(UserInteraction ui) {
 		// test viewSearchResults main scenario
 		System.out.println("Testing viewSearchResults main scenario...");
-		Boolean result = ui.searchUniversities("state", "1000");
+		Boolean result = ui.searchUniversities("state", 1000);
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test viewSearchResults main scenario
 		System.out.println("Testing viewSearchResults alternate scenario #1 (null fields)");
 		result = ui.searchUniversities();
-		System.out.println("Expected: true; Result: " + result);		
+		System.out.println("Expected: false; Result: " + result);		
 	}
 	/**
 	 * 
@@ -75,7 +75,7 @@ public class Driver3 {
 	private static void runViewRecommendedSchools(UserInteraction ui) {
 		// test viewRecommendedSchools main scenario
 		System.out.println("Testing viewSearchResults main scenario...");
-		Boolean result = ui.viewRecommendedSchools();
+		boolean result = ui.viewRecommendedSchools();
 		System.out.println("Expected: true; Result: " + result);		
 	}
 	
@@ -90,7 +90,13 @@ public class Driver3 {
 	private static void runViewProfile(UserInteraction ui) {
 		// code here to test the "View Profile" use case...
 		System.out.println("Testing viewProfile main scenario...");
-		Boolean result = ui.viewProfile();
+		boolean result = ui.displayProfile("peter");
+		System.out.println("Expected: true; Result: " + result);
+	}
+	
+	private static void runEditProfile(UserInteraction ui) {
+		System.out.println("Testing editProfile main scenario...");
+		boolean result = ui.userEditUser("peter", "p", "last", "password");
 		System.out.println("Expected: true; Result: " + result);
 	}
 	
@@ -98,9 +104,9 @@ public class Driver3 {
 	 * 
 	 * Test scenario for the viewSavedUniversities use case
 	 */
-	private static void runDisplaySavedUniversities(UserInteraction ui, String username) {
+	private static void runDisplaySavedUniversities(UserInteraction ui) {
 		System.out.println("Testing viewSavedUniversities main scenario...");
-		Boolean result = ui.displaySavedUniversities(ui);
+		boolean result = ui.displaySavedUniversities("peter");
 		System.out.println("Expected: true; Result: " + result);
 	}
 
@@ -111,7 +117,7 @@ public class Driver3 {
 	private static void logOut(UserInteraction ui) {
 		// test logOut() main scenario
 		System.out.println("Testing logOut() main scenario...");
-		Boolean result = ui.logOut();
+		boolean result = ui.logOut();
 		System.out.println("Expected: false; Result: " + result);		
 	}
 	
@@ -123,13 +129,19 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
-		String username = "username";
-		
-		//runLogin(ui);
-		//runViewSavedUniversities(ui,username);
+		try {
+		runLogin(ui);
+		runViewProfile(ui);
+		runEditProfile(ui);
 		runSearchUniversity(ui);
+		runViewSearchResults(ui);
+		//runDisplaySavedUniversities(ui);
+		} catch (NullPointerException e) {
+			System.out.println("Null");
+		}
+		
 		//runlogOut(ui);
-		//runViewSearchResults(ui);
+		
 	}
 
 }

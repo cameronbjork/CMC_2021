@@ -58,8 +58,8 @@ public class University {
 	 */
 	public University(String uniName, String uniState, String uniLocation, String uniControl, int numOfStudents, int percentFemale, int satVerbal, int satMath,
 			int annualExpenses, int percentFinAid, int numApplicants, int percentAdmit, int percentEnrolled,
-			int academicScale, int socialScale, int qOLScale, int emphasisStudy1, int emphasisStudy2,
-			int emphasisStudy3, int emphasisStudy4, int emphasisStudy5) {
+			int academicScale, int socialScale, int qOLScale, String emphasisStudy1, String emphasisStudy2,
+			String emphasisStudy3, String emphasisStudy4, String emphasisStudy5) {
 		super();
 		this.uniName = uniName;
 		this.uniState = uniState;
@@ -171,31 +171,31 @@ public class University {
 	public String getEmphasisStudy1() {
 		return emphasisStudy1;
 	}
-	public void setEmphasisStudy1(int emphasisStudy1) {
+	public void setEmphasisStudy1(String emphasisStudy1) {
 		this.emphasisStudy1 = emphasisStudy1;
 	}
 	public String getEmphasisStudy2() {
 		return emphasisStudy2;
 	}
-	public void setEmphasisStudy2(int emphasisStudy2) {
+	public void setEmphasisStudy2(String emphasisStudy2) {
 		this.emphasisStudy2 = emphasisStudy2;
 	}
 	public String getEmphasisStudy3() {
 		return emphasisStudy3;
 	}
-	public void setEmphasisStudy3(int emphasisStudy3) {
+	public void setEmphasisStudy3(String emphasisStudy3) {
 		this.emphasisStudy3 = emphasisStudy3;
 	}
 	public String getEmphasisStudy4() {
 		return emphasisStudy4;
 	}
-	public void setEmphasisStudy4(int emphasisStudy4) {
+	public void setEmphasisStudy4(String emphasisStudy4) {
 		this.emphasisStudy4 = emphasisStudy4;
 	}
 	public String getEmphasisStudy5() {
 		return emphasisStudy5;
 	}
-	public void setEmphasisStudy5(int emphasisStudy5) {
+	public void setEmphasisStudy5(String emphasisStudy5) {
 		this.emphasisStudy5 = emphasisStudy5;
 	}
 	public University(String uniName) {

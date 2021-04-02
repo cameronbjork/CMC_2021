@@ -4,8 +4,13 @@
 package cmc.account.user;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import cmc.university.University;
 
@@ -19,19 +24,21 @@ public class SearchController {
 	
 	public SearchController() {
 		this.DBC = new DBController();
+		this.uniAndDistance = new HashMap<String, Integer>();
 	}
 
 	public ArrayList<University> searchUniversities(String school, String state, String location, String control, int minNumStudents, 
 			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, 
 			int minAnnualExpenses, int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, 
 			int maxNumApplicants, int minPercentAdmit, int maxPercentAdmit, int minPercentEnrolled, int maxPercentEnrolled, 
-			int minAcademicScale, int maxAcademicScale, int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale) {
+			int minAcademicScale, int maxAcademicScale, int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale,
+			String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5) {
 		
 		ArrayList<University> similarResults = new ArrayList<University>();
 		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
 		
 		//HashMap for each uniName can hold a distance value
-		this.uniAndDistance = new HashMap<String, Integer>(allResults.size());
+		this.uniAndDistance.clear();
 		
 		//Creates Key values for HashMap as uniName & values set to default distance value of 0
 		for (int i = 0; i < allResults.size(); i++) {
@@ -44,7 +51,7 @@ public class SearchController {
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Check for school name
-			if (tempUniName.contains(school) && school != "NULL") {
+			if (tempUniName.toLowerCase().contains(school.toLowerCase()) && school != "NULL") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
@@ -54,7 +61,7 @@ public class SearchController {
 			}
 			
 			//Check for similar states
-			if (allResults.get(i).getUniState().contains(state) && state != "NULL") {
+			if (allResults.get(i).getUniState().toLowerCase().contains(state.toLowerCase()) && state != "NULL") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
@@ -202,10 +209,29 @@ public class SearchController {
 				//Update distance to HashMap
 				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
-			
-			//Still need to check for Emphasis
+
 		}
 		
+		//Check for similar Emphasis
+		String[][] uniAndEmphasis = this.DBC.university_getNamesWithEmphasis();
+		String tempUni2;
+		for (int i = 0; i < allResults.size(); i++) {
+			tempUni2 = allResults.get(i).getUniName();
+			for (int j = 0; j < 2; j++) {
+				if (uniAndEmphasis[i][j] == tempUni2) {
+					j++;
+					if (emphasis1 == uniAndEmphasis[i][j] || emphasis2 == uniAndEmphasis[i][j] ||
+							emphasis3 == uniAndEmphasis[i][j] || emphasis4 == uniAndEmphasis[i][j] ||
+							emphasis5 == uniAndEmphasis[i][j]) {
+						if (!similarResults.contains(allResults.get(i))) {
+							similarResults.add(allResults.get(i));
+						}
+						//Update distance to HashMap
+						this.uniAndDistance.replace(tempUni2, this.uniAndDistance.get(tempUni2) + 1);
+					}
+				}
+			}
+		}
 
 		//return list of searchResults
 		System.out.println(this.uniAndDistance.values());
@@ -214,9 +240,31 @@ public class SearchController {
 		
 	}
 	
-	public void topRecommendedUnis() {
-		// TODO Auto-generated method stub
+	public ArrayList<University> topRecommendedUnis() {
+		List<Entry<String,Integer>> resultList  = new ArrayList<Entry<String, Integer>>();
+		ArrayList<University> uniResultList = new ArrayList<University>();
 		
+		System.out.println(this.uniAndDistance.values());
+		
+		Set<Entry<String, Integer>> set = this.uniAndDistance.entrySet();
+		
+		ArrayList<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
+		
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+			public int compare(Entry<String,Integer> o1, Entry<String, Integer> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
+		});
+		
+		resultList = list.subList(0, 4);
+		System.out.println(resultList.toString());
+		
+		int i = 0;
+		while (i < resultList.size()) {
+			uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
+			i++;
+		}
+		return uniResultList;
 	}
 
 	public University getRecentUniversity(String u) {

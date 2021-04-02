@@ -25,6 +25,7 @@ public class DBController {
 	private User user1;
 	private University uni1;
 	private University newUni;
+	private String[][] uniWithEmphasis = new String[25][2];
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
@@ -40,7 +41,17 @@ public class DBController {
 		this.uniDB.add(uni4);
 		this.uniDB.add(uni5);
 		this.uniDB.add(uni6);
-	}
+		
+		
+		for (int i = 0; i < uniDB.size(); i++)  {
+			int k = 0;
+			uniWithEmphasis[i][k] = this.uniDB.get(i).getUniName();
+			k++;
+			uniWithEmphasis[i][k] = this.uniDB.get(i).getEmphasisArray().get(i);
+			}
+		}
+		
+		
 
 	
 	
@@ -59,6 +70,17 @@ public class DBController {
 	
 	public University getUniversity(University uni) {
 		return this.uni1;
+	}
+	
+	public University getUniversityByName(String uniName) {
+		ArrayList <University> allResults = new ArrayList<University>(this.getAllUniversities());
+		University uniSaved = null;
+		for (int i = 0; i < allResults.size() && uniSaved != null; i++) {
+			if (uniName == allResults.get(i).getUniName()) {
+				uniSaved = allResults.get(i);
+			}
+		}
+		return uniSaved;
 	}
 
 	//public void setUser(User u2) { ---- DO ANYTHING TO THIS?
@@ -83,6 +105,12 @@ public class DBController {
 		this.user1.setLastName(lastName);
 		this.user1.setAccountType(type);
 		
+	}
+
+
+	public String[][] university_getNamesWithEmphasis() {
+		// TODO Auto-generated method stub
+		return uniWithEmphasis;
 	}
 	
 }

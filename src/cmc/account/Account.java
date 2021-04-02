@@ -4,7 +4,9 @@
 package cmc.account;
 
 /**
- * @author cbjork001
+ * 
+ * Class for implementing the accounts of all users 
+ * @author Cameron Bjork, Joe koller
  *
  */
 public abstract class Account {
@@ -24,6 +26,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method is used to return the name of a user as a string
 	 * @return the userName
 	 */
 	public String getUserName() {
@@ -31,6 +34,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method sets the name of the user to a passed in string
 	 * @param userName the userName to set
 	 */
 	public void setUserName(String userName) {
@@ -38,6 +42,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method gets the password of a user and returns a string
 	 * @return the passWord
 	 */
 	public String getPassWord() {
@@ -45,6 +50,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method sets the password of a user given a string
 	 * @param passWord the passWord to set
 	 */
 	public void setPassWord(String passWord) {
@@ -52,13 +58,15 @@ public abstract class Account {
 	}
 
 	/**
-	 * @return the accountType
+	 * This method gets the account type of a user
+	 * @return the accountType(char)
 	 */
 	public char getAccountType() {
 		return accountType;
 	}
 
 	/**
+	 * This method sets the account type for a  user given the account type(char)
 	 * @param accountType the accountType to set
 	 */
 	public void setAccountType(char accountType) {
@@ -66,6 +74,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method gets the first name of a user
 	 * @return the firstName
 	 */
 	public String getFirstName() {
@@ -73,6 +82,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method sets the first name of a user
 	 * @param firstName the firstName to set
 	 */
 	public void setFirstName(String firstName) {
@@ -80,6 +90,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method gets the last name of a user
 	 * @return the lastName
 	 */
 	public String getLastName() {
@@ -87,6 +98,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method sets the last name of a user
 	 * @param lastName the lastName to set
 	 */
 	public void setLastName(String lastName) {
@@ -94,6 +106,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method gets the login status of a user
 	 * @return the loginStatus
 	 */
 	public boolean isLoginStatus() {
@@ -101,6 +114,7 @@ public abstract class Account {
 	}
 
 	/**
+	 * This method sets the login status of a user
 	 * @param loginStatus the loginStatus to set
 	 */
 	public void setLoginStatus(boolean loginStatus) {

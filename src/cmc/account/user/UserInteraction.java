@@ -106,5 +106,6 @@ public class UserInteraction {
 		this.UFC.displayUniversity(uni);
 		return true;
 	}
+
 	
 }

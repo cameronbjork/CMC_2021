@@ -129,16 +129,15 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
-<<<<<<< HEAD
+
 		AdminInteraction ai = new AdminInteraction();
-=======
->>>>>>> 89d4336727d2cd9ae94a58bc8c70e712b5bfc374
+
 		try {
 		//runLogin(ui);
 		//runViewProfile(ui);
 		//runEditProfile(ui);
 		//runSearchUniversity(ui);
-		runAdminEditUser(ai);
+		runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
 		//runDisplayUniversity(ui,uni);
@@ -150,7 +149,7 @@ public class Driver3 {
 	}
 
 	//Running editing user
-<<<<<<< HEAD
+
 	public static void runAdminEditUser(AdminInteraction ui) {
 		System.out.println("Testing editProfile main scenario...");
 		boolean result = ui.adminEditUser("peter", "p", "last", "password", 'u');

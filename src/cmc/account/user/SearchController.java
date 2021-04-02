@@ -15,6 +15,7 @@ import cmc.university.University;
  */
 public class SearchController {
 	private DBController DBC;
+	private HashMap<String, Integer> uniAndDistance;
 	
 	public SearchController() {
 		this.DBC = new DBController();
@@ -30,11 +31,11 @@ public class SearchController {
 		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
 		
 		//HashMap for each uniName can hold a distance value
-		HashMap<String, Integer> uniAndDistance = new HashMap<String, Integer>(allResults.size());
+		this.uniAndDistance = new HashMap<String, Integer>(allResults.size());
 		
 		//Creates Key values for HashMap as uniName & values set to default distance value of 0
-		for (int i = 0; i < allResults.size() - 1; i++) {
-			uniAndDistance.put(allResults.get(i).getUniName(), 0);
+		for (int i = 0; i < allResults.size(); i++) {
+			this.uniAndDistance.put(allResults.get(i).getUniName(), 0);
 		}
 		
 		String tempUniName;
@@ -43,53 +44,53 @@ public class SearchController {
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Check for school name
-			if (tempUniName.contains(school)) {
+			if (tempUniName.contains(school) && school != "NULL") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar states
-			if (allResults.get(i).getUniState().contains(state)) {
+			if (allResults.get(i).getUniState().contains(state) && state != "NULL") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for Location
-			if (allResults.get(i).getUniLocation().contains(location)) {
+			if (allResults.get(i).getUniLocation().contains(location) && location != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for Control
-			if (allResults.get(i).getControl().contains(control)) {
+			if (allResults.get(i).getControl().contains(control) && control != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar numOfStudents
-			if (allResults.get(i).getNumOfStudents() >= minNumStudents && allResults.get(i).getNumOfStudents() <= maxNumStudents) {
+			if (allResults.get(i).getNumOfStudents() >= minNumStudents && allResults.get(i).getNumOfStudents() <= maxNumStudents && minNumStudents != -1 && maxNumStudents != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar percentFemale
@@ -99,17 +100,17 @@ public class SearchController {
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar SATVerbal
-			if (allResults.get(i).getSatVerbal() >= minSATVerbal && allResults.get(i).getSatVerbal() <= maxSATVerbal) {
+			if (allResults.get(i).getSatVerbal() >= minSATVerbal && allResults.get(i).getSatVerbal() <= maxSATVerbal && minSATVerbal != -1 && maxSATVerbal != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar SATMath
@@ -119,7 +120,7 @@ public class SearchController {
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar Expenses
@@ -129,79 +130,82 @@ public class SearchController {
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar percentFinancialAid
-			if (allResults.get(i).getPercentFinAid() >= minPercentFinancialAid && allResults.get(i).getPercentFinAid() <= maxPercentFinancialAid) {
+			if (allResults.get(i).getPercentFinAid() >= minPercentFinancialAid && allResults.get(i).getPercentFinAid() <= maxPercentFinancialAid && minPercentFinancialAid != -1 && maxPercentFinancialAid != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar numApplicants
-			if (allResults.get(i).getNumApplicants() >= minNumApplicants && allResults.get(i).getNumApplicants() <= maxNumApplicants) {
+			if (allResults.get(i).getNumApplicants() >= minNumApplicants && allResults.get(i).getNumApplicants() <= maxNumApplicants && minNumApplicants != -1 && maxNumApplicants != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar percentAdmitted
-			if (allResults.get(i).getPercentAdmit() >= minPercentAdmit && allResults.get(i).getPercentAdmit() <= maxPercentAdmit) {
+			if (allResults.get(i).getPercentAdmit() >= minPercentAdmit && allResults.get(i).getPercentAdmit() <= maxPercentAdmit && minPercentAdmit != -1 && maxPercentAdmit != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar percentEnrolled
-			if (allResults.get(i).getPercentEnrolled() >= minPercentEnrolled && allResults.get(i).getPercentEnrolled() <= maxPercentEnrolled) {
+			if (allResults.get(i).getPercentEnrolled() >= minPercentEnrolled && allResults.get(i).getPercentEnrolled() <= maxPercentEnrolled && minPercentEnrolled != -1 && maxPercentEnrolled != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar acadmicsScale
-			if (allResults.get(i).getAcademicScale() >= minAcademicScale && allResults.get(i).getAcademicScale() <= maxAcademicScale) {
+			if (allResults.get(i).getAcademicScale() >= minAcademicScale && allResults.get(i).getAcademicScale() <= maxAcademicScale && minAcademicScale != -1 && maxAcademicScale != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar socialScale
-			if (allResults.get(i).getSocialScale() >= minSocialScale && allResults.get(i).getSocialScale() <= maxSocialScale) {
+			if (allResults.get(i).getSocialScale() >= minSocialScale && allResults.get(i).getSocialScale() <= maxSocialScale && minSocialScale != -1 && maxSocialScale != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
 			
 			//Check for similar qOLScale
-			if (allResults.get(i).getqOLScale() >= minQOLScale && allResults.get(i).getSocialScale() <= maxQOLScale) {
+			if (allResults.get(i).getqOLScale() >= minQOLScale && allResults.get(i).getSocialScale() <= maxQOLScale && minQOLScale != -1 && maxQOLScale != -1) {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
 				}
 				//Update distance to HashMap
-				uniAndDistance.replace(tempUniName, uniAndDistance.get(tempUniName) + 1);
+				this.uniAndDistance.replace(tempUniName, this.uniAndDistance.get(tempUniName) + 1);
 			}
+			
+			//Still need to check for Emphasis
 		}
+		
 
 		//return list of searchResults
 		return similarResults;

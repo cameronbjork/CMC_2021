@@ -46,14 +46,13 @@ public class Driver3 {
 	private static void runSearchUniversity(UserInteraction ui) {
 		// test searchUniversity() main scenario
 		System.out.println("Testing searchUniversity main scenario...");
-		boolean result = ui.searchUniversities("St", "Minnesota","CHICAGO", 1000, 3000);
+		boolean result = ui.searchUniversities("St", "Minnesota","CHICAGO", "COMMUNITY", 1000, 3000, 65, 70, 2, 4, 2, 4, 9000, 1100, 49, 51, 999, 1001, 74, 76, 96, 98, 3, 5, 3, 5, 3, 5);
 		System.out.println("Expected: true; Result: " + result);
 		
 		// test searchUniversity() alternate scenario (null)
 		System.out.println("Testing searchUniversity null data...");
-		boolean result2 = ui.searchUniversities();
-		System.out.println("Expected: false; Result: " + result2);
-		
+		boolean result2 = ui.searchUniversities("NULL", "NULL", "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+		System.out.println("Expected: false; Result: " + result2);	
 	}	
 	/**
 	 * Test scenarios for the viewSearchResults use case.
@@ -129,7 +128,6 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
-		University uni = new University("University Name");
 		try {
 		//runLogin(ui);
 		//runViewProfile(ui);
@@ -137,7 +135,7 @@ public class Driver3 {
 		runSearchUniversity(ui);
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
-		runDisplayUniversity(ui,uni);
+		//runDisplayUniversity(ui,uni);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}
@@ -146,12 +144,14 @@ public class Driver3 {
 	}
 
 	//Running editing user
-	public static void runAdminEditUser(a
-			dminInteraction ui) {
+	/**public static void runAdminEditUser(adminInteraction ui) {
 		System.out.println("First name was peter");
 		boolean result = ui.adminEditUser("peter", "jake", "FromStateFarm", "notSecure", 'u');
 // NEEDS WORK COME BACK TO ME MIKEL
+ * 
+ */
 		
 		
 	}
+
 	

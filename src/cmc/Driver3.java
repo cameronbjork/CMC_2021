@@ -162,7 +162,7 @@ public class Driver3 {
 		//runViewProfile(ui);
 		//runEditProfile(ui);
 		//runSearchUniversity(ui);
-		//runAdminEditUser(ai);
+		runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
 		//runDisplayUniversity(ui,uni);
@@ -174,6 +174,7 @@ public class Driver3 {
 	}
 
 	//Running editing user
+
 
 
 }

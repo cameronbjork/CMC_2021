@@ -58,6 +58,10 @@ public class UserInteraction {
 
 	}
 	
+	public boolean topRecommendedUnis() {
+		this.SC.topRecommendedUnis();
+	}
+	
 	
 	private University displaySearchResult(ArrayList<University> universities, int i) {
 		return universities.get(i);

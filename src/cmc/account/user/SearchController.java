@@ -208,8 +208,14 @@ public class SearchController {
 		
 
 		//return list of searchResults
+		System.out.println(this.uniAndDistance.values());
 		return similarResults;
 		
+		
+	}
+	
+	public void topRecommendedUnis() {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -220,9 +226,7 @@ public class SearchController {
 		// Implement to Web Interface
 	}
 	
-	public boolean recommendedSearch(University uni) {
-		return DBC.checkState(uni);
-			
-		}
+
+
 	}
 	

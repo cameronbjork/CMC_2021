@@ -39,5 +39,5 @@ public class UserFunctionalityController {
 		return this.DBC.getUniversity(uni);
 		
 	}
-
+	
 }

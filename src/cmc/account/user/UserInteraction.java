@@ -46,15 +46,13 @@ public class UserInteraction {
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
 				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale);
 		
-		System.out.println(universities.get(0).getUniName());
-		System.out.println(universities.get(1).getUniName());
-		for (int i =0; i < universities.size(); i++) {
-			this.displaySearchResult(universities, i);
+		if (universities.size() != 0) {
+			for (int i = 0; i < universities.size(); i++) {
+				System.out.println(universities.get(i).getUniName());
+			}
+				return true;
 		}
-		
-		if (universities != null) {
-			return true;
-		} else {
+		else {
 			return false;
 		}
 

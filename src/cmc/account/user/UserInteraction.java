@@ -3,6 +3,7 @@ package cmc.account.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import cmc.account.Account;
 import cmc.university.University;
 
 public class UserInteraction {
@@ -68,8 +69,8 @@ public class UserInteraction {
 		
 	}
 
-	public boolean logOn(String userName, String passWord) {
-		boolean result = this.AC.logOn(userName, passWord);
+	public Account logOn(String userName, String passWord) {
+		Account result = this.AC.logOn(userName, passWord);
 		return result;
 	}
 	

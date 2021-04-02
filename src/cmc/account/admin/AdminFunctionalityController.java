@@ -22,5 +22,8 @@ public class AdminFunctionalityController {
 		this.DBC.setUserData(userName, firstName, lastName, passWord, type);
 	}
 
-
+	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.DBC.addNewUserData(userName, firstName, lastName, passWord, type);
+	}
+	
 }

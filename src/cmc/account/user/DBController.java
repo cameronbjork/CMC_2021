@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.lang.StringBuilder;
 
 import cmc.account.Account;
+import cmc.account.admin.Admin;
 import cmc.university.University;
 
 /**
@@ -25,9 +26,11 @@ public class DBController {
 	private User user1;
 	private University uni1;
 	private University newUni;
+	private Admin admin1;
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
+		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog");
 		this.user1.setSavedUniversities(this.uni1);
 		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
 		this.uni3 = new University ("PoopSchool", "Illinois", "CHICAGO", "PRIVATE", 6000, 78, 5, 5, 1000, 35, 900, 65, 67, 2, 4, 3, "EDUCATION", "NURSING", "BUSINESS","", "");
@@ -48,8 +51,12 @@ public class DBController {
 		return this.user1;
 	}
 	
-	public User getAccount(String userName) {
-		return this.user1;
+	public Account getAccount(String userName) {
+		if(this.user1.getUserName() == userName) {
+			return user1;
+		}else {
+			return admin1;
+		}
 	}
 
 		
@@ -83,6 +90,13 @@ public class DBController {
 		this.user1.setLastName(lastName);
 		this.user1.setAccountType(type);
 		
+	}
+
+
+
+	public void addNewUserData(String userName, String firstName, String lastName, String passWord, char type) {
+			this.
+			//just make a new user
 	}
 	
 }

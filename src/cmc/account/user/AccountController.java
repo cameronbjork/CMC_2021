@@ -42,15 +42,15 @@ public class AccountController {
 		return bool;
 	}
 	
-	public boolean logOn(String userName, String passWord) {
-		User acc = this.DBC.getAccount(userName);
+	public Account logOn(String userName, String passWord) {
+		Account acc = this.DBC.getAccount(userName);
 		String p2 = acc.getPassWord();
 		if (p2.equals(passWord)) {
 			acc.setLoginStatus(true);
-			return true;
 		} else {
-			return false;
+			acc.setLoginStatus(false);
 		}
+		return acc;
 	}
 
 	public User displayProfile(String userName) {

@@ -107,6 +107,10 @@ public abstract class Account {
 		this.loginStatus = loginStatus;
 	}
 	
+	public boolean getLoginStatus(){
+		return this.loginStatus;
+	}
+	
 	
 	
 }

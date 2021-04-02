@@ -2,6 +2,7 @@ package cmc;
 
 import java.util.List;
 
+import cmc.account.admin.AdminInteraction;
 import cmc.account.user.UserInteraction;
 import cmc.university.University;
 
@@ -128,11 +129,16 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
+<<<<<<< HEAD
+		AdminInteraction ai = new AdminInteraction();
+=======
+>>>>>>> 89d4336727d2cd9ae94a58bc8c70e712b5bfc374
 		try {
 		//runLogin(ui);
 		//runViewProfile(ui);
 		//runEditProfile(ui);
-		runSearchUniversity(ui);
+		//runSearchUniversity(ui);
+		runAdminEditUser(ai);
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
 		//runDisplayUniversity(ui,uni);
@@ -144,6 +150,18 @@ public class Driver3 {
 	}
 
 	//Running editing user
+<<<<<<< HEAD
+	public static void runAdminEditUser(AdminInteraction ui) {
+		System.out.println("Testing editProfile main scenario...");
+		boolean result = ui.adminEditUser("peter", "p", "last", "password", 'u');
+		System.out.println("Expected: true; Result: " + result);
+	}
+}
+
+		
+		
+	
+=======
 	/**public static void runAdminEditUser(adminInteraction ui) {
 		System.out.println("First name was peter");
 		boolean result = ui.adminEditUser("peter", "jake", "FromStateFarm", "notSecure", 'u');
@@ -154,4 +172,5 @@ public class Driver3 {
 		
 	}
 
+>>>>>>> 89d4336727d2cd9ae94a58bc8c70e712b5bfc374
 	

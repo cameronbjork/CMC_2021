@@ -2,6 +2,7 @@ package cmc;
 
 import java.util.List;
 
+import cmc.account.admin.AdminInteraction;
 import cmc.account.user.UserInteraction;
 import cmc.university.University;
 
@@ -129,15 +130,16 @@ public class Driver3 {
 	 */
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
-		University uni = new University("University Name");
+		AdminInteraction ai = new AdminInteraction();
 		try {
 		//runLogin(ui);
 		//runViewProfile(ui);
 		//runEditProfile(ui);
-		runSearchUniversity(ui);
+		//runSearchUniversity(ui);
+		runAdminEditUser(ai);
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
-		runDisplayUniversity(ui,uni);
+		//runDisplayUniversity(ui,uni);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}
@@ -146,12 +148,14 @@ public class Driver3 {
 	}
 
 	//Running editing user
-	public static void runAdminEditUser(a
-			dminInteraction ui) {
-		System.out.println("First name was peter");
-		boolean result = ui.adminEditUser("peter", "jake", "FromStateFarm", "notSecure", 'u');
-// NEEDS WORK COME BACK TO ME MIKEL
-		
-		
+	public static void runAdminEditUser(AdminInteraction ui) {
+		System.out.println("Testing editProfile main scenario...");
+		boolean result = ui.adminEditUser("peter", "p", "last", "password", 'u');
+		System.out.println("Expected: true; Result: " + result);
 	}
+}
+
+		
+		
+	
 	

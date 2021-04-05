@@ -173,21 +173,18 @@ public class UserInteraction {
 			return false;
 		}
 	}
-<<<<<<< HEAD
-	
+
+/**
+ * A method to get the most recent university viewed
+ * @param u the most recently searched university to be displayed
+ * @return University object
+ */
 	public boolean getRecentUniversity(String u, University uni) {
 		this.SC.getRecentUniversity(u, uni);
 		return true;
-=======
-	/**
-	 * A method to get the most recent university viewed
-	 * @param u the most recently searched university to be displayed
-	 * @return University object
-	 */
-	public University getRecentUniversity(String u) {
-		return this.SC.getRecentUniversity(u);
->>>>>>> e58e9c65d3294a4713e498ccba9f7267cc3527ef
-	}
+
+
+
 	/**
 	 * A method to remove a saved university
 	 * @param userName the name of the user to remove the saved university from

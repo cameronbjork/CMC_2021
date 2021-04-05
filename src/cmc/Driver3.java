@@ -198,14 +198,6 @@ public class Driver3 {
 
 		try {
 		runLogin(ui);
-<<<<<<< HEAD
-		//runViewProfile(ui);
-		//runEditProfile(ui);
-		//runSearchUniversity(ui);
-		//runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
-		//runViewSearchResults(ui);
-		//runDisplaySavedUniversities(ui);
-=======
 		runLogOut(ui);
 		runViewProfile(ui);
 		runEditProfile(ui);
@@ -214,8 +206,6 @@ public class Driver3 {
 		runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
 		runViewSearchResults(ui);
 		runDisplaySavedUniversities(ui);
->>>>>>> e58e9c65d3294a4713e498ccba9f7267cc3527ef
-		//runDisplayUniversity(ui,uni);
 		runRecentUniversity(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");

@@ -23,15 +23,17 @@ public class UserFunctionalityController {
 		return u2.getSavedUniversities();
 	}
 	
-	public void saveUnversity(String u, University uni) {
+	public boolean saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
 		University uni1 = DBC.getUniversity(uni);
 		u1.setSavedUniversities(uni1);
+		return true;
 	}
 
-	public void removeSavedUniversity(String userName, University uni) {
+	public boolean removeSavedUniversity(String userName, University uni) {
 		User u1 = DBC.getUser(userName);
 		u1.removeSavedUniversity(uni);
+		return true;
 		
 	}
 

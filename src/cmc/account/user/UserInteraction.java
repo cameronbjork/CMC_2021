@@ -33,10 +33,8 @@ public class UserInteraction {
 			return false;
 		}
 	}
-
-
-	//Create most recent search method
 	
+	//Create most recent search method
 	public boolean searchUniversities(String school, String state, String location, String control, int minNumStudents, 
 			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, int minAnnualExpenses, 
 			int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, int maxNumApplicants,
@@ -99,22 +97,17 @@ public class UserInteraction {
 		return this.SC.getRecentUniversity(u);
 	}
 	
-	public void removeSavedUniversity(String userName, University uni) {
-		this.UFC.removeSavedUniversity(userName, uni);
-	}
-
-	public boolean searchUniversities() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public void recommendedSearch(University uni) {
-		this.SC.recommendedSearch(uni);
+	public boolean removeSavedUniversity(String userName, University uni) {
+		return this.UFC.removeSavedUniversity(userName, uni);
 	}
 
 	public boolean displayUniversity(University uni) {
 		this.UFC.displayUniversity(uni);
 		return true;
+	}
+	
+	public boolean saveUniversity(String userName, University uni) {
+		return this.UFC.saveUnversity(userName, uni);
 	}
 
 	

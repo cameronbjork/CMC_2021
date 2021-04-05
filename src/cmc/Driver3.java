@@ -125,18 +125,9 @@ public class Driver3 {
 		System.out.println("Testing viewSavedUniversities main scenario...");
 		boolean result = ui.displaySavedUniversities("peter");
 		System.out.println("Expected: true; Result: " + result);
+		System.out.println("------------------------------------------\n");
 	}
-	/**
-	 * 
-	 * Test scenario for the displayUniversities use case
-	 */
-	private static void runDisplayUniversity(UserInteraction ui, University uni) {
-		System.out.println("Testing displayUniversity main scenario...");
-		boolean result = ui.displayUniversity(uni);
-		System.out.println("Expected: true; Result: " + result);
-	}
-	
-	
+		
 	private static void runTopRecommendedUniversities(UserInteraction ui) {
 		System.out.println("Testing runRecommendedUniversities main scenario...");
 		University uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
@@ -155,6 +146,22 @@ public class Driver3 {
 	public static void runLogOut(UserInteraction ui) {
 		System.out.println("Testing Logout main scenario...");
 		boolean result = ui.logOut("peter");
+		System.out.println("Expected: true; Result: " + result);
+		System.out.println("------------------------------------------\n");
+	}
+	
+	public static void runRemoveSavedUniversity(UserInteraction ui) {
+		System.out.println("Testing Remove Saved University main scenario...");
+		University uni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
+		boolean result = ui.removeSavedUniversity("peter", uni);
+		System.out.println("Expected: true; Result: " + result);
+		System.out.println("------------------------------------------\n");
+	}
+	
+	public static void runSaveUniversity(UserInteraction ui) {
+		System.out.println("Testing Save University main scenario...");
+		University uni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
+		boolean result = ui.saveUniversity("peter", uni);
 		System.out.println("Expected: true; Result: " + result);
 		System.out.println("------------------------------------------\n");
 	}
@@ -179,7 +186,8 @@ public class Driver3 {
 		runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
 		runViewSearchResults(ui);
 		runDisplaySavedUniversities(ui);
-		//runDisplayUniversity(ui,uni);
+		runRemoveSavedUniversity(ui);
+		runSaveUniversity(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}

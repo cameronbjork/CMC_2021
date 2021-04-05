@@ -11,8 +11,9 @@ import cmc.account.Account;
 import cmc.account.admin.Admin;
 import cmc.university.University;
 
-/**
- * @author cbjork001
+/** Communicates with the Database to get and set data
+ * 
+ * @author Cameron, Joe, Michael, Logan, Jaren, Charlie
  *
  */
 public class DBController {
@@ -29,6 +30,9 @@ public class DBController {
 	private String[][] uniWithEmphasis = new String[25][2];
 	private Admin admin1;
 	
+	/** Creates DBController object
+	 * 
+	 */
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
 		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog");
@@ -57,7 +61,11 @@ public class DBController {
 		
 
 	
-	
+	/** Gets user from the Database
+	 * 
+	 * @param userName -  Username of the User.
+	 * @return user1 - User that is grabbed from the DB
+	 */
 	public User getUser(String userName) {
 		return this.user1;
 	}
@@ -70,15 +78,28 @@ public class DBController {
 		}
 	}
 
-		
+	/** Returns an ArrayList of all the universities in the DB
+	 * 	
+	 * @return uniDB - ArrayList of all Universities in DB
+	 */
 	public ArrayList<University> getAllUniversities() {
 		return this.uniDB;
 	}
 	
+	/** Returns a singular university
+	 * 
+	 * @param uni - University to return
+	 * @return uni1 - University being returned
+	 */
 	public University getUniversity(University uni) {
 		return this.uni1;
 	}
 	
+	/** Returns a university based on it's name
+	 * 
+	 * @param uniName - Name of university to be returned
+	 * @return allResults.get(i) - University being returned
+	 */
 	public University getUniversityByName(String uniName) {
 		ArrayList <University> allResults = new ArrayList<University>();
 		allResults.addAll(this.getAllUniversities());
@@ -95,6 +116,30 @@ public class DBController {
 		this.user1 = u2;
 	}
 
+	/** Admin functionality to add University to Database
+	 * 
+	 * @param uniName - Name of University
+	 * @param uniState - State University is in
+	 * @param uniLocation - Location of University
+	 * @param uniControl - Control of University
+	 * @param numOfStudents - Number of Students at University
+	 * @param percentFemale - Percentage of females at University
+	 * @param satVerbal - Average SAT Verbal score
+	 * @param satMath - Average SAT Math score
+	 * @param annualExpenses - Annual expenses at University
+	 * @param percentFinAid - Percentage of Financial Aid given out
+	 * @param numApplicants - Number of Applicants at University
+	 * @param percentAdmit - Percent of people admitted to University
+	 * @param percentEnrolled - Percent of people enrolled at University
+	 * @param academicScale - Academic scale of University
+	 * @param socialScale - Social scale of University
+	 * @param qOLScale - Quality of Life Scale of University
+	 * @param emphasisStudy1 - Emphasis 1 of University
+	 * @param emphasisStudy2 - Emphasis 2 of University
+	 * @param emphasisStudy3 - Emphasis 3 of University
+	 * @param emphasisStudy4 - Emphasis 4 of University
+	 * @param emphasisStudy5 - Emphasis 5 of University
+	 */
 	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
 	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
 	int numApplicants, int percentAdmit, int percentEnrolled, int academicScale, int socialScale, int qOLScale, 
@@ -103,21 +148,29 @@ public class DBController {
 				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
 				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale, 
 				 emphasisStudy1,  emphasisStudy2,  emphasisStudy3,  emphasisStudy4,  emphasisStudy5);
-
 	}
-
-
-
-
+	
+	/** Admin functionality to set User
+	 * 
+	 * @param userName - Username to grab user fromo
+	 * @param firstName - Password to change to
+	 * @param lastName - Lastname to change to
+	 * @param passWord - Password to change to
+	 * @param type - Type to change to
+	 */
 	public void setUserData(String userName, String firstName, String lastName, String passWord, char type) {
 		this.user1.setFirstName(firstName); 
 		this.user1.setLastName(lastName);
+		this.user1.setPassWord(passWord);
 		this.user1.setAccountType(type);
 		
 	}
-
+	
+	/** Return university with emphasis'
+	 * 
+	 * @return String[][] - 2D array with all emphasis'
+	 */
 	public String[][] university_getNamesWithEmphasis() {
-		// TODO Auto-generated method stub
 		return uniWithEmphasis;
 	}
 

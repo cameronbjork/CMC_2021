@@ -6,7 +6,7 @@ package cmc.account;
 /**
  * 
  * Class for implementing the accounts of all users 
- * @author Cameron Bjork, Joe koller
+ * @author Cameron Bjork, Joe koller, Logan Woods, Jaren Lindsey, Michael Murphy
  *
  */
 public abstract class Account {
@@ -17,6 +17,14 @@ public abstract class Account {
 	private String lastName;
 	private boolean loginStatus;
 	
+	/**
+	 * 
+	 * @param userName - Username of account
+	 * @param passWord - Password of account
+	 * @param accountType - Account type of account
+	 * @param firstName - First name of account
+	 * @param lastName - Last name of account
+	 */
 	public Account(String userName, String passWord, char accountType, String firstName, String lastName) {
 		this.userName = userName;
 		this.passWord = passWord;

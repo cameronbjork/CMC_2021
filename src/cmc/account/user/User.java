@@ -8,43 +8,62 @@ import java.util.ArrayList;
 import cmc.account.Account;
 import cmc.university.University;
 
-/**
- * @author cbjork001
+/** Creates a User Object
+ * 
+ * @author Cameron, Joe, Logan, Jaren, Michael, Charlie
  *
  */
 public class User extends Account {
 	private boolean isActive;
 	private ArrayList<University> savedUniversities;
 	private University recentUniversity;
-	/**
-	 * @param userName
-	 * @param passWord
-	 * @param accountType
-	 * @param firstName
-	 * @param lastName
-	 * @param loginStatus
-	 * @param isActive
-	 * @param savedUniversities
-	 * @param recentUniversity
+	
+	/** Creates User Object
+	 * 
+	 * @param userName - UserName to set user to
+	 * @param passWord - Password to set user to
+	 * @param accountType - Account type to set user to
+	 * @param firstName - First name to set user to
+	 * @param lastName - Last name to set user to
 	 */
 	public User(String userName, String passWord, char accountType, String firstName, String lastName) {
 		super(userName, passWord, accountType, firstName, lastName);
 		this.isActive = true;
 		this.savedUniversities = new ArrayList<University>();
 	}
+	
+	/** Returns an ArrayList of saved universities
+	 * 
+	 * @return ArrayList<University> of saved universities
+	 */
 	public ArrayList<University> getSavedUniversities() {
 		return this.savedUniversities;
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/** Returns the most recent university viewed
+	 * 
+	 * @return University the most recent university viewed
+	 */
 	public University getRecentUniversity() {
 		// TODO Auto-generated method stub
 		return this.recentUniversity;
 	}
+	
+	/** Sets a University to the saved list
+	 * 
+	 * @param uni1 - University to be saved
+	 */
 	public void setSavedUniversities(University uni1) {
 		this.savedUniversities.add(uni1);
 		
 	}
+	
+	/** Removes a University from the saved list
+	 * 
+	 * @param uni - University to be removed from list
+	 */
 	public void removeSavedUniversity(University uni) {
 		this.savedUniversities.remove(uni);
 		

@@ -172,7 +172,6 @@ public class UserInteraction {
 			return false;
 		}
 	}
-	
 /**
  * A method to get the most recent university viewed
  * @param u the most recently searched university to be displayed
@@ -184,7 +183,7 @@ public class UserInteraction {
 }
 
 	/**
-	 * A method to remove a saved university
+	 * A method to remove a saved universitys
 	 * @param userName the name of the user to remove the saved university from
 	 * @param uni the university to be removed
 	 */

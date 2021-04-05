@@ -8,7 +8,7 @@ import cmc.account.Account;
 /**
  * This AccountController class implements the methods needed for
  * user interaction and accessing the database for account interactions
- * @author cbjork001
+ * @author Cameron Bjork, Jaren Lindsey, Joe Koller, Charlie Becker, Logan Woods, Michael Murphy
  *
  */
 public class AccountController {
@@ -21,10 +21,10 @@ public class AccountController {
 	/**
 	 * This method is used to edit a user's information
 	 * @return boolean
-	 * @param userName a string of the users username name	  
+	 * @param userName a string of the users userName name	  
 	 * @param firstName a string of the users first name
 	 * @param lastName a string of the users last name
-	 * @param passWord a string of the users password 
+	 * @param passWord a string of the users password
 	 */
 	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
 		User u2 = this.DBC.getUser(userName);
@@ -58,7 +58,7 @@ public class AccountController {
 	/**
 	 * This method is used to logon a user and set the appropriate login status
 	 * @return boolean
-	 * @param userName a string of the users username name	  
+	 * @param userName a string of the users userName name	  
 	 * @param passWord a string of the users first name
 	 */
 

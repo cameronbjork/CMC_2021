@@ -1,5 +1,8 @@
 package cmc;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import cmc.account.Account;
@@ -41,7 +44,7 @@ public class Driver3 {
 		System.out.println("Testing login alternate scenario #2: Null data...");
 		Account result4 = ui.logOn("_______", "________");
 		boolean status4 = result.getLoginStatus();
-		System.out.println("Expected: false; Result: " + status4 + "\n");	
+		System.out.println("Expected: false; Result: " + status4 + "\n");
 		
 		//test login for admin
 		System.out.println("Testing login admin login scenario, checking account type... ");
@@ -78,6 +81,14 @@ public class Driver3 {
 		System.out.println("------------------------------------------\n");
 		
 	}	
+	//test recentUniversity() main scenario
+	private static void runRecentUniversity(UserInteraction ui) {
+		University PoopSchool = new University ("PoopSchool", "Illinois", "CHICAGO", "PRIVATE", 6000, 78, 5, 5, 1000, 35, 900, 65, 67, 2, 4, 3, "EDUCATION", "NURSING", "BUSINESS","", "");
+		System.out.println("Testing recentUniversity main scenario...");
+		boolean result = ui.getRecentUniversity("peter", PoopSchool);
+		System.out.println("Expected: true; Result: " + result);
+		System.out.println("------------------------------------------\n");
+	}
 	/**
 	 * Test scenarios for the viewSearchResults use case.
 	 * @param ui a user interaction object
@@ -135,17 +146,6 @@ public class Driver3 {
 	}
 
 	/**
-	 * 
-	 * Test scenario for the displayUniversity use case
-	 * @param ui a user interaction object
-	 */
-	private static void runDisplayUniversity(UserInteraction ui, University uni) {
-		System.out.println("Testing displayUniversity main scenario...");
-		boolean result = ui.displayUniversity(uni);
-		System.out.println("Expected: true; Result: " + result);
-	}
-	
-	/**
 	 * Test scenario for the topRecommendedUniversities use case
 	 * @param ui a user interaction object
 	 */
@@ -153,7 +153,7 @@ public class Driver3 {
 		System.out.println("Testing runRecommendedUniversities main scenario...");
 		University uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
 		boolean result = ui.topRecommendedUnis(uni2);
-		System.out.println("\nExpected: true; Result: " + result);		
+		System.out.println("Expected: true; Result: " + result);		
 		System.out.println("------------------------------------------\n");
 	}
 	/**
@@ -194,6 +194,7 @@ public class Driver3 {
 	}
 	
 
+	
 	/**
 	 * The entry point for the Driver.
 	 * 
@@ -202,7 +203,7 @@ public class Driver3 {
 	public static void main(String[] args) {
 		UserInteraction ui = new UserInteraction();
 		AdminInteraction ai = new AdminInteraction();
-
+		
 		try {
 		runLogin(ui);
 		runLogOut(ui);
@@ -215,6 +216,7 @@ public class Driver3 {
 		runDisplaySavedUniversities(ui);
 		runRemoveSavedUniversity(ui);
 		runSaveUniversity(ui);
+		runRecentUniversity(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}

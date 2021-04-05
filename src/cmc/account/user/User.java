@@ -10,7 +10,7 @@ import cmc.university.University;
 
 /** Creates a User Object
  * 
- * @author Cameron, Joe, Logan, Jaren, Michael, Charlie
+ * @author Cameron Bjork, Joe Koller, Logan Woods, Jaren Lindsey, Michael Murphy, Charlie Becker
  *
  */
 public class User extends Account {
@@ -55,6 +55,10 @@ public class User extends Account {
 	 * 
 	 * @param uni1 - University to be saved
 	 */
+	public void setRecentUniversity(University recentUni) {
+		this.recentUniversity = recentUni;
+	}
+
 	public void setSavedUniversities(University uni1) {
 		this.savedUniversities.add(uni1);
 		

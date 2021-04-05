@@ -29,6 +29,7 @@ public class DBController {
 	private University newUni;
 	private String[][] uniWithEmphasis = new String[25][2];
 	private Admin admin1;
+	private University recentUni;
 	
 	/** Creates DBController object
 	 * 

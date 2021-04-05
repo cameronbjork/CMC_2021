@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cmc.account.user;
 
 import java.util.ArrayList;
@@ -15,19 +12,60 @@ import java.util.Vector;
 
 import cmc.university.University;
 
-/**
- * @author cbjork001
+/** Controller that helps with searching the DB
+ * 
+ * @author Cameron Bjork, Michael Murphy, Joe Koller, Charlie Becker, Jaren Lindsey, Logan Woods
  *
  */
 public class SearchController {
 	private DBController DBC;
 	private Vector<University> uniList;
 	
+	/**
+	 * Creates a search controller object
+	 */
 	public SearchController() {
 		this.DBC = new DBController();
 		this.uniList = new Vector<University>();
 	}
 
+	/** Searches for universities
+	 * 
+	 * @param school - University name to search by
+	 * @param state - University state to search by
+	 * @param location - University location to search by
+	 * @param control - University control to search by
+	 * @param minNumStudents - University min num of students to search by
+	 * @param maxNumStudents - University max num of students to search by
+	 * @param minPercentFemale - University min percent female to search by
+	 * @param maxPercentFemale - University max percent female to search by
+	 * @param minSATVerbal - University min SAT Verbal to search by
+	 * @param maxSATVerbal - University max SAT Verbal to search by
+	 * @param minSATMath - University min SAT Math to search by
+	 * @param maxSATMath - University max SAT Math to search by
+	 * @param minAnnualExpenses - University min annual expenses to search by
+	 * @param maxAnnualExpenses - University max annual expenses to search by
+	 * @param minPercentFinancialAid  - University min percent financial aid to search by
+	 * @param maxPercentFinancialAid - University max percent financial aid to search by
+	 * @param minNumApplicants - University min num applicants to search by
+	 * @param maxNumApplicants - University max num applicants to search by
+	 * @param minPercentAdmit - University min percent admitted to search by
+	 * @param maxPercentAdmit - University max percent admitted to search by
+	 * @param minPercentEnrolled - University min percent enrolled to search by
+	 * @param maxPercentEnrolled - University max percent enrolled to search by
+	 * @param minAcademicScale - University min academic scale to search by
+	 * @param maxAcademicScale - University max academic scale to search by
+	 * @param minSocialScale - University min social scale to search by
+	 * @param maxSocialScale - University max social scale to search by
+	 * @param minQOLScale - University min quality of life scale to search by
+	 * @param maxQOLScale - University max quality of life scale to search by
+	 * @param emphasis1 - University emphasis1 to search by
+	 * @param emphasis2 - University emphasis2 to search by
+	 * @param emphasis3 - University emphasis3 to search by
+	 * @param emphasis4 - University emphasis4 to search by
+	 * @param emphasis5 - University emphasis5 to search by
+	 * @return ArrayList<University> of universities that were found by search
+	 */
 	public ArrayList<University> searchUniversities(String school, String state, String location, String control, int minNumStudents, 
 			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, 
 			int minAnnualExpenses, int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, 
@@ -195,7 +233,11 @@ public class SearchController {
 		}
 
 
-	
+	/** Finds 5 recommended universities similar to the one being viewed
+	 * 
+	 * @param uniViewed - University being viewed
+	 * @return ArrayList<University> of top recommended universities
+	 */
 	public ArrayList<University> topRecommendedUnis(University uniViewed) {
 		this.uniList.add(uniViewed);
 		HashMap<String, Float> uniandDistance = new HashMap<String, Float>();
@@ -447,11 +489,16 @@ public class SearchController {
 		
 		return uniResultList;
 	}
-
-	public University getRecentUniversity(String u) {
+	/** Gets the most recently viewed university from the user
+	 * 
+	 * @param u - username to get recent university from
+	 * @param uni - university to get
+	 * @return University most recent university
+	 */
+	public University getRecentUniversity(String u, University uni) {
 		User u1 = (DBC.getUser(u));
-		University uni1 = u1.getRecentUniversity();
-		return uni1;
+		u1.setRecentUniversity(uni);
+		return u1.getRecentUniversity();
 		// Implement to Web Interface
 	}
 	

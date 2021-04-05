@@ -172,14 +172,16 @@ public class UserInteraction {
 			return false;
 		}
 	}
-	/**
-	 * A method to get the most recent university viewed
-	 * @param u the most recently searched university to be displayed
-	 * @return University object
-	 */
-	public University getRecentUniversity(String u) {
-		return this.SC.getRecentUniversity(u);
-	}
+	
+/**
+ * A method to get the most recent university viewed
+ * @param u the most recently searched university to be displayed
+ * @return University object
+ */
+	public boolean getRecentUniversity(String u, University uni) {
+		this.SC.getRecentUniversity(u, uni);
+		return true;
+}
 
 	/**
 	 * A method to remove a saved university
@@ -190,13 +192,8 @@ public class UserInteraction {
 		this.UFC.removeSavedUniversity(userName, uni);
 		return true;
 	}
-	/**
-	 * A method to recommend a university to the user 
-	 * @param uni the university to find the recommended universities off
-	 */
-	public void recommendedSearch(University uni) {
-		this.SC.recommendedSearch(uni);
-	}
+
+	
 	/**
 	 * A method to display a university
 	 * @param uni the selected university to be displayed

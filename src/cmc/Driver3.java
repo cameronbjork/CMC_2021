@@ -75,6 +75,16 @@ public class Driver3 {
 		boolean result2 = ui.searchUniversities("NULL", "NULL", "-1", "-1", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 		System.out.println("Expected: false; Result: " + result2);	
 	}	
+	//test recentUniversity() main scenario
+	private static void runRecentUniversity(UserInteraction ui) {
+		University PoopSchool = new University ("PoopSchool", "Illinois", "CHICAGO", "PRIVATE", 6000, 78, 5, 5, 1000, 35, 900, 65, 67, 2, 4, 3, "EDUCATION", "NURSING", "BUSINESS","", "");
+		System.out.println("Testing recentUniversity main scenario...");
+		boolean result = ui.getRecentUniversity("peter", PoopSchool);
+		System.out.println("Expected: true; Result: " + result);
+		
+		
+		
+	}
 	/**
 	 * Test scenarios for the viewSearchResults use case.
 	 */	
@@ -147,6 +157,7 @@ public class Driver3 {
 	}
 	
 
+	
 	/**
 	 * The entry point for the Driver.
 	 * 
@@ -162,10 +173,11 @@ public class Driver3 {
 		//runViewProfile(ui);
 		//runEditProfile(ui);
 		//runSearchUniversity(ui);
-		runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
+		//runAdminEditUser(ai); //For admin we need viewUniversities;List and viewUsers:List
 		//runViewSearchResults(ui);
 		//runDisplaySavedUniversities(ui);
 		//runDisplayUniversity(ui,uni);
+		runRecentUniversity(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}

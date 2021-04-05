@@ -86,8 +86,9 @@ public class UserInteraction {
 		}
 	}
 	
-	public University getRecentUniversity(String u) {
-		return this.SC.getRecentUniversity(u);
+	public boolean getRecentUniversity(String u, University uni) {
+		this.SC.getRecentUniversity(u, uni);
+		return true;
 	}
 	
 	public void removeSavedUniversity(String userName, University uni) {

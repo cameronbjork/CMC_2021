@@ -219,10 +219,10 @@ public class SearchController {
 		
 	}
 
-	public University getRecentUniversity(String u) {
+	public University getRecentUniversity(String u, University uni) {
 		User u1 = (DBC.getUser(u));
-		University uni1 = u1.getRecentUniversity();
-		return uni1;
+		u1.setRecentUniversity(uni);
+		return u1.getRecentUniversity();
 		// Implement to Web Interface
 	}
 	

@@ -27,6 +27,7 @@ public class DBController {
 	private University uni1;
 	private University newUni;
 	private Admin admin1;
+	private University recentUni;
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");

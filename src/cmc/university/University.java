@@ -27,7 +27,7 @@ public class University {
 	private int academicScale;
 	private int socialScale;
 	private int qOLScale;
-	private String [][] emphasisArray;
+	private ArrayList<String> emphasisArray;
 	private String emphasisStudy1;
 	private String emphasisStudy2;
 	private String emphasisStudy3;
@@ -84,6 +84,13 @@ public class University {
 		this.emphasisStudy3 = emphasisStudy3;
 		this.emphasisStudy4 = emphasisStudy4;
 		this.emphasisStudy5 = emphasisStudy5;
+		
+		this.emphasisArray = new ArrayList<String>();
+		this.emphasisArray.add(emphasisStudy1);
+		this.emphasisArray.add(emphasisStudy2);
+		this.emphasisArray.add(emphasisStudy3);
+		this.emphasisArray.add(emphasisStudy4);
+		this.emphasisArray.add(emphasisStudy5);
 	}
 	
 	public String getUniName() {
@@ -210,5 +217,8 @@ public class University {
 		return this.uniControl;
 	}
 	
+	public ArrayList<String> getEmphasisArray() {
+		return this.emphasisArray;
+	}
 	
 }

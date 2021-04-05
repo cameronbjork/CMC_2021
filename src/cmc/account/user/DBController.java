@@ -26,6 +26,7 @@ public class DBController {
 	private User user1;
 	private University uni1;
 	private University newUni;
+	private String[][] uniWithEmphasis = new String[25][2];
 	private Admin admin1;
 	private University recentUni;
 	
@@ -44,7 +45,17 @@ public class DBController {
 		this.uniDB.add(uni4);
 		this.uniDB.add(uni5);
 		this.uniDB.add(uni6);
-	}
+		
+		int k = 0;
+		for (int i = 0; i < uniDB.size(); i++)  {
+			k = 0;
+			uniWithEmphasis[i][k] = this.uniDB.get(i).getUniName();
+			k++;
+			uniWithEmphasis[i][k] = this.uniDB.get(i).getEmphasisArray().get(i);
+			}
+		}
+		
+		
 
 	
 	
@@ -68,9 +79,22 @@ public class DBController {
 	public University getUniversity(University uni) {
 		return this.uni1;
 	}
+	
+	public University getUniversityByName(String uniName) {
+		ArrayList <University> allResults = new ArrayList<University>();
+		allResults.addAll(this.getAllUniversities());
+		for (int i = 0; i < allResults.size(); i++) {
+			if (uniName == allResults.get(i).getUniName()) {
+				return  allResults.get(i);
+			}
+		}
+		return null;
+	}
 
-	//public void setUser(User u2) { ---- DO ANYTHING TO THIS?
+	public void setUser(User u2) {
 		// TODO store user back to database
+		this.user1 = u2;
+	}
 
 	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
 	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
@@ -93,10 +117,12 @@ public class DBController {
 		
 	}
 
-
+	public String[][] university_getNamesWithEmphasis() {
+		// TODO Auto-generated method stub
+		return uniWithEmphasis;
+	}
 
 	public void addNewUserData(String userName, String firstName, String lastName, String passWord, char type) {
-			this.
 			//just make a new user
 	}
 	

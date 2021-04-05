@@ -16,7 +16,7 @@ public class Driver3 {
 
 	/**
 	 * Test scenarios for the login use case.
-	 * 
+	 * @param ui a user interaction object
 	 */
 	private static void runLogin(UserInteraction ui) {
 		// test login main scenario (successful login)
@@ -61,8 +61,8 @@ public class Driver3 {
 
 
 	/**
-	 * 
 	 * Test scenario for the searchUniversity use case
+	 * @param ui a user interaction object
 	 */	
 	
 	private static void runSearchUniversity(UserInteraction ui) {
@@ -80,6 +80,7 @@ public class Driver3 {
 	}	
 	/**
 	 * Test scenarios for the viewSearchResults use case.
+	 * @param ui a user interaction object
 	 */	
 	private static void runViewSearchResults(UserInteraction ui) {
 		// test viewSearchResults main scenario
@@ -97,6 +98,7 @@ public class Driver3 {
 	
 	/**
 	 * Test scenarios for the view profile use case.
+	 * @param ui a user interaction object
 	 */
 	private static void runViewProfile(UserInteraction ui) {
 		// code here to test the "View Profile" use case...
@@ -105,7 +107,10 @@ public class Driver3 {
 		System.out.println("Expected: true; Result: " + result);
 		System.out.println("------------------------------------------\n");
 	}
-	
+	/**
+	 * Test scenario for the editProfile use case
+	 * @param ui a user interaction object
+	 */
 	private static void runEditProfile(UserInteraction ui) {
 		System.out.println("Testing editProfile main scenario...");
 		boolean result = ui.userEditUser("peter", "p", "last", "password");
@@ -119,7 +124,8 @@ public class Driver3 {
 	
 	/**
 	 * 
-	 * Test scenario for the viewSavedUniversities use case
+	 * Test scenario for the displaySavedUniversities use case
+	 * @param ui a user interaction object
 	 */
 	private static void runDisplaySavedUniversities(UserInteraction ui) {
 		System.out.println("Testing viewSavedUniversities main scenario...");
@@ -128,7 +134,8 @@ public class Driver3 {
 	}
 	/**
 	 * 
-	 * Test scenario for the displayUniversities use case
+	 * Test scenario for the displayUniversity use case
+	 * @param ui a user interaction object
 	 */
 	private static void runDisplayUniversity(UserInteraction ui, University uni) {
 		System.out.println("Testing displayUniversity main scenario...");
@@ -136,7 +143,10 @@ public class Driver3 {
 		System.out.println("Expected: true; Result: " + result);
 	}
 	
-	
+	/**
+	 * Test scenario for the topRecommendedUniversities use case
+	 * @param ui a user interaction object
+	 */
 	private static void runTopRecommendedUniversities(UserInteraction ui) {
 		System.out.println("Testing runRecommendedUniversities main scenario...");
 		University uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
@@ -144,14 +154,20 @@ public class Driver3 {
 		System.out.println("\nExpected: true; Result: " + result);		
 		System.out.println("------------------------------------------\n");
 	}
-		
+	/**
+	 * Test scenario for the adminEditUser use case
+	 * @param ui an admin interaction object
+	 */
 	public static void runAdminEditUser(AdminInteraction ui) {
 		System.out.println("Testing AdminEditUser main scenario...");
 		boolean result = ui.adminEditUser("peter", "p", "last", "password", 'u');
 		System.out.println("Expected: true; Result: " + result);
 		System.out.println("------------------------------------------\n");
 	}
-	
+	/**
+	 * 	Test scenario for the logOut use case
+	 * @param ui a user interaction object
+	 */
 	public static void runLogOut(UserInteraction ui) {
 		System.out.println("Testing Logout main scenario...");
 		boolean result = ui.logOut("peter");

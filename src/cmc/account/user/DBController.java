@@ -26,11 +26,8 @@ public class DBController {
 	private User user1;
 	private University uni1;
 	private University newUni;
-<<<<<<< HEAD
 	private String[][] uniWithEmphasis = new String[25][2];
-=======
 	private Admin admin1;
->>>>>>> d92704749cb392c8e82e2e29375ac81fb24d96ab
 	
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
@@ -48,9 +45,9 @@ public class DBController {
 		this.uniDB.add(uni5);
 		this.uniDB.add(uni6);
 		
-		
+		int k = 0;
 		for (int i = 0; i < uniDB.size(); i++)  {
-			int k = 0;
+			k = 0;
 			uniWithEmphasis[i][k] = this.uniDB.get(i).getUniName();
 			k++;
 			uniWithEmphasis[i][k] = this.uniDB.get(i).getEmphasisArray().get(i);
@@ -83,18 +80,20 @@ public class DBController {
 	}
 	
 	public University getUniversityByName(String uniName) {
-		ArrayList <University> allResults = new ArrayList<University>(this.getAllUniversities());
-		University uniSaved = null;
-		for (int i = 0; i < allResults.size() && uniSaved != null; i++) {
+		ArrayList <University> allResults = new ArrayList<University>();
+		allResults.addAll(this.getAllUniversities());
+		for (int i = 0; i < allResults.size(); i++) {
 			if (uniName == allResults.get(i).getUniName()) {
-				uniSaved = allResults.get(i);
+				return  allResults.get(i);
 			}
 		}
-		return uniSaved;
+		return null;
 	}
 
-	//public void setUser(User u2) { ---- DO ANYTHING TO THIS?
+	public void setUser(User u2) {
 		// TODO store user back to database
+		this.user1 = u2;
+	}
 
 	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
 	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
@@ -117,17 +116,13 @@ public class DBController {
 		
 	}
 
-
-<<<<<<< HEAD
 	public String[][] university_getNamesWithEmphasis() {
 		// TODO Auto-generated method stub
 		return uniWithEmphasis;
-=======
+	}
 
 	public void addNewUserData(String userName, String firstName, String lastName, String passWord, char type) {
-			this.
 			//just make a new user
->>>>>>> d92704749cb392c8e82e2e29375ac81fb24d96ab
 	}
 	
 }

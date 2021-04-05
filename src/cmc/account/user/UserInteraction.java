@@ -2,6 +2,7 @@ package cmc.account.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import cmc.account.Account;
 import cmc.university.University;
@@ -60,17 +61,14 @@ public class UserInteraction {
 
 	}
 	
-	public boolean topRecommendedUnis() {
-		ArrayList<University> recommendedUnis= this.SC.topRecommendedUnis();
-		if (recommendedUnis == null) {
-			return false;
-		} else  {
-			System.out.println("Recommended Uni's in Order:\n");
-			for (int i = 0; i < recommendedUnis.size(); i++) {
-			System.out.println(recommendedUnis.get(i).getUniName());
-			}
-			return true;
+	public boolean topRecommendedUnis(University uni) {
+		ArrayList<University> recommendedUnis = new ArrayList<>();
+		recommendedUnis.addAll(this.SC.topRecommendedUnis(uni));
+		System.out.println("Recommended Uni's in Order:\n");
+		for (int i = 0; i < recommendedUnis.size(); i++) {
+		System.out.println(recommendedUnis.get(i).getUniName());
 		}
+		return true;
 	}
 	
 	
@@ -84,8 +82,9 @@ public class UserInteraction {
 		return result;
 	}
 	
-	public void logOut(String userName) {
-		this.AC.logOut(userName);
+	public boolean logOut(String userName) {
+		return this.AC.logOut(userName);
+		
 	}
 	
 	public boolean displayProfile(String userName) {

@@ -84,9 +84,10 @@ public class AccountController {
 	 * This method logs the user out and sets the login status to false
 	 * @param userName the username of the account to be logged out
 	 */
-	public void logOut(String userName) {
+	public boolean logOut(String userName) {
 		Account acc = this.DBC.getUser(userName);
 		acc.setLoginStatus(false);
+			return true;
+		}
 	}
 	
-}

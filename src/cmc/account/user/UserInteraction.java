@@ -115,7 +115,7 @@ public class UserInteraction {
 	 */
 	public boolean topRecommendedUnis(University uni) {
 		ArrayList<University> recommendedUnis = new ArrayList<>();
-		recommendedUnis.addAll(this.SC.topRecommendedUnis(uni));
+		recommendedUnis.addAll(SearchController.topRecommendedUnis(uni));
 		System.out.println("Recommended Uni's in Order:\n");
 		for (int i = 0; i < recommendedUnis.size(); i++) {
 		System.out.println(recommendedUnis.get(i).getUniName());

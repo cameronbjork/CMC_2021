@@ -18,7 +18,7 @@ import cmc.university.University;
  *
  */
 public class SearchController {
-	private static final DBController DBC = new DBController();
+	public static final DBController DBC = new DBController();
 	private static final Vector<University> uniList = new  Vector<University>();
 	
 	/**
@@ -234,7 +234,7 @@ public class SearchController {
 	 * @param uniViewed - University being viewed
 	 * @return ArrayList of top recommended universities
 	 */
-	public ArrayList<University> topRecommendedUnis(University uniViewed) {
+	public static ArrayList<University> topRecommendedUnis(University uniViewed) {
 		SearchController.uniList.add(uniViewed);
 		HashMap<String, Float> uniandDistance = new HashMap<String, Float>();
 		float distance;
@@ -479,6 +479,7 @@ public class SearchController {
 		
 		int i = 0;
 		while (i < resultList.size()) {
+			System.out.println(resultList.get(i).getKey());
 			uniResultList.add(SearchController.DBC.getUniversityByName(resultList.get(i).getKey()));
 			i++;
 		}

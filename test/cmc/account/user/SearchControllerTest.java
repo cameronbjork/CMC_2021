@@ -2,6 +2,8 @@ package cmc.account.user;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,19 +12,16 @@ import cmc.university.University;
 import junit.framework.Assert;
 
 public class SearchControllerTest {
+	private University testUni;
+	private ArrayList<University> testSearchResults;
+	private ArrayList<University> recommended; 
+	ArrayList <University> allUnis;
 
 	@Before
 	public void setUp() throws Exception {
-		University testUni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testSearchUniversities() {
+		this.testUni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
+		this.recommended = new ArrayList<University>();
+		
 		String school = "St Johns";
 		String state = "Minnesota";
 		String location = "SMALL-CITY";
@@ -57,10 +56,24 @@ public class SearchControllerTest {
 		String emphasis4 = "PHYSICS";
 		String emphasis5 = "NURSING";
 		
-		Assert.assertEquals("St Johns is returned from search results", school, SearchController.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
+		this.testSearchResults = SearchController.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
-				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5).get(0).getUniName());
+				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5);
+	
+		this.allUnis  = new ArrayList<University>();
+		this.allUnis.addAll(SearchController.DBC.getAllUniversities());
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testSearchUniversities() {
+		
+		Assert.assertEquals("St Johns is returned from search results", "St Johns", this.testSearchResults.get(0).getUniName());
 		
 		String school2 = "";
 		String state2 = "";
@@ -95,16 +108,32 @@ public class SearchControllerTest {
 		String emphasis32 = "";
 		String emphasis42 = "";
 		String emphasis52 = "";
-		
+
 		Assert.assertEquals("Null values inputted, no search results returned", 0, SearchController.searchUniversities(school2, state2, location2, control2, minNumStudents2, maxNumStudents2, 
 				minPercentFemale2, maxPercentFemale2, minSATVerbal2, maxSATVerbal2, minSATMath2, maxSATMath2, minAnnualExpenses2, maxAnnualExpenses2, minPercentFinancialAid2,
 				maxPercentFinancialAid2, minNumApplicants2, maxNumApplicants2, minPercentAdmit2, maxPercentAdmit2, minPercentEnrolled2, maxPercentEnrolled2, minAcademicScale2,
 				maxAcademicScale2, minSocialScale2, maxSocialScale2, minQOLScale2, maxQOLScale2, emphasis12, emphasis22, emphasis32, emphasis42, emphasis52).size());
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testGetAllUniversities() {
+		Assert.assertTrue("Returns arraylist with all universities", this.allUnis.size() > 0);
+		//Whatever is first in DB
+		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
+	}
+	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testTopRecommendedUniversities() {
-		Assert.assertNotNull(SearchController.topRecommendedUnis(this.testUni));
+		this.recommended.addAll(SearchController.topRecommendedUnis(this.testUni));
+		Assert.assertNotNull(this.recommended);
+		Assert.assertEquals("The school with the most keys is returned first", "TheSchool", this.recommended.get(0).getUniName());
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void testGetUniName() {
+		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
 	}
 
 }

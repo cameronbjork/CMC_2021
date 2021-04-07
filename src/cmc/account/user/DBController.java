@@ -29,10 +29,10 @@ public class DBController {
 	private University uni6;
 	private User user1;
 	private University uni1;
-	private University newUni;
 	private String[][] uniWithEmphasis = new String[25][2];
 	private Admin admin1;
-	private University recentUni;
+	private ArrayList<University> allUniversities;
+
 	
 	private UniversityDBLibrary univDBLib;
 	
@@ -40,7 +40,7 @@ public class DBController {
 	 * 
 	 */
 	public DBController() {
-		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann");
+		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann", 'Y');
 		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog");
 		this.user1.setSavedUniversities(this.uni1);
 		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
@@ -65,6 +65,13 @@ public class DBController {
 		
 		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
 		
+		String[][] allUnis2D = this.univDBLib.university_getUniversities();
+		this.allUniversities = new ArrayList<University>();
+		for (int i = 0; i < allUnis2D.length; i++) {
+			University uniToAdd = new University(allUnis2D[i][0], allUnis2D[i][1], allUnis2D[i][2],allUnis2D[i][3], Integer.parseInt(allUnis2D[i][4]), Double.parseDouble(allUnis2D[i][5]), Double.parseDouble(allUnis2D[i][6]), Integer.parseInt(allUnis2D[i][7]), Double.parseDouble(allUnis2D[i][8]), Double.parseDouble(allUnis2D[i][9]), Integer.parseInt(allUnis2D[i][10]), Double.parseDouble(allUnis2D[i][11]), Double.parseDouble(allUnis2D[i][12]), Integer.parseInt(allUnis2D[i][13]), Integer.parseInt(allUnis2D[i][14]), Integer.parseInt(allUnis2D[i][15]));
+			this.allUniversities.add(uniToAdd);
+		}
+		
 		}
 		
 		
@@ -76,8 +83,7 @@ public class DBController {
 	 * @return user1 - User that is grabbed from the DB
 	 */
 	public User getUser(String firstName) {
-		String[][] allUsers = new String[100][100];
-		allUsers = this.univDBLib.user_getUsers();
+		String[][] allUsers = this.univDBLib.user_getUsers();
 		for (int i = 0; i < allUsers.length; i++) {
 			if (allUsers[i][0] == firstName) {
 				return new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][2], allUsers[i][5].charAt(0));
@@ -100,9 +106,10 @@ public class DBController {
 	 * @return uniDB - ArrayList of all Universities in DB
 	 */
 	public ArrayList<University> getAllUniversities() {
-		return this.uniDB;
+		return this.allUniversities;
 	}
 	
+	//We probably wont need this, can  only search by uniName (String)
 	/** Returns a singular university
 	 * 
 	 * @param uni - University to return
@@ -118,11 +125,9 @@ public class DBController {
 	 * @return allResults.get(i) - University being returned
 	 */
 	public University getUniversityByName(String uniName) {
-		ArrayList <University> allResults = new ArrayList<University>();
-		allResults.addAll(this.getAllUniversities());
-		for (int i = 0; i < allResults.size(); i++) {
-			if (uniName == allResults.get(i).getUniName()) {
-				return  allResults.get(i);
+		for (int i = 0; i < this.allUniversities.size(); i++) {
+			if (uniName == this.allUniversities.get(i).getUniName()) {
+				return  this.allUniversities.get(i);
 			}
 		}
 		return null;
@@ -162,13 +167,11 @@ public class DBController {
 	 * @param emphasisStudy5 - Emphasis 5 of University
 	 */
 	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
-	int numOfStudents, int percentFemale, int satVerbal, int satMath, int annualExpenses, int percentFinAid, 
-	int numApplicants, int percentAdmit, int percentEnrolled, int academicScale, int socialScale, int qOLScale, 
-	String emphasisStudy1, String emphasisStudy2, String emphasisStudy3, String emphasisStudy4, String emphasisStudy5) {
-		this.newUni = new University( uniName,  uniState,  uniLocation,  uniControl,
+	int numOfStudents, double percentFemale, double satVerbal, double satMath, double annualExpenses, double percentFinAid, 
+	int numApplicants, double percentAdmit, double percentEnrolled, int academicScale, int socialScale, int qOLScale) {
+		this.univDBLib.university_addUniversity(uniName,  uniState,  uniLocation,  uniControl,
 				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
-				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale, 
-				 emphasisStudy1,  emphasisStudy2,  emphasisStudy3,  emphasisStudy4,  emphasisStudy5);
+				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale);
 	}
 	
 	/** Admin functionality to set User

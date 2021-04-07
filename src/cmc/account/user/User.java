@@ -14,7 +14,6 @@ import cmc.university.University;
  *
  */
 public class User extends Account {
-	private boolean isActive;
 	private ArrayList<University> savedUniversities;
 	private University recentUniversity;
 	
@@ -26,9 +25,8 @@ public class User extends Account {
 	 * @param firstName - First name to set user to
 	 * @param lastName - Last name to set user to
 	 */
-	public User(String userName, String passWord, char accountType, String firstName, String lastName) {
-		super(userName, passWord, accountType, firstName, lastName);
-		this.isActive = true;
+	public User(String userName, String passWord, char accountType, String firstName, String lastName, char status) {
+		super(userName, passWord, accountType, firstName, lastName, status);
 		this.savedUniversities = new ArrayList<University>();
 	}
 	

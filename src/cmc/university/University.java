@@ -16,23 +16,18 @@ public class University {
 	public String uniLocation;
 	public String uniControl;
 	private int numOfStudents;
-	private int percentFemale;
-	private int satVerbal;
-	private int satMath;
-	private int annualExpenses;
-	private int percentFinAid;
+	private double percentFemale;
+	private double satVerbal;
+	private double satMath;
+	private double annualExpenses;
+	private double percentFinAid;
 	private int numApplicants;
-	private int percentAdmit;
-	private int percentEnrolled;
+	private double percentAdmit;
+	private double percentEnrolled;
 	private int academicScale;
 	private int socialScale;
 	private int qOLScale;
 	private ArrayList<String> emphasisArray;
-	private String emphasisStudy1;
-	private String emphasisStudy2;
-	private String emphasisStudy3;
-	private String emphasisStudy4;
-	private String emphasisStudy5;
 	
 	/**
 	 * Constructs University Object
@@ -81,20 +76,30 @@ public class University {
 		this.socialScale = socialScale;
 		this.qOLScale = qOLScale;
 		
-		this.emphasisStudy1 = emphasisStudy1;
-		this.emphasisStudy2 = emphasisStudy2;
-		this.emphasisStudy3 = emphasisStudy3;
-		this.emphasisStudy4 = emphasisStudy4;
-		this.emphasisStudy5 = emphasisStudy5;
-		
 		this.emphasisArray = new ArrayList<String>();
-		this.emphasisArray.add(emphasisStudy1);
-		this.emphasisArray.add(emphasisStudy2);
-		this.emphasisArray.add(emphasisStudy3);
-		this.emphasisArray.add(emphasisStudy4);
-		this.emphasisArray.add(emphasisStudy5);
 	}
 	
+	public University(String uniName, String uniState, String uniLocation, String uniControl, int numOfStudents,
+			double percentFemale, double satVerbal, double satMath, double annualExpenses, double percentFinAid,
+			int numApplicants, double percentAdmit, double percentEnrolled, int academicScale, int socialScale, int qOLScale) {
+		this.uniName = uniName;
+		this.uniState = uniState;
+		this.uniLocation = uniLocation;
+		this.uniControl = uniControl;
+		this.numOfStudents = numOfStudents;
+		this.percentFemale = percentFemale;
+		this.satVerbal = satVerbal;
+		this.satMath = satMath;
+		this.annualExpenses = annualExpenses;
+		this.percentFinAid = percentFinAid;
+		this.numApplicants = numApplicants;
+		this.percentAdmit = percentAdmit;
+		this.percentEnrolled = percentEnrolled;
+		this.academicScale = academicScale;
+		this.socialScale = socialScale;
+		this.qOLScale = qOLScale;
+	}
+
 	/** Get name of University
 	 * 
 	 * @return String University Name
@@ -147,7 +152,7 @@ public class University {
 	 * 
 	 * @return int Percent Female
 	 */
-	public int getPercentFemale() {
+	public double getPercentFemale() {
 		return percentFemale;
 	}
 	
@@ -163,7 +168,7 @@ public class University {
 	 * 
 	 * @return int SAT Verbal
 	 */
-	public int getSatVerbal() {
+	public double getSatVerbal() {
 		return satVerbal;
 	}
 	
@@ -179,7 +184,7 @@ public class University {
 	 * 
 	 * @return int SAT Math
 	 */
-	public int getSatMath() {
+	public double getSatMath() {
 		return satMath;
 	}
 	
@@ -190,13 +195,13 @@ public class University {
 	public void setSatMath(int satMath) {
 		this.satMath = satMath;
 	}
-	public int getAnnualExpenses() {
+	public double getAnnualExpenses() {
 		return annualExpenses;
 	}
 	public void setAnnualExpenses(int annualExpenses) {
 		this.annualExpenses = annualExpenses;
 	}
-	public int getPercentFinAid() {
+	public double getPercentFinAid() {
 		return percentFinAid;
 	}
 	public void setPercentFinAid(int percentFinAid) {
@@ -208,13 +213,13 @@ public class University {
 	public void setNumApplicants(int numApplicants) {
 		this.numApplicants = numApplicants;
 	}
-	public int getPercentAdmit() {
+	public double getPercentAdmit() {
 		return percentAdmit;
 	}
 	public void setPercentAdmit(int percentAdmit) {
 		this.percentAdmit = percentAdmit;
 	}
-	public int getPercentEnrolled() {
+	public double getPercentEnrolled() {
 		return percentEnrolled;
 	}
 	public void setPercentEnrolled(int percentEnrolled) {
@@ -238,36 +243,6 @@ public class University {
 	public void setqOLScale(int qOLScale) {
 		this.qOLScale = qOLScale;
 	}
-	public String getEmphasisStudy1() {
-		return emphasisStudy1;
-	}
-	public void setEmphasisStudy1(String emphasisStudy1) {
-		this.emphasisStudy1 = emphasisStudy1;
-	}
-	public String getEmphasisStudy2() {
-		return emphasisStudy2;
-	}
-	public void setEmphasisStudy2(String emphasisStudy2) {
-		this.emphasisStudy2 = emphasisStudy2;
-	}
-	public String getEmphasisStudy3() {
-		return emphasisStudy3;
-	}
-	public void setEmphasisStudy3(String emphasisStudy3) {
-		this.emphasisStudy3 = emphasisStudy3;
-	}
-	public String getEmphasisStudy4() {
-		return emphasisStudy4;
-	}
-	public void setEmphasisStudy4(String emphasisStudy4) {
-		this.emphasisStudy4 = emphasisStudy4;
-	}
-	public String getEmphasisStudy5() {
-		return emphasisStudy5;
-	}
-	public void setEmphasisStudy5(String emphasisStudy5) {
-		this.emphasisStudy5 = emphasisStudy5;
-	}
 
 	public String getUniLocation() {
 		return this.uniLocation;
@@ -278,8 +253,12 @@ public class University {
 		return this.uniControl;
 	}
 	
-	public ArrayList<String> getEmphasisArray() {
+	public ArrayList<String> getEmphasis() {
 		return this.emphasisArray;
+	}
+
+	public void setEmphasis(String emphToSet) {
+		this.emphasisArray.add(emphToSet);
 	}
 	
 }

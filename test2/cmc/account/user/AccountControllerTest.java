@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AccountControllerTest {
+public class AccountControllerTest extends AccountController {
 
 	@Before
 	public void setUp() throws Exception {

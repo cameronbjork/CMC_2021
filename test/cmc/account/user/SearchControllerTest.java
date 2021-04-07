@@ -11,6 +11,7 @@ import org.junit.Test;
 import cmc.university.University;
 import junit.framework.Assert;
 
+//Test
 public class SearchControllerTest {
 	private University testUni;
 	private ArrayList<University> testSearchResults;

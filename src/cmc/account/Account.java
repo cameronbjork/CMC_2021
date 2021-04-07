@@ -15,6 +15,7 @@ public abstract class Account {
 	private char accountType;
 	private String firstName;
 	private String lastName;
+	private char status;
 	private boolean loginStatus;
 	
 	/**
@@ -24,13 +25,15 @@ public abstract class Account {
 	 * @param accountType - Account type of account
 	 * @param firstName - First name of account
 	 * @param lastName - Last name of account
+	 * @param status - Active or Inactive account 'Y' or 'N'
 	 */
-	public Account(String userName, String passWord, char accountType, String firstName, String lastName) {
+	public Account(String userName, String passWord, char accountType, String firstName, String lastName, char status) {
 		this.userName = userName;
 		this.passWord = passWord;
 		this.accountType = accountType;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.status = status;
 	}
 
 	/**

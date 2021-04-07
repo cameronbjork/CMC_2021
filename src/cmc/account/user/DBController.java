@@ -3,6 +3,7 @@
  */
 package cmc.account.user;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.lang.StringBuilder;
@@ -11,6 +12,8 @@ import cmc.account.Account;
 import cmc.account.admin.Admin;
 import cmc.university.University;
 
+
+import dblibrary.project.csci230.*;
 /** Communicates with the Database to get and set data
  * 
  * @author Cameron, Joe, Michael, Logan, Jaren, Charlie
@@ -30,6 +33,8 @@ public class DBController {
 	private String[][] uniWithEmphasis = new String[25][2];
 	private Admin admin1;
 	private University recentUni;
+	
+	private UniversityDBLibrary univDBLib;
 	
 	/** Creates DBController object
 	 * 
@@ -57,19 +62,29 @@ public class DBController {
 			k++;
 			uniWithEmphasis[i][k] = this.uniDB.get(i).getEmphasisArray().get(i);
 			}
+		
+		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
+		
 		}
 		
 		
 
-	
+	//START OF DATABASE IMPLEMENTATION
 	/** Gets user from the Database
 	 * 
-	 * @param userName -  Username of the User.
+	 * @param firstName -  First name of the User.
 	 * @return user1 - User that is grabbed from the DB
 	 */
-	public User getUser(String userName) {
-		return this.user1;
+	public User getUser(String firstName) {
+		String[][] allUsers = new String[100][100];
+		allUsers = this.univDBLib.user_getUsers();
+		for (int i = 0; i < allUsers.length; i++) {
+			if (allUsers[i][0] == firstName) {
+				return new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][2], allUsers[i][5].charAt(0));
+		}
 	}
+		return null;
+}
 	
 	//handle bad username case here and in AC
 	public Account getAccount(String userName) {

@@ -21,6 +21,7 @@ public class UserFunctionalityController {
 	public UserFunctionalityController() {
 		this.DBC = new DBController();
 	}
+	
 	/**
 	 * This method displays the user's saved universities and returns an
 	 * array list of saveeed university objects
@@ -57,6 +58,7 @@ public class UserFunctionalityController {
 		return true;
 		
 	}
+	
 	/**
 	 * A method to display the information of a selected university
 	 * @param uni the name of the university to be displayed

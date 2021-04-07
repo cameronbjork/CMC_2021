@@ -39,6 +39,8 @@ public class University {
 	 * 
 	 * @param uniName Name of Univeristy
 	 * @param uniState State of University
+	 * @param uniLocation Location of University
+	 * @param uniControl Control of University
 	 * @param numOfStudents Number of students at University
 	 * @param percentFemale Percent of female students at University
 	 * @param satVerbal Average SAT verbal score
@@ -93,39 +95,98 @@ public class University {
 		this.emphasisArray.add(emphasisStudy5);
 	}
 	
+	/** Get name of University
+	 * 
+	 * @return String University Name
+	 */
 	public String getUniName() {
 		return uniName;
 	}
+	
+	/** Set name of University
+	 * 
+	 * @param uniName Name of University
+	 */
 	public void setUniName(String uniName) {
 		this.uniName = uniName;
 	}
+	
+	/** Get state of University
+	 * 
+	 * @return String University State
+	 */
 	public String getUniState() {
 		return uniState;
 	}
+	
+	/** Set state of University
+	 * 
+	 * @param uniState University State
+	 */
 	public void setUniState(String uniState) {
 		this.uniState = uniState;
 	}
+	
+	/** Get number of students of University
+	 * 
+	 * @return int number of students
+	 */
 	public int getNumOfStudents() {
 		return numOfStudents;
 	}
+	
+	/** Set number of students of University
+	 * 
+	 * @param numOfStudents Number of Students
+	 */
 	public void setNumOfStudents(int numOfStudents) {
 		this.numOfStudents = numOfStudents;
 	}
+	
+	/** Get percent female of University
+	 * 
+	 * @return int Percent Female
+	 */
 	public int getPercentFemale() {
 		return percentFemale;
 	}
+	
+	/** Set percent female of University
+	 * 
+	 * @param percentFemale Percent Female
+	 */
 	public void setPercentFemale(int percentFemale) {
 		this.percentFemale = percentFemale;
 	}
+	
+	/** Get SAT Verbal of University
+	 * 
+	 * @return int SAT Verbal
+	 */
 	public int getSatVerbal() {
 		return satVerbal;
 	}
+	
+	/** Set SAT Verbal of University
+	 * 
+	 * @param satVerbal SAT Verbal
+	 */
 	public void setSatVerbal(int satVerbal) {
 		this.satVerbal = satVerbal;
 	}
+	
+	/** Get SAT Math of University
+	 * 
+	 * @return int SAT Math
+	 */
 	public int getSatMath() {
 		return satMath;
 	}
+	
+	/** Set SAT Math of University
+	 * 
+	 * @param satMath SAT Math
+	 */
 	public void setSatMath(int satMath) {
 		this.satMath = satMath;
 	}

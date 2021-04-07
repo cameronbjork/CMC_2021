@@ -193,6 +193,14 @@ public class Driver3 {
 		System.out.println("------------------------------------------\n");
 	}
 	
+	public static void runDisplayUniversity(UserInteraction ui) {
+		University uni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
+		System.out.println("Testing displayUniversity main scenario...");
+		boolean result = ui.displayUniversity(uni);
+		System.out.println("Expected true: Result: " + result);
+		System.out.println("------------------------------------------\n");
+	}
+	
 
 	
 	/**
@@ -217,6 +225,7 @@ public class Driver3 {
 		runRemoveSavedUniversity(ui);
 		runSaveUniversity(ui);
 		runRecentUniversity(ui);
+		runDisplayUniversity(ui);
 		} catch (NullPointerException e) {
 			System.out.println("Null");
 		}

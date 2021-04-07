@@ -92,27 +92,19 @@ public class UserInteraction {
 	 * @param emphasis5 search emphasis 5
 	 * @return boolean to confirm the search
 	 */
-	public boolean searchUniversities(String school, String state, String location, String control, int minNumStudents, 
+	public ArrayList<University> searchUniversities(String school, String state, String location, String control, int minNumStudents, 
 			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, int minAnnualExpenses, 
 			int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, int maxNumApplicants,
 			int minPercentAdmit, int maxPercentAdmit, int minPercentEnrolled, int maxPercentEnrolled, int minAcademicScale, int maxAcademicScale, 
 			int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale, String emphasis1, String emphasis2, 
 			String emphasis3, String emphasis4, String emphasis5) {
 		
-		ArrayList<University> universities = this.SC.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
+		ArrayList<University> universities = SearchController.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
 				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5);
 		
-		if (universities.size() != 0) {
-			for (int i = 0; i < universities.size(); i++) {
-				System.out.println(universities.get(i).getUniName());
-			}
-				return true;
-		}
-		else {
-			return false;
-		}
+		return universities;
 
 	}
 	/**
@@ -203,6 +195,12 @@ public class UserInteraction {
 		return true;
 	}
 	
+	/** User saves a university
+	 * 
+	 * @param userName to get User object from
+	 * @param uni University to save to User
+	 * @return boolean
+	 */
 	public boolean saveUniversity(String userName, University uni) {
 		return this.UFC.saveUnversity(userName, uni);
 	}

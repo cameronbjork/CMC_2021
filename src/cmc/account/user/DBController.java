@@ -71,6 +71,7 @@ public class DBController {
 		return this.user1;
 	}
 	
+	//handle bad username case here and in AC
 	public Account getAccount(String userName) {
 		if(this.user1.getUserName() == userName) {
 			return user1;
@@ -111,7 +112,11 @@ public class DBController {
 		}
 		return null;
 	}
-
+	
+	/** Set a Users data back to DB
+	 * 
+	 * @param u2 User to set back to DB
+	 */
 	public void setUser(User u2) {
 		// TODO store user back to database
 		this.user1 = u2;

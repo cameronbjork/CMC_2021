@@ -6,12 +6,14 @@ import cmc.university.University;
 public class AdminFunctionalityController {
 
 	private DBController DBC;
+	
 	/**
-	 * A method that creates a new data base controller object
+	 * A method that creates a new database controller object
 	 */
 	public AdminFunctionalityController() {
 		this.DBC = new DBController();
 	}
+	
 	/**
 	 * A method to display the information of a selected university
 	 * @param uni the name of the university to be displayed
@@ -21,6 +23,7 @@ public class AdminFunctionalityController {
 		this.DBC.getUniversity(uni);
 		
 	}
+	
 	/**
 	 * A method to set information of a selected university
 	 * @param uni the name of the university to be displayed
@@ -28,6 +31,7 @@ public class AdminFunctionalityController {
 	public void setUniversity(University uni) {
 		this.DBC.getUniversity(uni);
 	}
+	
 	/**
 	 * A method for the admin to edit user information
 	 * @param userName username of the user edited
@@ -39,6 +43,7 @@ public class AdminFunctionalityController {
 	public void adminEditUser(String userName, String firstName, String lastName, String passWord, char type) {
 		this.DBC.setUserData(userName, firstName, lastName, passWord, type);
 	}
+	
 	/**
 	 * A method to add a new user to the database
 	 * @param userName - the new username

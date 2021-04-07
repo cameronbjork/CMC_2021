@@ -15,9 +15,13 @@ public class AccountController {
 	private DBController DBC;
 	private int test;
 	
+	/** 
+	 * Creates AccountController object
+	 */
 	public AccountController() {
 		this.DBC = new DBController();
 	}
+	
 	/**
 	 * This method is used to edit a user's information
 	 * @return boolean
@@ -52,15 +56,14 @@ public class AccountController {
 		return bool;
 	}
 	
-
-	public Account logOn(String userName, String passWord) {
-		Account acc = this.DBC.getAccount(userName);
 	/**
 	 * This method is used to logon a user and set the appropriate login status
 	 * @return boolean
 	 * @param userName a string of the users userName name	  
 	 * @param passWord a string of the users first name
 	 */
+	public Account logOn(String userName, String passWord) {
+		Account acc = this.DBC.getAccount(userName);
 
 		String p2 = acc.getPassWord();
 		if (p2.equals(passWord)) {
@@ -82,7 +85,9 @@ public class AccountController {
 
 	/**
 	 * This method logs the user out and sets the login status to false
+	 * 
 	 * @param userName the username of the account to be logged out
+	 * @return boolean
 	 */
 	public boolean logOut(String userName) {
 		Account acc = this.DBC.getUser(userName);

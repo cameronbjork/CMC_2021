@@ -59,6 +59,10 @@ public class User extends Account {
 		this.recentUniversity = recentUni;
 	}
 
+	/** Sets a university to the savedUniversities list
+	 * 
+	 * @param uni1 University to save
+	 */
 	public void setSavedUniversities(University uni1) {
 		this.savedUniversities.add(uni1);
 		

@@ -129,6 +129,10 @@ public abstract class Account {
 		this.loginStatus = loginStatus;
 	}
 	
+	/** Gets the login status back to user
+	 * 
+	 * @return loginStatus boolean to check if loggedin
+	 */
 	public boolean getLoginStatus(){
 		return this.loginStatus;
 	}

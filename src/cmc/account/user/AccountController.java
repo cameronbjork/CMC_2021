@@ -89,10 +89,10 @@ public class AccountController {
 	 * @param userName the username of the account to be logged out
 	 * @return boolean
 	 */
-	public boolean logOut(String userName) {
-		Account acc = this.DBC.getUser(userName);
+	public Account logOut(String userName) {
+		Account acc = this.DBC.getAccount(userName);
 		acc.setLoginStatus(false);
-			return true;
+			return acc;
 		}
 	}
 	

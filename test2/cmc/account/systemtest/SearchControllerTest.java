@@ -1,4 +1,4 @@
-package cmc.account.user;
+package cmc.account.systemtest;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cmc.account.user.SearchController;
 import cmc.university.University;
 import junit.framework.Assert;
 

@@ -33,6 +33,26 @@ public class AccountControllerTest extends AccountController {
 		Assert.assertTrue("successful login",test1result.getLoginStatus() == true);
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testUserEditFirstName() {
+		Account testresult1 = this.AC.userEditUser("peter", "Charlie", "Becker", "Password1234");
+		Assert.assertEquals("Successful First Name change", "Charlie", testresult1.getFirstName());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testUserEditLastName() {
+		Account testresult2 = this.AC.userEditUser("peter", "Charlie", "Becker", "Password1234");
+		Assert.assertEquals("Successful Last Name change", "Becker",testresult2.getLastName());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testUserEditPassword() {
+		Account testresult3 = this.AC.userEditUser("peter", "Charlie", "Becker", "Password1234");
+		Assert.assertEquals("Successful Password change", "Password1234", testresult3.getPassWord());
+	}
 	//public void testLoginAlternate1() {
 		//boolean test2reult = AccountController.logOn("ManMade", "WRONG PASS", 'u', "Horrible", "Programmer", 'Y');
 		//Assert.assertFalse("failed login(wrong pass)", test2 result);

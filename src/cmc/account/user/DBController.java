@@ -13,7 +13,11 @@ import cmc.account.admin.Admin;
 import cmc.university.University;
 
 
+
 import dblibrary.project.csci230.*;
+
+//NEED: GET ACCOUNT AND GET ADMIN, change GET USER TO JUST ACCOUNTS WITH TYPE U
+
 /** Communicates with the Database to get and set data
  * 
  * @author Cameron, Joe, Michael, Logan, Jaren, Charlie

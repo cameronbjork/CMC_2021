@@ -77,14 +77,13 @@ public class SearchController {
 		
 		String tempUniName;
 		for (int i = 0; i < allResults.size() - 1; i++) {
-			System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Add uni to vector
 			uniList.add(allResults.get(i));
 			
 			//Check for school name
-			if (tempUniName.toLowerCase().contains(school.toLowerCase()) && school != "") {
+			if (tempUniName.toLowerCase().contentEquals(school.toLowerCase()) && school != "") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
@@ -92,21 +91,21 @@ public class SearchController {
 			}
 			
 			//Check for similar states
-			if (allResults.get(i).getUniState().toLowerCase().contains(state.toLowerCase()) && state != "") {
+			if (allResults.get(i).getUniState().toLowerCase().contentEquals(state.toLowerCase()) || state != "") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}
 			}
 			
 			//Check for Location
-			if (allResults.get(i).getUniLocation().contains(location) && location != "-1") {
+			if (allResults.get(i).getUniLocation().contentEquals(location) || location != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}
 			}
 			
 			//Check for Control
-			if (allResults.get(i).getControl().contains(control) && control != "-1") {
+			if (allResults.get(i).getControl().contentEquals(control) && control != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}
@@ -225,7 +224,6 @@ public class SearchController {
 					}
 				}
 			} 
-		System.out.println();
 		for (int i = 0; i < similarResults.size(); i++) {
 		System.out.println(similarResults.get(i).getUniName());
 		}
@@ -480,7 +478,7 @@ public class SearchController {
 		});
 		
 		//SWITCH TO 1,6 WHEN DB IS CONNECTED
-		resultList = list.subList(1, 4);
+		resultList = list.subList(0, 10);
 		
 		int i = 0;
 		while (i < resultList.size()) {

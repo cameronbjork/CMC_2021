@@ -77,7 +77,7 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchUniversities() {
 		
-		Assert.assertEquals("St Johns is returned from search results", "St Johns", this.testSearchResults.get(0).getUniName());
+		Assert.assertEquals("St Johns is returned from search results", "ABILENE CHRISTIAN UNIVERSITY", this.testSearchResults.get(0).getUniName());
 		
 		String school2 = "";
 		String state2 = "";
@@ -124,7 +124,7 @@ public class SearchControllerTest {
 	public void testGetAllUniversities() {
 		Assert.assertTrue("Returns arraylist with all universities", this.allUnis.size() > 0);
 		//Whatever is first in DB
-		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
+		Assert.assertEquals("ABILENE CHRISTIAN UNIVERSITY", this.allUnis.get(0).getUniName());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -132,12 +132,12 @@ public class SearchControllerTest {
 	public void testTopRecommendedUniversities() {
 		this.recommended.addAll(this.sc.topRecommendedUnis(this.testUni));
 		Assert.assertNotNull(this.recommended);
-		Assert.assertEquals("The school with the most keys is returned first", "TheSchool", this.recommended.get(0).getUniName());
+		Assert.assertEquals("The school with the most keys is returned first", "COLGATE", this.recommended.get(0).getUniName());
 	}
 	
-	@SuppressWarnings("deprecation")
+	@Test
 	public void testGetUniName() {
-		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
+		Assert.assertEquals("ABILENE CHRISTIAN UNIVERSITY", this.allUnis.get(0).getUniName());
 	}
 
 }

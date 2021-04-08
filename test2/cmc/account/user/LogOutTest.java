@@ -6,19 +6,27 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LogOutTest extends UserInteraction {
+import cmc.account.Account;
+import junit.framework.Assert;
 
+public class LogOutTest extends UserInteraction {
+	private UserInteraction UI;
+	
+	
 	@Before
 	public void setUp() throws Exception {
+		this.UI = new UserInteraction();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
+	@SuppressWarnings("deprecation")
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testLogOutMain() {
+		Account testresult = this.UI.logOut("peter");
+		Assert.assertTrue("successful logout", testresult.getLoginStatus() == false);
 	}
 
 }

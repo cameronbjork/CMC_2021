@@ -18,8 +18,8 @@ import cmc.university.University;
  *
  */
 public class SearchController {
-	public static final DBController DBC = new DBController();
-	private static final Vector<University> uniList = new  Vector<University>();
+	public DBController DBC = new DBController();
+	private Vector<University> uniList = new  Vector<University>();
 	
 	/**
 	 * Creates a search controller object
@@ -64,7 +64,7 @@ public class SearchController {
 	 * @param emphasis5 - University emphasis5 to search by
 	 * @return ArrayList of universities that were found by search
 	 */
-	public static ArrayList<University> searchUniversities(String school, String state, String location, String control, int minNumStudents, 
+	public ArrayList<University> searchUniversities(String school, String state, String location, String control, int minNumStudents, 
 			int maxNumStudents, int minPercentFemale, int maxPercentFemale, int minSATVerbal, int maxSATVerbal, int minSATMath, int maxSATMath, 
 			int minAnnualExpenses, int maxAnnualExpenses, int minPercentFinancialAid, int maxPercentFinancialAid, int minNumApplicants, 
 			int maxNumApplicants, int minPercentAdmit, int maxPercentAdmit, int minPercentEnrolled, int maxPercentEnrolled, 
@@ -72,11 +72,13 @@ public class SearchController {
 			String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5) {
 		
 		ArrayList<University> similarResults = new ArrayList<University>();
-		ArrayList <University> allResults = new ArrayList<University>(DBC.getAllUniversities());
+		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
+		System.out.println(this.DBC.getAllUniversities().get(1));
+		
 		
 		String tempUniName;
 		for (int i = 0; i < allResults.size() - 1; i++) {
-			
+			System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Add uni to vector
@@ -210,11 +212,11 @@ public class SearchController {
 		
 
 		//Check for similar Emphasis
-		String[][] uniAndEmphasis = DBC.university_getNamesWithEmphasis();
-		String tempUni2;
+		String[][] uniAndEmphasis = DBC.university_getAllUniversitiesAndEmphasis();
+		University tempUni2;
 		for (int i = 0; i < allResults.size(); i++) {
-			tempUni2 = allResults.get(i).getUniName();
-				if (uniAndEmphasis[i][0] == tempUni2) {
+			tempUni2 = allResults.get(i);
+				if (uniAndEmphasis[i][0] == tempUni2.getUniName()) {
 					if (emphasis1 == uniAndEmphasis[i][1] && emphasis1 != "" || emphasis2 == uniAndEmphasis[i][1] && emphasis2 != "" ||
 							emphasis3 == uniAndEmphasis[i][1] && emphasis3 != "" || emphasis4 == uniAndEmphasis[i][1] && emphasis4 != ""||
 							emphasis5 == uniAndEmphasis[i][1] && emphasis5 != "") {
@@ -234,222 +236,222 @@ public class SearchController {
 	 * @param uniViewed - University being viewed
 	 * @return ArrayList of top recommended universities
 	 */
-	public static ArrayList<University> topRecommendedUnis(University uniViewed) {
-		SearchController.uniList.add(uniViewed);
+	public ArrayList<University> topRecommendedUnis(University uniViewed) {
+		this.uniList.add(uniViewed);
 		HashMap<String, Float> uniandDistance = new HashMap<String, Float>();
 		float distance;
-		int tempMax = 0;
-		int tempMin = 0;
+		double tempMax = 0;
+		double tempMin = 0;
 		String tempUniName;
 		
-		for (int i = 0; i < SearchController.uniList.size() / 2; i++) {
+		for (int i = 0; i < this.uniList.size() / 2; i++) {
 			distance = 0;
-			tempUniName = SearchController.uniList.get(i).getUniName();
+			tempUniName = this.uniList.get(i).getUniName();
 			
 			//Check by uniName
-			if (!SearchController.uniList.lastElement().getUniName().toLowerCase().equals(SearchController.uniList.get(i).getUniName().toLowerCase())) {
+			if (!this.uniList.lastElement().getUniName().toLowerCase().equals(this.uniList.get(i).getUniName().toLowerCase())) {
 				distance++;
 			}
 		
 			//Check by uniState
-			if (!SearchController.uniList.lastElement().getUniState().toLowerCase().equals(SearchController.uniList.get(i).getUniState().toLowerCase())) {
+			if (!this.uniList.lastElement().getUniState().toLowerCase().equals(this.uniList.get(i).getUniState().toLowerCase())) {
 				distance++;
 			}
 		
 			//Check by Location
-			if (!SearchController.uniList.lastElement().getUniLocation().equals(SearchController.uniList.get(i).getUniLocation())) {
+			if (!this.uniList.lastElement().getUniLocation().equals(this.uniList.get(i).getUniLocation())) {
 				distance++;
 			}
 			
 			//Check by Control
-			if (!SearchController.uniList.lastElement().getControl().equals(SearchController.uniList.get(i).getControl())) {
+			if (!this.uniList.lastElement().getControl().equals(this.uniList.get(i).getControl())) {
 				distance++;
 			}
 			
 			//Check by numOfStudents
-			if (SearchController.uniList.lastElement().getNumOfStudents() != SearchController.uniList.get(i).getNumOfStudents()) {
+			if (this.uniList.lastElement().getNumOfStudents() != this.uniList.get(i).getNumOfStudents()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getNumOfStudents();
-				tempMin = SearchController.uniList.get(0).getNumOfStudents();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getNumOfStudents() > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getNumOfStudents();
+				tempMax = this.uniList.get(0).getNumOfStudents();
+				tempMin = this.uniList.get(0).getNumOfStudents();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getNumOfStudents() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getNumOfStudents();
 					}
-					if (SearchController.uniList.get(j + 1).getNumOfStudents() < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getNumOfStudents();
+					if (this.uniList.get(j + 1).getNumOfStudents() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getNumOfStudents();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getNumOfStudents() - SearchController.uniList.get(i).getNumOfStudents())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getNumOfStudents() - this.uniList.get(i).getNumOfStudents())) / (Math.abs(tempMax - tempMin));
 			}
 			
 			//Check by percentFemale
-			if (SearchController.uniList.lastElement().getPercentFemale() != SearchController.uniList.get(i).getPercentFemale()) {
+			if (this.uniList.lastElement().getPercentFemale() != this.uniList.get(i).getPercentFemale()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getPercentFemale();
-				tempMin = SearchController.uniList.get(0).getPercentFemale();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getPercentFemale() > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getPercentFemale();
+				tempMax = this.uniList.get(0).getPercentFemale();
+				tempMin = this.uniList.get(0).getPercentFemale();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentFemale() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentFemale();
 					}
-					if (SearchController.uniList.get(j + 1).getPercentFemale() < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getPercentFemale();
+					if (this.uniList.get(j + 1).getPercentFemale() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentFemale();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getPercentFemale() - SearchController.uniList.get(i).getPercentFemale())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getPercentFemale() - this.uniList.get(i).getPercentFemale())) / (Math.abs(tempMax - tempMin));
 			}
 			
 			//Check by SAT Verbal
-			if (SearchController.uniList.lastElement().getSatVerbal() != SearchController.uniList.get(i).getSatVerbal()) {
+			if (this.uniList.lastElement().getSatVerbal() != this.uniList.get(i).getSatVerbal()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getSatVerbal();
-				tempMin = SearchController.uniList.get(0).getSatVerbal();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getSatVerbal() > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getSatVerbal();
+				tempMax = this.uniList.get(0).getSatVerbal();
+				tempMin = this.uniList.get(0).getSatVerbal();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getSatVerbal() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getSatVerbal();
 					}
-					if (SearchController.uniList.get(j + 1).getSatVerbal() < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getSatVerbal();
+					if (this.uniList.get(j + 1).getSatVerbal() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getSatVerbal();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getSatVerbal() - SearchController.uniList.get(i).getSatVerbal())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getSatVerbal() - this.uniList.get(i).getSatVerbal())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by SAT Math
-			if (SearchController.uniList.lastElement().getSatMath() != SearchController.uniList.get(i).getSatMath()) {
+			if (this.uniList.lastElement().getSatMath() != this.uniList.get(i).getSatMath()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getSatMath();
-				tempMin = SearchController.uniList.get(0).getSatMath();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getSatMath() > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getSatMath();
+				tempMax = this.uniList.get(0).getSatMath();
+				tempMin = this.uniList.get(0).getSatMath();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getSatMath() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getSatMath();
 					}
-					if (SearchController.uniList.get(j + 1).getSatMath() < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getSatMath();
+					if (this.uniList.get(j + 1).getSatMath() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getSatMath();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getSatMath() - SearchController.uniList.get(i).getSatMath())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getSatMath() - this.uniList.get(i).getSatMath())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Annual Expenses
-			if (SearchController.uniList.lastElement().getAnnualExpenses() != SearchController.uniList.get(i).getAnnualExpenses()) {
+			if (this.uniList.lastElement().getAnnualExpenses() != this.uniList.get(i).getAnnualExpenses()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getAnnualExpenses() ;
-				tempMin = SearchController.uniList.get(0).getAnnualExpenses() ;
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getAnnualExpenses()  > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getAnnualExpenses() ;
+				tempMax = this.uniList.get(0).getAnnualExpenses() ;
+				tempMin = this.uniList.get(0).getAnnualExpenses() ;
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getAnnualExpenses()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getAnnualExpenses() ;
 					}
-					if (SearchController.uniList.get(j + 1).getAnnualExpenses()  < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getAnnualExpenses() ;
+					if (this.uniList.get(j + 1).getAnnualExpenses()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getAnnualExpenses() ;
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getAnnualExpenses()  - SearchController.uniList.get(i).getAnnualExpenses())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getAnnualExpenses()  - this.uniList.get(i).getAnnualExpenses())) / (Math.abs(tempMax - tempMin));
 			}
 			
 			//Check by Percent Financial Aid
-			if (SearchController.uniList.lastElement().getPercentFinAid() != SearchController.uniList.get(i).getPercentFinAid()) {
+			if (this.uniList.lastElement().getPercentFinAid() != this.uniList.get(i).getPercentFinAid()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getPercentFinAid();
-				tempMin = SearchController.uniList.get(0).getPercentFinAid();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getPercentFinAid()  > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getPercentFinAid() ;
+				tempMax = this.uniList.get(0).getPercentFinAid();
+				tempMin = this.uniList.get(0).getPercentFinAid();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentFinAid()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentFinAid() ;
 					}
-					if (SearchController.uniList.get(j + 1).getPercentFinAid()  < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getPercentFinAid() ;
+					if (this.uniList.get(j + 1).getPercentFinAid()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentFinAid() ;
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getPercentFinAid() - SearchController.uniList.get(i).getPercentFinAid())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getPercentFinAid() - this.uniList.get(i).getPercentFinAid())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Number of Applicants
-			if (SearchController.uniList.lastElement().getNumApplicants() != SearchController.uniList.get(i).getNumApplicants()) {
+			if (this.uniList.lastElement().getNumApplicants() != this.uniList.get(i).getNumApplicants()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getNumApplicants();
-				tempMin = SearchController.uniList.get(0).getNumApplicants();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getNumApplicants()  > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getNumApplicants();
+				tempMax = this.uniList.get(0).getNumApplicants();
+				tempMin = this.uniList.get(0).getNumApplicants();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getNumApplicants()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getNumApplicants();
 					}
-					if (SearchController.uniList.get(j + 1).getNumApplicants()  < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getNumApplicants();
+					if (this.uniList.get(j + 1).getNumApplicants()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getNumApplicants();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getNumApplicants() - SearchController.uniList.get(i).getNumApplicants())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getNumApplicants() - this.uniList.get(i).getNumApplicants())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Percent Admitted
-			if (SearchController.uniList.lastElement().getPercentAdmit() != SearchController.uniList.get(i).getPercentAdmit()) {
+			if (this.uniList.lastElement().getPercentAdmit() != this.uniList.get(i).getPercentAdmit()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getPercentAdmit();
-				tempMin = SearchController.uniList.get(0).getPercentAdmit();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getPercentAdmit()  > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getPercentAdmit();
+				tempMax = this.uniList.get(0).getPercentAdmit();
+				tempMin = this.uniList.get(0).getPercentAdmit();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentAdmit()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentAdmit();
 					}
-					if (SearchController.uniList.get(j + 1).getPercentAdmit()  < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getPercentAdmit();
+					if (this.uniList.get(j + 1).getPercentAdmit()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentAdmit();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getPercentAdmit() - SearchController.uniList.get(i).getPercentAdmit())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getPercentAdmit() - this.uniList.get(i).getPercentAdmit())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Academic Scale
-			if (SearchController.uniList.lastElement().getPercentEnrolled() != SearchController.uniList.get(i).getPercentEnrolled()) {
+			if (this.uniList.lastElement().getPercentEnrolled() != this.uniList.get(i).getPercentEnrolled()) {
 				
 				//get max & min value
-				tempMax = SearchController.uniList.get(0).getPercentEnrolled();
-				tempMin = SearchController.uniList.get(0).getPercentEnrolled();
-				for (int j = 0; j < SearchController.uniList.size() - 1; j++) {
-					if (SearchController.uniList.get(j + 1).getPercentEnrolled()  > tempMax) {
-						tempMax = SearchController.uniList.get(j + 1).getPercentEnrolled();
+				tempMax = this.uniList.get(0).getPercentEnrolled();
+				tempMin = this.uniList.get(0).getPercentEnrolled();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentEnrolled()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentEnrolled();
 					}
-					if (SearchController.uniList.get(j + 1).getPercentEnrolled()  < tempMin) {
-						tempMin = SearchController.uniList.get(j + 1).getPercentEnrolled();
+					if (this.uniList.get(j + 1).getPercentEnrolled()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentEnrolled();
 					}
 				}
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getPercentEnrolled() - SearchController.uniList.get(i).getPercentEnrolled())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getPercentEnrolled() - this.uniList.get(i).getPercentEnrolled())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Social Scale
-			if (SearchController.uniList.lastElement().getAcademicScale() != SearchController.uniList.get(i).getAcademicScale()) {
+			if (this.uniList.lastElement().getAcademicScale() != this.uniList.get(i).getAcademicScale()) {
 				
 				//get max & min value
 				tempMax = 5;
 				tempMin = 1;
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getAcademicScale() - SearchController.uniList.get(i).getAcademicScale())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getAcademicScale() - this.uniList.get(i).getAcademicScale())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check by Quality of Life Scale
-			if (SearchController.uniList.lastElement().getqOLScale() != SearchController.uniList.get(i).getqOLScale()) {
+			if (this.uniList.lastElement().getqOLScale() != this.uniList.get(i).getqOLScale()) {
 				
 				//get max & min value
 				tempMax = 5;
 				tempMin = 1;
-				distance += (float) (Math.abs(SearchController.uniList.lastElement().getqOLScale() - SearchController.uniList.get(i).getqOLScale())) / (Math.abs(tempMax - tempMin));
+				distance += (float) (Math.abs(this.uniList.lastElement().getqOLScale() - this.uniList.get(i).getqOLScale())) / (Math.abs(tempMax - tempMin));
 			} 
 			
 			//Check for similar Emphasis
-			String[][] uniAndEmphasis = SearchController.DBC.university_getNamesWithEmphasis();
+			String[][] uniAndEmphasis = this.DBC.university_getAllUniversitiesAndEmphasis();
 			for (int j = 0; j < uniAndEmphasis.length; j++) {
-					if (uniAndEmphasis[j][0] == SearchController.uniList.get(i).getUniName()) {
-						if (SearchController.uniList.lastElement().getEmphasisStudy1() != (uniAndEmphasis[j][1])) {
+					if (uniAndEmphasis[j][0] == this.uniList.get(i).getUniName()) {
+						if (this.uniList.lastElement().getEmphasis1() != (uniAndEmphasis[j][1])) {
 							distance++;
-						} else if (!SearchController.uniList.lastElement().getEmphasisStudy2().equals(uniAndEmphasis[j][1])) {
+						} else if (!this.uniList.lastElement().getEmphasis2().equals(uniAndEmphasis[j][1])) {
 							distance++;
-						} else if (!SearchController.uniList.lastElement().getEmphasisStudy3().equals(uniAndEmphasis[j][1])) {
+						} else if (!this.uniList.lastElement().getEmphasis3().equals(uniAndEmphasis[j][1])) {
 							distance++;
-						} else if (!SearchController.uniList.lastElement().getEmphasisStudy4().equals(uniAndEmphasis[j][1])) {
+						} else if (!this.uniList.lastElement().getEmphasis4().equals(uniAndEmphasis[j][1])) {
 							distance++;
-						} else if (!SearchController.uniList.lastElement().getEmphasisStudy5().equals(uniAndEmphasis[j][1])) {
+						} else if (!this.uniList.lastElement().getEmphasis5().equals(uniAndEmphasis[j][1])) {
 							distance++;
 						}
 					}
@@ -480,7 +482,7 @@ public class SearchController {
 		int i = 0;
 		while (i < resultList.size()) {
 			System.out.println(resultList.get(i).getKey());
-			uniResultList.add(SearchController.DBC.getUniversityByName(resultList.get(i).getKey()));
+			uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
 			i++;
 		}
 		

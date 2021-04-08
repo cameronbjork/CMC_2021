@@ -41,7 +41,7 @@ public class DBController {
 	 */
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann", 'Y');
-		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog");
+		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog", 'Y');
 		this.user1.setSavedUniversities(this.uni1);
 		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
 		this.uni3 = new University ("TheSchool", "Illinois", "CHICAGO", "PRIVATE", 6000, 78, 5, 5, 1000, 35, 900, 65, 67, 2, 4, 3, "EDUCATION", "NURSING", "BUSINESS","", "");
@@ -55,16 +55,9 @@ public class DBController {
 		this.uniDB.add(uni5);
 		this.uniDB.add(uni6);
 		
-		int k = 0;
-		for (int i = 0; i < uniDB.size(); i++)  {
-			k = 0;
-			uniWithEmphasis[i][k] = this.uniDB.get(i).getUniName();
-			k++;
-			uniWithEmphasis[i][k] = this.uniDB.get(i).getEmphasisArray().get(i);
-			}
-		
 		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
 		
+		//Creates arraylist with all universities
 		String[][] allUnis2D = this.univDBLib.university_getUniversities();
 		this.allUniversities = new ArrayList<University>();
 		for (int i = 0; i < allUnis2D.length; i++) {
@@ -72,6 +65,15 @@ public class DBController {
 			this.allUniversities.add(uniToAdd);
 		}
 		
+		//Adds emphasis to all Universities
+		String[][] allUnisAndEmph2D = this.univDBLib.university_getNamesWithEmphases();
+		for (int i = 0; i < allUnisAndEmph2D.length; i++) {
+			for (int j = 0; j < this.allUniversities.size(); j++) {
+				if (allUnisAndEmph2D[i][0] == this.allUniversities.get(j).getUniName()) {
+					this.allUniversities.get(j).setEmphasis(allUnisAndEmph2D[i][1]);
+				}
+			}
+		}
 		}
 		
 		
@@ -190,12 +192,13 @@ public class DBController {
 		
 	}
 	
+	//Emphasis being stored in arraylist in university, should delte this and just get university?
 	/** Return university with emphasis'
 	 * 
 	 * @return String[][] - 2D array with all emphasis'
 	 */
-	public String[][] university_getNamesWithEmphasis() {
-		return uniWithEmphasis;
+	public String [][] university_getAllUniversitiesAndEmphasis() {
+		return this.univDBLib.university_getNamesWithEmphases();
 	}
 
 	public void addNewUserData(String userName, String firstName, String lastName, String passWord, char type) {

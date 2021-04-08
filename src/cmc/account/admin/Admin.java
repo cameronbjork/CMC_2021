@@ -20,8 +20,8 @@ public class Admin extends Account {
 	 * @param firstName - First Name of admin
 	 * @param lastName - Last Name of admin
 	 */
-	public Admin(String userName, String passWord, char accountType, String firstName, String lastName) {
-		super(userName, passWord, accountType, firstName, lastName);
+	public Admin(String userName, String passWord, char accountType, String firstName, String lastName, char status) {
+		super(userName, passWord, accountType, firstName, lastName, status);
 	}
 	
 

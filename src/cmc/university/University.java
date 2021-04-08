@@ -28,6 +28,11 @@ public class University {
 	private int socialScale;
 	private int qOLScale;
 	private ArrayList<String> emphasisArray;
+	private String emphasis1;
+	private String emphasis2;
+	private String emphasis3;
+	private String emphasis4;
+	private String emphasis5;
 	
 	/**
 	 * Constructs University Object
@@ -259,6 +264,65 @@ public class University {
 
 	public void setEmphasis(String emphToSet) {
 		this.emphasisArray.add(emphToSet);
+		if (this.emphasisArray.size() >= 1) {
+			this.setEmphasis1(this.emphasisArray.get(0));
+		}
+		
+		if (this.emphasisArray.size() >= 2) {
+			this.setEmphasis2(this.emphasisArray.get(1));
+		}
+		
+		if (this.emphasisArray.size() >= 3) {
+			this.setEmphasis3(this.emphasisArray.get(2));
+		}
+		
+		if (this.emphasisArray.size() >= 4) {
+		this.setEmphasis4(this.emphasisArray.get(3));
+		}
+		
+		if (this.emphasisArray.size() == 5) {
+			this.setEmphasis5(this.emphasisArray.get(4));
+		}
+	}
+
+	public String getEmphasis1() {
+		return emphasis1;
+	}
+
+	public void setEmphasis1(String emphasis1) {
+		this.emphasis1 = emphasis1;
+	}
+
+	public String getEmphasis2() {
+		return emphasis2;
+	}
+
+	public void setEmphasis2(String emphasis2) {
+		this.emphasis2 = emphasis2;
+	}
+
+	public String getEmphasis3() {
+		return emphasis3;
+	}
+
+	public void setEmphasis3(String emphasis3) {
+		this.emphasis3 = emphasis3;
+	}
+
+	public String getEmphasis4() {
+		return emphasis4;
+	}
+
+	public void setEmphasis4(String emphasis4) {
+		this.emphasis4 = emphasis4;
+	}
+
+	public String getEmphasis5() {
+		return emphasis5;
+	}
+
+	public void setEmphasis5(String emphasis5) {
+		this.emphasis5 = emphasis5;
 	}
 	
 }

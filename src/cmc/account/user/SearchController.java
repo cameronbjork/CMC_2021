@@ -73,7 +73,6 @@ public class SearchController {
 		
 		ArrayList<University> similarResults = new ArrayList<University>();
 		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
-		System.out.println(this.DBC.getAllUniversities().get(1));
 		
 		
 		String tempUniName;
@@ -226,6 +225,10 @@ public class SearchController {
 					}
 				}
 			} 
+		System.out.println();
+		for (int i = 0; i < similarResults.size(); i++) {
+		System.out.println(similarResults.get(i).getUniName());
+		}
 		//return list of searchResults
 		return similarResults;
 		} 

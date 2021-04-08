@@ -73,17 +73,20 @@ public class SearchController {
 		
 		ArrayList<University> similarResults = new ArrayList<University>();
 		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
+
+
 		
 		
 		String tempUniName;
 		for (int i = 0; i < allResults.size() - 1; i++) {
+			//System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Add uni to vector
 			uniList.add(allResults.get(i));
 			
 			//Check for school name
-			if (tempUniName.toLowerCase().contentEquals(school.toLowerCase()) && school != "") {
+			if (tempUniName.toLowerCase().equals(school.toLowerCase()) && school != "") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				
@@ -91,21 +94,21 @@ public class SearchController {
 			}
 			
 			//Check for similar states
-			if (allResults.get(i).getUniState().toLowerCase().contentEquals(state.toLowerCase()) || state != "") {
+			if (allResults.get(i).getUniState().toLowerCase().equals(state.toLowerCase()) && state != "") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}
 			}
 			
 			//Check for Location
-			if (allResults.get(i).getUniLocation().contentEquals(location) || location != "-1") {
+			if (allResults.get(i).getUniLocation().equals(location) && location != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}
 			}
 			
 			//Check for Control
-			if (allResults.get(i).getControl().contentEquals(control) && control != "-1") {
+			if (allResults.get(i).getControl().equals(control) && control != "-1") {
 				if (!similarResults.contains(allResults.get(i))) {
 				similarResults.add(allResults.get(i));
 				}

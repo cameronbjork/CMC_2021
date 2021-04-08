@@ -89,7 +89,7 @@ public abstract class Account {
 	 * @return the firstName
 	 */
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	/**

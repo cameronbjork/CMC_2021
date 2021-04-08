@@ -30,30 +30,27 @@ public class AccountController {
 	 * @param lastName a string of the users last name
 	 * @param passWord a string of the users password
 	 */
-	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
-		User u2 = this.DBC.getUser(userName);
-		boolean bool = false;
+	public Account userEditUser(String userName, String firstName, String lastName, String passWord) {
+		Account u2 = this.DBC.getAccount(userName);
 		if (u2 != null) {
 			if (firstName != null) {
 				u2.setFirstName(firstName);
 				System.out.println("First changed to: " + firstName);
-				bool = true;} else {
-					return false;
-			}if (lastName != null) {
+			}
+			
+			if (lastName != null) {
 				u2.setLastName(lastName);
 				System.out.println("last changed to: " + lastName);
-				bool = true; } else {
-					return false;
-				}
-			}if (passWord != null){
+			}
+			if (passWord != null){
 				System.out.println("Pass changed to: " + passWord);
 				u2.setPassWord(passWord);
-				bool = true;
-			} else {
-				return false;
+			} 
+			
+		//this.DBC.setUser(u2);
 		}
-		DBC.setUser(u2);
-		return bool;
+		return u2;
+		
 	}
 	
 	/**
@@ -89,10 +86,10 @@ public class AccountController {
 	 * @param userName the username of the account to be logged out
 	 * @return boolean
 	 */
-	public boolean logOut(String userName) {
-		Account acc = this.DBC.getUser(userName);
+	public Account logOut(String userName) {
+		Account acc = this.DBC.getAccount(userName);
 		acc.setLoginStatus(false);
-			return true;
+			return acc;
 		}
 	}
 	

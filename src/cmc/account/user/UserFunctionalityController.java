@@ -42,8 +42,7 @@ public class UserFunctionalityController {
 	 */
 	public boolean saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
-		University uni1 = DBC.getUniversity(uni);
-		u1.setSavedUniversities(uni1);
+		u1.setSavedUniversities(uni);
 		return true;
 	}
 
@@ -60,6 +59,7 @@ public class UserFunctionalityController {
 		
 	}
 	
+	//Do we need this??
 	/**
 	 * A method to display the information of a selected university
 	 * @param uni the name of the university to be displayed

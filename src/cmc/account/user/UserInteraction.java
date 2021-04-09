@@ -136,8 +136,11 @@ public class UserInteraction {
 	 * @return Account object
 	 */
 	public Account logOn(String userName, String passWord) {
+		if (userName != null && passWord != null) {
 		Account result = this.AC.logOn(userName, passWord);
 		return result;
+		}
+		return null;
 	}
 	/**
 	 * A method to log out a user and make the account inactive
@@ -199,6 +202,15 @@ public class UserInteraction {
 	 */
 	public boolean saveUniversity(String userName, University uni) {
 		return this.UFC.saveUnversity(userName, uni);
+	}
+	
+	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.AC.addUser(userName, firstName, lastName, passWord, type);
+	}
+
+	public void deleteUser(String userName) {
+		this.AC.deleteUser(userName);
+		
 	}
 
 	

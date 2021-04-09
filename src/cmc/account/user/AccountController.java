@@ -47,7 +47,7 @@ public class AccountController {
 				u2.setPassWord(passWord);
 			} 
 			
-		//this.DBC.setUser(u2);
+		this.DBC.setUser(u2);
 		}
 		return u2;
 		
@@ -60,15 +60,21 @@ public class AccountController {
 	 * @param passWord a string of the users first name
 	 */
 	public Account logOn(String userName, String passWord) {
+		//System.out.println(userName);
 		Account acc = this.DBC.getAccount(userName);
-
-		String p2 = acc.getPassWord();
-		if (p2.equals(passWord)) {
-			acc.setLoginStatus(true);
-		} else {
-			acc.setLoginStatus(false);
+		if (acc != null) {
+			System.out.println(acc.getPassWord());
+			String p2 = acc.getPassWord();
+			if (p2.equals(passWord)) {
+				acc.setLoginStatus(true);
+			} else {
+				acc.setLoginStatus(false);
+			}
+			return acc;
 		}
-		return acc;
+		else {
+			return null;
+		}
 	}
 	
 	/**
@@ -91,5 +97,15 @@ public class AccountController {
 		acc.setLoginStatus(false);
 			return acc;
 		}
+
+	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.DBC.addNewUser(userName, firstName, lastName, passWord, type);
+		
+	}
+
+	public void deleteUser(String userName) {
+		this.DBC.deleteUser(userName);
+		
+	}
 	}
 	

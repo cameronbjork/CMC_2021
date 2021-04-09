@@ -1,4 +1,4 @@
-package cmc.account.systemtest;
+package cmc.account.user;
 
 import static org.junit.Assert.*;
 

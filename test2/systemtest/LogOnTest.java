@@ -1,4 +1,4 @@
-package cmc.account.user;
+package systemtest;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cmc.account.Account;
+import cmc.account.user.UserInteraction;
 import junit.framework.Assert;
 
 public class LogOnTest extends UserInteraction {

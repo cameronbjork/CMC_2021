@@ -1,4 +1,4 @@
-package cmc.account.systemtest;
+package cmc.account.user;
 
 import static org.junit.Assert.*;
 
@@ -8,8 +8,9 @@ import org.junit.Test;
 
 import cmc.account.Account;
 import cmc.account.admin.*;
-import cmc.account.user.*;
+import cmc.account.user.AccountController;
 import junit.framework.Assert;
+import systemtest.*;
 
 public class AccountControllerTest extends AccountController {
 	private AccountController AC;

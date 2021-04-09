@@ -5,8 +5,6 @@ package cmc.account.user;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.lang.StringBuilder;
 
 import cmc.account.Account;
 import cmc.account.admin.Admin;
@@ -37,23 +35,10 @@ public class DBController {
 		
 		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
 		
-		//Creates arraylist with all universities
-		String[][] allUnis2D = this.univDBLib.university_getUniversities();
 		this.allUniversities = new ArrayList<University>();
-		for (int i = 0; i < allUnis2D.length; i++) {
-			University uniToAdd = new University(allUnis2D[i][0], allUnis2D[i][1], allUnis2D[i][2],allUnis2D[i][3], Integer.parseInt(allUnis2D[i][4]), Double.parseDouble(allUnis2D[i][5]), Double.parseDouble(allUnis2D[i][6]), Integer.parseInt(allUnis2D[i][7]), Double.parseDouble(allUnis2D[i][8]), Double.parseDouble(allUnis2D[i][9]), Integer.parseInt(allUnis2D[i][10]), Double.parseDouble(allUnis2D[i][11]), Double.parseDouble(allUnis2D[i][12]), Integer.parseInt(allUnis2D[i][13]), Integer.parseInt(allUnis2D[i][14]), Integer.parseInt(allUnis2D[i][15]));
-			this.allUniversities.add(uniToAdd);
-		}
-		
-		//Adds emphasis to all Universities
-		String[][] allUnisAndEmph2D = this.univDBLib.university_getNamesWithEmphases();
-		for (int i = 0; i < allUnisAndEmph2D.length; i++) {
-			for (int j = 0; j < this.allUniversities.size(); j++) {
-				if (allUnisAndEmph2D[i][0] == this.allUniversities.get(j).getUniName()) {
-					this.allUniversities.get(j).setEmphasis(allUnisAndEmph2D[i][1]);
-				}
-			}
-		}
+		this.setAllUniversities();
+		this.setAllUniversityEmphasis();
+
 		this.allAccounts = new ArrayList<Account>();
 		this.setAllAccounts();
 		
@@ -165,33 +150,54 @@ public class DBController {
 	 */
 	public void addUniversity( String uniName, String uniState, String uniLocation, String uniControl,
 	int numOfStudents, double percentFemale, double satVerbal, double satMath, double annualExpenses, double percentFinAid, 
-	int numApplicants, double percentAdmit, double percentEnrolled, int academicScale, int socialScale, int qOLScale) {
+	int numApplicants, double percentAdmit, double percentEnrolled, int academicScale, int socialScale, int qOLScale, String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5) {
 		this.univDBLib.university_addUniversity(uniName,  uniState,  uniLocation,  uniControl,
 				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
 				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale);
+		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis1);
+		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis2);
+		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis3);
+		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis4);
+		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis5);
+		this.setAllUniversities();
+		this.setAllUniversityEmphasis();
 	}
 	
-	//Should use getUser() in AC for admin to then call setUser
-	/** Admin functionality to set User
-	 * 
-	 * @param userName - Username to grab user fromo
-	 * @param firstName - Password to change to
-	 * @param lastName - Lastname to change to
-	 * @param passWord - Password to change to
-	 * @param type - Type to change to
-	 */
-	public void setUserData(String userName, String firstName, String lastName, String passWord, char type, char status) {
-		this.univDBLib.user_editUser(userName, firstName, lastName, passWord, type, status);
-		
+	public ArrayList<University> setAllUniversities() {
+		this.allUniversities.clear();
+		//Creates arraylist with all universities
+		String[][] allUnis2D = this.univDBLib.university_getUniversities();
+		for (int i = 0; i < allUnis2D.length; i++) {
+			University uniToAdd = new University(allUnis2D[i][0], allUnis2D[i][1], allUnis2D[i][2],allUnis2D[i][3], Integer.parseInt(allUnis2D[i][4]), Double.parseDouble(allUnis2D[i][5]), Double.parseDouble(allUnis2D[i][6]), Integer.parseInt(allUnis2D[i][7]), Double.parseDouble(allUnis2D[i][8]), Double.parseDouble(allUnis2D[i][9]), Integer.parseInt(allUnis2D[i][10]), Double.parseDouble(allUnis2D[i][11]), Double.parseDouble(allUnis2D[i][12]), Integer.parseInt(allUnis2D[i][13]), Integer.parseInt(allUnis2D[i][14]), Integer.parseInt(allUnis2D[i][15]));
+			this.allUniversities.add(uniToAdd);
+		}
+		return this.allUniversities;
 	}
 	
-	//Emphasis being stored in arraylist in university, should delte this and just get university?
+	public void removeUniversity(String school) {
+		this.univDBLib.university_deleteUniversity(school);
+		System.out.println(this.getUniversityByName(school).getUniName());
+		this.setAllUniversities();
+	}
+	
 	/** Return university with emphasis'
 	 * 
 	 * @return String[][] - 2D array with all emphasis'
 	 */
 	public String [][] university_getAllUniversitiesAndEmphasis() {
 		return this.univDBLib.university_getNamesWithEmphases();
+	}
+	
+	public void setAllUniversityEmphasis() {
+		//Adds emphasis to all Universities
+		String[][] allUnisAndEmph2D = this.univDBLib.university_getNamesWithEmphases();
+		for (int i = 0; i < allUnisAndEmph2D.length; i++) {
+			for (int j = 0; j < this.allUniversities.size(); j++) {
+				if (allUnisAndEmph2D[i][0] == this.allUniversities.get(j).getUniName()) {
+					this.allUniversities.get(j).setEmphasis(allUnisAndEmph2D[i][1]);
+				}
+			}
+		}
 	}
 
 	public void addNewUser(String userName, String firstName, String lastName, String passWord, char type) {

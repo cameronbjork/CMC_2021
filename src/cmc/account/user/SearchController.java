@@ -73,12 +73,12 @@ public class SearchController {
 		
 		ArrayList<University> similarResults = new ArrayList<University>();
 		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
-		System.out.println(this.DBC.getAllUniversities().get(1));
+		//System.out.println(this.DBC.getAllUniversities().get(1));
 		
 		
 		String tempUniName;
 		for (int i = 0; i < allResults.size() - 1; i++) {
-			System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
+			//System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
 			tempUniName = allResults.get(i).getUniName();
 			
 			//Add uni to vector

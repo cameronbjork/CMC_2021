@@ -129,6 +129,7 @@ public class DBController {
 	 */
 	public University getUniversityByName(String uniName) {
 		University uni = null;
+		System.out.println(this.allUniversities.size());
 		for (int i = 0; i < this.allUniversities.size(); i++) {
 			if (uniName == this.allUniversities.get(i).getUniName()) {
 				uni = this.allUniversities.get(i);

@@ -1,8 +1,6 @@
 package cmc.account.user;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
 import cmc.account.Account;
 import cmc.university.University;
@@ -182,17 +180,6 @@ public class UserInteraction {
 		this.UFC.removeSavedUniversity(userName, uni);
 		return true;
 	}
-
-	
-	/**
-	 * A method to display a university
-	 * @param uni the selected university to be displayed
-	 * @return boolean to confirm the university was displayed
-	 */
-	public boolean displayUniversity(University uni) {
-		this.UFC.displayUniversity(uni);
-		return true;
-	}
 	
 	/** User saves a university
 	 * 
@@ -200,8 +187,8 @@ public class UserInteraction {
 	 * @param uni University to save to User
 	 * @return boolean
 	 */
-	public boolean saveUniversity(String userName, University uni) {
-		return this.UFC.saveUnversity(userName, uni);
+	public void saveUniversity(String userName, String uni) {
+		this.UFC.saveUnversity(userName, uni);
 	}
 	
 	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {

@@ -39,10 +39,8 @@ public class UserFunctionalityController {
 	 * @param u The user account
      * @param the university to be saved
 	 */
-	public boolean saveUnversity(String u, University uni) {
-		User u1 = DBC.getUser(u);
-		DBC.addSavedSchool(u,uni.getUniName());
-		return true;
+	public void saveUnversity(String u, String uni) {
+		this.DBC.addSavedSchool(u,uni);
 	}
 
 	/**

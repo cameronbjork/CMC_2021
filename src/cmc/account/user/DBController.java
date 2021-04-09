@@ -25,7 +25,7 @@ import dblibrary.project.csci230.*;
  */
 public class DBController {
 	private ArrayList<University> allUniversities;
-	private ArrayList<Account> allAccounts;
+	protected ArrayList<Account> allAccounts;
 
 	
 	private UniversityDBLibrary univDBLib;
@@ -54,18 +54,8 @@ public class DBController {
 				}
 			}
 		}
-		
-		//Adds all Accounts to a list
-		String[][] allUsers = this.univDBLib.user_getUsers();
 		this.allAccounts = new ArrayList<Account>();
-		for (int i = 0; i < allUsers.length; i++) {
-			if (allUsers[i][4].charAt(0) == 'a') {
-				this.allAccounts.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
-			}
-			else {
-				this.allAccounts.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
-			}
-			}
+		this.setAllAccounts();
 		
 		}
 		
@@ -80,7 +70,8 @@ public class DBController {
 	public User getUser(String userName) {
 		for (int i = 0; i < this.allAccounts.size(); i++) {
 			if (this.allAccounts.get(i).getUserName() == userName) {
-				return (User) this.allAccounts.get(i);
+				System.out.println(this.allAccounts.get(i).getUserName());
+				return (User) this.getAccount(userName);
 		}
 	}
 		return null;
@@ -104,16 +95,6 @@ public class DBController {
 	 */
 	public ArrayList<University> getAllUniversities() {
 		return this.allUniversities;
-	}
-	
-	//We probably wont need this, can  only search by uniName (String)
-	/** Returns a singular university
-	 * 
-	 * @param uni - University to return
-	 * @return uni1 - University being returned
-	 */
-	public void getUniversity(University uni) {
-
 	}
 	
 	public void clearAllAccounts() {
@@ -228,14 +209,12 @@ public class DBController {
 	
 	public ArrayList<University> getSavedUniversity(String userName) {
 		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
-		System.out.println(allUsersAndSavedSchools.toString());
 		ArrayList<University> savedUnis = new ArrayList<University>();
 		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
-			if ( allUsersAndSavedSchools[i][0] == userName) {
+			if ( allUsersAndSavedSchools[i][0].equals(userName)) {
 				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
 			}
 		}
-		System.out.println(savedUnis.get(0).getUniName());
 		return savedUnis;
 	}
 

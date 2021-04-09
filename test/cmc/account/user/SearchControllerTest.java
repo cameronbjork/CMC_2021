@@ -17,13 +17,11 @@ import junit.framework.Assert;
 @SuppressWarnings("deprecation")
 public class SearchControllerTest {
 	private University testUni;
-	private UserInteraction UI;
+	private UserInteraction UI = new UserInteraction();
 
 	@Before
 	public void setUp() throws Exception {
 		this.testUni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
-
-		this.UI = new UserInteraction();
 		
 	}
 

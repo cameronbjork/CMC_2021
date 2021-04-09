@@ -13,11 +13,10 @@ import junit.framework.Assert;
 import systemtest.*;
 
 public class AccountControllerTest extends AccountController {
-	private AccountController AC;
+	private AccountController AC = new AccountController();
 	
 	@Before
 	public void setUp() throws Exception{
-		this.AC = new AccountController();
 	}
 
 	@After

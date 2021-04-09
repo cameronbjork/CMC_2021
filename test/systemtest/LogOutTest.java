@@ -11,16 +11,17 @@ import cmc.account.user.UserInteraction;
 import junit.framework.Assert;
 
 public class LogOutTest extends UserInteraction {
-	private UserInteraction UI;
+	private UserInteraction UI = new UserInteraction();
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		this.UI = new UserInteraction();
+		this.UI.addUser("peter", "Peter", "Ohmann", "securepassword", 'u');
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		this.UI.deleteUser("peter");
 	}
 	
 	@SuppressWarnings("deprecation")

@@ -13,11 +13,10 @@ import cmc.university.University;
 import junit.framework.Assert;
 
 public class SearchUniversitiesTest extends UserInteraction {
-	private UserInteraction UI;
+	private UserInteraction UI = new UserInteraction();
 	
 	@Before
 	public void setUp() throws Exception {
-		this.UI = new UserInteraction();
 	}
 
 	@After

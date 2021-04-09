@@ -24,15 +24,6 @@ import dblibrary.project.csci230.*;
  *
  */
 public class DBController {
-
-	private ArrayList<University> uniDB;
-	private University uni2;
-	private University uni3;
-	private University uni4;
-	private University uni5;
-	private University uni6;
-	private User user1;
-	private University uni1;
 	private ArrayList<University> allUniversities;
 	private ArrayList<Account> allAccounts;
 
@@ -75,6 +66,7 @@ public class DBController {
 				this.allAccounts.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
 			}
 			}
+		
 		}
 		
 		
@@ -122,6 +114,10 @@ public class DBController {
 	 */
 	public void getUniversity(University uni) {
 
+	}
+	
+	public void clearAllAccounts() {
+		this.allAccounts.clear();
 	}
 	
 	public void setAllAccounts() {
@@ -222,7 +218,24 @@ public class DBController {
 		this.setAllAccounts();
 	}
 
-
+	public void addSavedSchool(String userName, String school) {
+		this.univDBLib.user_saveSchool(userName, school);
+	}
+	
+	public void removeSavedUniversity(String userName, String school) {
+		this.univDBLib.user_removeSchool(userName, school);
+	}
+	
+	public ArrayList<University> getSavedUniversity(String userName) {
+		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
+		ArrayList<University> savedUnis = new ArrayList<University>();
+		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
+			if ( allUsersAndSavedSchools[i][0] == userName) {
+				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
+			}
+		}
+		return savedUnis;
+	}
 
 	public void deleteUser(String userName) {
 		this.univDBLib.user_deleteUser(userName);

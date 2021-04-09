@@ -13,7 +13,6 @@ import cmc.account.Account;
  */
 public class AccountController {
 	private DBController DBC;
-	private int test;
 	
 	/** 
 	 * Creates AccountController object
@@ -60,10 +59,8 @@ public class AccountController {
 	 * @param passWord a string of the users first name
 	 */
 	public Account logOn(String userName, String passWord) {
-		//System.out.println(userName);
 		Account acc = this.DBC.getAccount(userName);
 		if (acc != null) {
-			System.out.println(acc.getPassWord());
 			String p2 = acc.getPassWord();
 			if (p2.equals(passWord)) {
 				acc.setLoginStatus(true);

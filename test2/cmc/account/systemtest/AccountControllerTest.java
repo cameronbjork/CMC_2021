@@ -77,6 +77,7 @@ public class AccountControllerTest extends AccountController {
 		//boolean test2reult = AccountController.logOn("ManMade", "WRONG PASS", 'u', "Horrible", "Programmer", 'Y');
 		//Assert.assertFalse("failed login(wrong pass)", test2 result);
 	//}
+
 	
 	@SuppressWarnings("deprecation")
 	@Test

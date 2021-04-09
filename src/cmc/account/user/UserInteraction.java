@@ -113,12 +113,10 @@ public class UserInteraction {
 	 * @param uni the university to base the recommended universities off
 	 * @return boolean to confirm or deny the recommended universities 
 	 */
-	public boolean topRecommendedUnis(University uni) {
+	public ArrayList<University> topRecommendedUnis(University uni) {
 		ArrayList<University> recommendedUnis = new ArrayList<>();
 		recommendedUnis.addAll(SC.topRecommendedUnis(uni));
-		for (int i = 0; i < recommendedUnis.size(); i++) {
-		}
-		return true;
+		return recommendedUnis;
 	}
 	
 	/**

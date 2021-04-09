@@ -25,6 +25,7 @@ public class SearchController {
 	 * Creates a search controller object
 	 */
 	public SearchController() {
+		this.uniList.addAll(this.DBC.getAllUniversities());
 	}
 
 	/** Searches for universities
@@ -71,13 +72,254 @@ public class SearchController {
 			int minAcademicScale, int maxAcademicScale, int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale,
 			String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5) {
 		
-		ArrayList<University> similarResults = new ArrayList<University>();
-		ArrayList <University> allResults = new ArrayList<University>(this.DBC.getAllUniversities());
-
-
 		
+		HashMap<String, Float> uniandDistance = new HashMap<String, Float>();
 		
+		float distance;
+		double tempMax = 0;
+		double tempMin = 0;
 		String tempUniName;
+		
+		for (int i = 0; i < this.uniList.size(); i++) {
+			distance = 0;
+			tempUniName = this.uniList.get(i).getUniName();
+			
+			//Check by uniName
+			if (school != null && (!school.equals(this.uniList.get(i).getUniName().toLowerCase()))) {
+				distance++;
+			}
+		
+			//Check by uniState
+			if (state != null && (!state.equals(this.uniList.get(i).getUniState().toLowerCase()))) {
+				distance++;
+			}
+		
+			//Check by Location
+			if (location != null && (!location.equals(this.uniList.get(i).getUniLocation()))) {
+				distance++;
+			}
+			
+			//Check by Control
+			if (control != null && (!control.equals(this.uniList.get(i).getControl()))) {
+				distance++;
+			}
+			
+			//Check by numOfStudents
+			if ((maxNumStudents != -1 || minNumStudents != -1) && (maxNumStudents < this.uniList.get(i).getNumOfStudents() || minNumStudents > this.uniList.get(i).getNumOfStudents())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getNumOfStudents();
+				tempMin = this.uniList.get(0).getNumOfStudents();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getNumOfStudents() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getNumOfStudents();
+					}
+					if (this.uniList.get(j + 1).getNumOfStudents() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getNumOfStudents();
+					}
+				}
+				distance += 1.0;
+			}
+			
+			//Check by percentFemale
+			if ((maxPercentFemale != -1 || minPercentFemale != -1) && (maxPercentFemale < this.uniList.get(i).getPercentFemale() || minPercentFemale > this.uniList.get(i).getPercentFemale())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getPercentFemale();
+				tempMin = this.uniList.get(0).getPercentFemale();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentFemale() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentFemale();
+					}
+					if (this.uniList.get(j + 1).getPercentFemale() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentFemale();
+					}
+				}
+				distance += 1.0;
+			}
+			
+			//Check by SAT Verbal
+			if ((maxSATVerbal != -1 || minSATVerbal != -1) && (maxSATVerbal < this.uniList.get(i).getSatVerbal() || minSATVerbal > this.uniList.get(i).getSatVerbal())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getSatVerbal();
+				tempMin = this.uniList.get(0).getSatVerbal();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getSatVerbal() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getSatVerbal();
+					}
+					if (this.uniList.get(j + 1).getSatVerbal() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getSatVerbal();
+					}
+				}
+				distance += 1.0;
+			} 
+			
+			//Check by SAT Math
+			if ((maxSATMath != -1 || minSATMath != 1 ) && (maxSATMath < this.uniList.get(i).getSatMath() || minSATMath > this.uniList.get(i).getSatMath())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getSatMath();
+				tempMin = this.uniList.get(0).getSatMath();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getSatMath() > tempMax) {
+						tempMax = this.uniList.get(j + 1).getSatMath();
+					}
+					if (this.uniList.get(j + 1).getSatMath() < tempMin) {
+						tempMin = this.uniList.get(j + 1).getSatMath();
+					}
+				}
+				distance += 1.0;
+			} 
+			
+			//Check by Annual Expenses
+			if ((maxAnnualExpenses != -1 || minAnnualExpenses != -1) && (maxAnnualExpenses < this.uniList.get(i).getAnnualExpenses() || minAnnualExpenses > this.uniList.get(i).getAnnualExpenses())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getAnnualExpenses() ;
+				tempMin = this.uniList.get(0).getAnnualExpenses() ;
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getAnnualExpenses()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getAnnualExpenses() ;
+					}
+					if (this.uniList.get(j + 1).getAnnualExpenses()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getAnnualExpenses() ;
+					}
+				}
+				distance += 1.0;
+			}
+			
+			//Check by Percent Financial Aid
+			if ((maxPercentFinancialAid != -1 || minPercentFinancialAid != -1) && (maxPercentFinancialAid < this.uniList.get(i).getPercentFinAid() || minPercentFinancialAid > this.uniList.get(i).getPercentFinAid())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getPercentFinAid();
+				tempMin = this.uniList.get(0).getPercentFinAid();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentFinAid()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentFinAid() ;
+					}
+					if (this.uniList.get(j + 1).getPercentFinAid()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentFinAid() ;
+					}
+				}
+				distance ++;
+				} 
+			
+			//Check by Number of Applicants
+			if ((maxNumApplicants != -1 || minNumApplicants != -1) && (maxNumApplicants < this.uniList.get(i).getNumApplicants() || minNumApplicants > this.uniList.get(i).getNumApplicants())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getNumApplicants();
+				tempMin = this.uniList.get(0).getNumApplicants();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getNumApplicants()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getNumApplicants();
+					}
+					if (this.uniList.get(j + 1).getNumApplicants()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getNumApplicants();
+					}
+				}
+				distance ++;
+			} 
+			
+			//Check by Percent Admitted
+			if ((maxPercentAdmit != -1 || minPercentAdmit != -1) && (maxPercentAdmit < this.uniList.get(i).getPercentAdmit() || minPercentAdmit > this.uniList.get(i).getPercentAdmit())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getPercentAdmit();
+				tempMin = this.uniList.get(0).getPercentAdmit();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentAdmit()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentAdmit();
+					}
+					if (this.uniList.get(j + 1).getPercentAdmit()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentAdmit();
+					}
+				}
+				distance ++;
+			} 
+			
+			//Check by Academic Scale
+			if ((maxPercentEnrolled != -1 || minPercentEnrolled != -1) && (maxPercentEnrolled < this.uniList.get(i).getPercentEnrolled() || minPercentEnrolled > this.uniList.get(i).getPercentEnrolled())) {
+				
+				//get max & min value
+				tempMax = this.uniList.get(0).getPercentEnrolled();
+				tempMin = this.uniList.get(0).getPercentEnrolled();
+				for (int j = 0; j < this.uniList.size() - 1; j++) {
+					if (this.uniList.get(j + 1).getPercentEnrolled()  > tempMax) {
+						tempMax = this.uniList.get(j + 1).getPercentEnrolled();
+					}
+					if (this.uniList.get(j + 1).getPercentEnrolled()  < tempMin) {
+						tempMin = this.uniList.get(j + 1).getPercentEnrolled();
+					}
+				}
+				distance ++;
+			} 
+			
+			//Check by Social Scale
+			if ((maxPercentEnrolled!= -1 || minPercentEnrolled != -1) && (maxSocialScale < this.uniList.get(i).getAcademicScale() || minSocialScale > this.uniList.get(i).getAcademicScale())) {
+				distance ++; 
+			} 
+			
+			//Check by Quality of Life Scale
+			if ((minQOLScale != -1 || minQOLScale != -1) && (maxQOLScale < this.uniList.get(i).getqOLScale() || minQOLScale > this.uniList.get(i).getqOLScale())) {
+				distance ++;
+	} 
+			
+			//Check for similar Emphasis
+			String[][] uniAndEmphasis = this.DBC.university_getAllUniversitiesAndEmphasis();
+			for (int j = 0; j < uniAndEmphasis.length; j++) {
+					if (uniAndEmphasis[j][0] == this.uniList.get(i).getUniName()) {
+						if (emphasis1 != null && emphasis1 != (uniAndEmphasis[j][1])) {
+							distance++;
+						} else if (emphasis2 != null && !emphasis2.equals(uniAndEmphasis[j][1])) {
+							distance++;
+						} else if (emphasis3 != null && !emphasis3.equals(uniAndEmphasis[j][1])) {
+							distance++;
+						} else if (emphasis4 != null && !emphasis4.equals(uniAndEmphasis[j][1])) {
+							distance++;
+						} else if (emphasis5 != null && !emphasis5.equals(uniAndEmphasis[j][1])) {
+							distance++;
+						}
+					}
+				}
+			
+			//Add uni and distance to HashMap
+			uniandDistance.put(tempUniName, distance);
+			}		
+		
+		
+		//Sort by lowest 5
+		List<Entry<String,Float>> resultList  = new ArrayList<Entry<String, Float>>();
+		ArrayList<University> uniResultList = new ArrayList<University>();
+		
+		Set<Entry<String, Float>> set = uniandDistance.entrySet();
+		
+		ArrayList<Entry<String, Float>> list = new ArrayList<Entry<String, Float>>(set);
+		
+		Collections.sort(list, new Comparator<Map.Entry<String, Float>>() {
+			public int compare(Entry<String, Float> o1, Entry<String, Float> o2) {
+				return o1.getValue().compareTo(o2.getValue());
+			}
+		});
+		
+		//SWITCH TO 1,6 WHEN DB IS CONNECTED
+		if (list.get(0).getValue() > 0 && list.get(10).getValue() > 0) {
+			resultList = list.subList(0, 10);
+		}
+		for (int i = 0; i < resultList.size() && uniResultList.size() < 11; i++) {
+			uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
+		}
+			
+		return uniResultList;
+	}
+
+
+		
+		
+		/**String tempUniName;
+		ArrayList<University> searchResults = new ArrayList<University>();
 		for (int i = 0; i < allResults.size() - 1; i++) {
 			//System.out.println(this.DBC.getAllUniversities().get(i).getUniName());
 			tempUniName = allResults.get(i).getUniName();
@@ -85,6 +327,18 @@ public class SearchController {
 			//Add uni to vector
 			uniList.add(allResults.get(i));
 			
+			if (tempUniName.contains(school)) {
+				//System.out.println(tempUniName);
+				searchResults.add(this.DBC.getUniversityByName(tempUniName));
+				searchResults.addAll(this.topRecommendedUnis(this.DBC.getUniversityByName(tempUniName)));
+				System.out.println(searchResults.size());
+				return searchResults;
+			}
+		}
+		
+		return null;
+		} **/
+			/**
 			//Check for school name
 			if (tempUniName.toLowerCase().equals(school.toLowerCase()) && school != "") {
 				if (!similarResults.contains(allResults.get(i))) {
@@ -92,6 +346,7 @@ public class SearchController {
 				
 				}
 			}
+			
 			
 			//Check for similar states
 			if (allResults.get(i).getUniState().toLowerCase().equals(state.toLowerCase()) && state != "") {
@@ -233,6 +488,7 @@ public class SearchController {
 		//return list of searchResults
 		return similarResults;
 		} 
+		**/
 
 
 	/** Finds 5 recommended universities similar to the one being viewed
@@ -253,7 +509,7 @@ public class SearchController {
 			tempUniName = this.uniList.get(i).getUniName();
 			
 			//Check by uniName
-			if (!this.uniList.lastElement().getUniName().toLowerCase().equals(this.uniList.get(i).getUniName().toLowerCase())) {
+			if (!this.uniList.lastElement().getUniName().equals(this.uniList.get(i).getUniName().toLowerCase())) {
 				distance++;
 			}
 		
@@ -483,13 +739,11 @@ public class SearchController {
 		//SWITCH TO 1,6 WHEN DB IS CONNECTED
 		resultList = list.subList(0, 10);
 		
-		int i = 0;
-		while (i < resultList.size()) {
-			System.out.println(resultList.get(i).getKey());
-			uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
-			i++;
+		for (int i = 0; i < resultList.size() && uniResultList.size() < 11; i++) {
+				uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
+				//System.out.println(uniResultList.get(i).getUniName());
 		}
-		
+			
 		return uniResultList;
 	}
 	

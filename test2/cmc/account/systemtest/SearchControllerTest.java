@@ -27,7 +27,7 @@ public class SearchControllerTest {
 		this.recommended = new ArrayList<University>();
 		this.sc = new SearchController();
 		
-		String school = "St Johns";
+		String school = "ST JOHNS";
 		String state = "Minnesota";
 		String location = "SMALL-CITY";
 		String control = "PRIVATE"; 
@@ -65,7 +65,7 @@ public class SearchControllerTest {
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
 				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5);
-	
+		
 		this.allUnis  = new ArrayList<University>();
 		this.allUnis.addAll(this.sc.DBC.getAllUniversities());
 	}
@@ -78,12 +78,12 @@ public class SearchControllerTest {
 	@Test
 	public void testSearchUniversities() {
 		
-		Assert.assertEquals("St Johns is returned from search results", "ABILENE CHRISTIAN UNIVERSITY", this.testSearchResults.get(0).getUniName());
+		Assert.assertEquals("HAMPHSIRE COLLEGE is returned from search results", "HAMPSHIRE COLLEGE", this.testSearchResults.get(0).getUniName());
 		
-		String school2 = "";
-		String state2 = "";
-		String location2 = "-1";
-		String control2 = "-1"; 
+		String school2 = null;
+		String state2 = null;
+		String location2 = null;
+		String control2 = null; 
 		int minNumStudents2 = -1;
 		int maxNumStudents2 = -1;
 		int minPercentFemale2 = -1; 
@@ -108,11 +108,11 @@ public class SearchControllerTest {
 		int maxSocialScale2 = -1;
 		int minQOLScale2 = -1; 
 		int maxQOLScale2 = -1;
-		String emphasis12 = ""; 
-		String emphasis22 = "";
-		String emphasis32 = "";
-		String emphasis42 = "";
-		String emphasis52 = "";
+		String emphasis12 = null; 
+		String emphasis22 = null;
+		String emphasis32 = null;
+		String emphasis42 = null;
+		String emphasis52 = null;
 
 		Assert.assertEquals("Null values inputted, no search results returned", 0, this.sc.searchUniversities(school2, state2, location2, control2, minNumStudents2, maxNumStudents2, 
 				minPercentFemale2, maxPercentFemale2, minSATVerbal2, maxSATVerbal2, minSATMath2, maxSATMath2, minAnnualExpenses2, maxAnnualExpenses2, minPercentFinancialAid2,

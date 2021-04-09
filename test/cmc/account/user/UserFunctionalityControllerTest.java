@@ -28,8 +28,8 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testDisplayedUniversities() { 
-		System.out.println(this.UFC.displaySavedUniversities(username));
+	public void testDisplayedUniversities() {
+		String username = "Jkoles";
 		Assert.assertEquals("Test if University list is returned","ST JOHNS UNIVERSITY", this.UFC.displaySavedUniversities(username));
 		
 	}

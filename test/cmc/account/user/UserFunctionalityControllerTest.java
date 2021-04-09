@@ -11,10 +11,10 @@ import cmc.account.user.*;
 
 public class UserFunctionalityControllerTest {
 
-	private String username;
 	private UserFunctionalityController UFC;
 	private DBController DBC; 
 	private char U;
+	private String username = "Jkoles";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -30,8 +30,20 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testDisplayedUniversities() {
-		username = "Jkoles"; 
+	public void testDisplayedUniversities() { 
+		System.out.println(this.UFC.displaySavedUniversities(username));
+		Assert.assertEquals("Test if University list is returned","ST JOHNS UNIVERSITY", this.UFC.displaySavedUniversities(username));
+		
+	}
+	
+	@Test
+	public void testSaveUniversity() {
+		System.out.println(this.UFC.displaySavedUniversities(username));
+		Assert.assertEquals("Test if Univerity is saved","ST JOHNS UNIVERSITY", this.UFC.displaySavedUniversities(username));
+		
+	}	
+	@Test
+	public void testRemoveSavedUniversity() {
 		System.out.println(this.UFC.displaySavedUniversities(username));
 		Assert.assertEquals("Test if University list is returned","ST JOHNS UNIVERSITY", this.UFC.displaySavedUniversities(username));
 		

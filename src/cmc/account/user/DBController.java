@@ -41,6 +41,7 @@ public class DBController {
 	 */
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann", 'Y');
+		this.user1.setSavedUniversities(this.getUniversityByName("ST JOHNS UNIVERSITY"));
 		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog", 'Y');
 		this.user1.setSavedUniversities(this.uni1);
 		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
@@ -127,12 +128,13 @@ public class DBController {
 	 * @return allResults.get(i) - University being returned
 	 */
 	public University getUniversityByName(String uniName) {
+		University uni = null;
 		for (int i = 0; i < this.allUniversities.size(); i++) {
 			if (uniName == this.allUniversities.get(i).getUniName()) {
-				return  this.allUniversities.get(i);
+				uni = this.allUniversities.get(i);
 			}
 		}
-		return null;
+		return uni;
 	}
 	
 	/** Set a Users data back to DB

@@ -30,7 +30,10 @@ public class UserFunctionalityController {
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
+		u2.setSavedUniversities(this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 		return u2.getSavedUniversities();
+		
+		
 	}
 	
 	/**

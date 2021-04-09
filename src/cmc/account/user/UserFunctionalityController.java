@@ -5,6 +5,7 @@ package cmc.account.user;
 
 import java.util.ArrayList;
 
+import cmc.account.Account;
 import cmc.university.University;
 
 /**
@@ -29,8 +30,7 @@ public class UserFunctionalityController {
 	 * @return an array list of university objects
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
-		User u2 = DBC.getUser(username);
-		return u2.getSavedUniversities();
+		return this.DBC.getSavedUniversity(username);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class UserFunctionalityController {
 	 */
 	public boolean saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
-		u1.setSavedUniversities(uni);
+		DBC.addSavedSchool(u,uni.getUniName());
 		return true;
 	}
 
@@ -64,9 +64,9 @@ public class UserFunctionalityController {
 	 * @param uni the name of the university to be displayed
 	 * @return
 	 */
-	public University displayUniversity(University uni) {
-		return this.DBC.getUniversity(uni);
+	//public University displayUniversity(University uni) {
+		//return this.DBC.getUniversity(uni);
 		
-	}
+	//}
 	
 }

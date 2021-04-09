@@ -228,12 +228,14 @@ public class DBController {
 	
 	public ArrayList<University> getSavedUniversity(String userName) {
 		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
+		System.out.println(allUsersAndSavedSchools.toString());
 		ArrayList<University> savedUnis = new ArrayList<University>();
 		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
 			if ( allUsersAndSavedSchools[i][0] == userName) {
 				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
 			}
 		}
+		System.out.println(savedUnis.get(0).getUniName());
 		return savedUnis;
 	}
 

@@ -13,25 +13,19 @@ import cmc.account.admin.Admin;
 import cmc.university.University;
 
 
+
 import dblibrary.project.csci230.*;
+
+//NEED: GET ACCOUNT AND GET ADMIN, change GET USER TO JUST ACCOUNTS WITH TYPE U
+
 /** Communicates with the Database to get and set data
  * 
  * @author Cameron, Joe, Michael, Logan, Jaren, Charlie
  *
  */
 public class DBController {
-
-	private ArrayList<University> uniDB;
-	private University uni2;
-	private University uni3;
-	private University uni4;
-	private University uni5;
-	private University uni6;
-	private User user1;
-	private University uni1;
-	private String[][] uniWithEmphasis = new String[25][2];
-	private Admin admin1;
 	private ArrayList<University> allUniversities;
+	private ArrayList<Account> allAccounts;
 
 	
 	private UniversityDBLibrary univDBLib;
@@ -40,21 +34,6 @@ public class DBController {
 	 * 
 	 */
 	public DBController() {
-		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann", 'Y');
-		//this.user1.setSavedUniversities(this.getUniversityByName("ST JOHNS UNIVERSITY"));
-		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog", 'Y');
-		this.user1.setSavedUniversities(this.uni1);
-		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
-		this.uni3 = new University ("TheSchool", "Illinois", "CHICAGO", "PRIVATE", 6000, 78, 5, 5, 1000, 35, 900, 65, 67, 2, 4, 3, "EDUCATION", "NURSING", "BUSINESS","", "");
-		this.uni4 = new University ("MinSchool", "Nebraska", "LINCOLN", "COMMUNITY", 12000, 42, 2, 5, 7000, 62, 900, 34, 62, 2, 1, 1, "COMMUNICATION", "MATH", "ENVIROMENTAL STUDIES", "", "");
-		this.uni5 = new University ("Jacked School", "Idaho", "BOISE", "PRIVATE", 10000, 67, 1, 5, 700, 35, 900, 43, 49, 5, 4, 3, "COMPUTER SCIENCE", "NURSING", "EXCERSICE STUDY", "", "");
-		this.uni6 = new University ("Drugs School", "California", "SAN FRANCISCO", "COMMUNITY", 2000, 99, 4, 5, 6000, 35, 900, 60, 67, 4, 0, 3, "NUMERICAL COMPUTING", "PRE MED", "MUSIC", "", "");
-		this.uniDB = new ArrayList<University>();	
-		this.uniDB.add(uni2);
-		this.uniDB.add(uni3);
-		this.uniDB.add(uni4);
-		this.uniDB.add(uni5);
-		this.uniDB.add(uni6);
 		
 		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
 		
@@ -75,6 +54,19 @@ public class DBController {
 				}
 			}
 		}
+		
+		//Adds all Accounts to a list
+		String[][] allUsers = this.univDBLib.user_getUsers();
+		this.allAccounts = new ArrayList<Account>();
+		for (int i = 0; i < allUsers.length; i++) {
+			if (allUsers[i][4].charAt(0) == 'a') {
+				this.allAccounts.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+			}
+			else {
+				this.allAccounts.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+			}
+			}
+		
 		}
 		
 		
@@ -85,23 +77,25 @@ public class DBController {
 	 * @param firstName -  First name of the User.
 	 * @return user1 - User that is grabbed from the DB
 	 */
-	public User getUser(String firstName) {
-		String[][] allUsers = this.univDBLib.user_getUsers();
-		for (int i = 0; i < allUsers.length; i++) {
-			if (allUsers[i][0] == firstName) {
-				return new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][2], allUsers[i][5].charAt(0));
+	public User getUser(String userName) {
+		for (int i = 0; i < this.allAccounts.size(); i++) {
+			if (this.allAccounts.get(i).getUserName() == userName) {
+				return (User) this.allAccounts.get(i);
 		}
 	}
 		return null;
 }
 	
 	//handle bad username case here and in AC
+	
 	public Account getAccount(String userName) {
-		if(this.user1.getUserName() == userName) {
-			return user1;
-		}else {
-			return admin1;
+
+		for (int i = 0; i < allAccounts.size(); i++) {			
+			if (allAccounts.get(i).getUserName().equals(userName)) {
+				return allAccounts.get(i);
+				}
 		}
+		return null;
 	}
 
 	/** Returns an ArrayList of all the universities in the DB
@@ -118,8 +112,27 @@ public class DBController {
 	 * @param uni - University to return
 	 * @return uni1 - University being returned
 	 */
-	public University getUniversity(University uni) {
-		return this.uni1;
+	public void getUniversity(University uni) {
+
+	}
+	
+	public void clearAllAccounts() {
+		this.allAccounts.clear();
+	}
+	
+	public void setAllAccounts() {
+		this.allAccounts.clear();
+		//Adds all Accounts to a list
+		String[][] allUsers = this.univDBLib.user_getUsers();
+		this.allAccounts = new ArrayList<Account>();
+		for (int i = 0; i < allUsers.length; i++) {
+			if (allUsers[i][4].charAt(0) == 'a') {
+				this.allAccounts.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+			}
+			else {
+				this.allAccounts.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+			}
+			}
 	}
 	
 	/** Returns a university based on it's name
@@ -140,11 +153,11 @@ public class DBController {
 	 * 
 	 * @param u2 User to set back to DB
 	 */
-	public void setUser(User u2) {
+	public void setUser(Account u2) {
 		// TODO store user back to database
-		this.user1 = u2;
+		this.univDBLib.user_editUser(u2.getUserName(), u2.getFirstName(), u2.getLastName(), u2.getPassWord(), u2.getAccountType(), u2.getStatus());
 	}
-
+	
 	/** Admin functionality to add University to Database
 	 * 
 	 * @param uniName - Name of University
@@ -177,6 +190,7 @@ public class DBController {
 				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale);
 	}
 	
+	//Should use getUser() in AC for admin to then call setUser
 	/** Admin functionality to set User
 	 * 
 	 * @param userName - Username to grab user fromo
@@ -185,11 +199,8 @@ public class DBController {
 	 * @param passWord - Password to change to
 	 * @param type - Type to change to
 	 */
-	public void setUserData(String userName, String firstName, String lastName, String passWord, char type) {
-		this.user1.setFirstName(firstName); 
-		this.user1.setLastName(lastName);
-		this.user1.setPassWord(passWord);
-		this.user1.setAccountType(type);
+	public void setUserData(String userName, String firstName, String lastName, String passWord, char type, char status) {
+		this.univDBLib.user_editUser(userName, firstName, lastName, passWord, type, status);
 		
 	}
 	
@@ -202,8 +213,32 @@ public class DBController {
 		return this.univDBLib.university_getNamesWithEmphases();
 	}
 
-	public void addNewUserData(String userName, String firstName, String lastName, String passWord) {
-			//just make a new user
+	public void addNewUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.univDBLib.user_addUser(firstName, lastName, userName, passWord, type);
+		this.setAllAccounts();
+	}
+
+	public void addSavedSchool(String userName, String school) {
+		this.univDBLib.user_saveSchool(userName, school);
+	}
+	
+	public void removeSavedUniversity(String userName, String school) {
+		this.univDBLib.user_removeSchool(userName, school);
+	}
+	
+	public ArrayList<University> getSavedUniversity(String userName) {
+		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
+		ArrayList<University> savedUnis = new ArrayList<University>();
+		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
+			if ( allUsersAndSavedSchools[i][0] == userName) {
+				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
+			}
+		}
+		return savedUnis;
+	}
+
+	public void deleteUser(String userName) {
+		this.univDBLib.user_deleteUser(userName);
 	}
 	
 }

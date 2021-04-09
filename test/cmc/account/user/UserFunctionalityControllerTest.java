@@ -19,7 +19,6 @@ public class UserFunctionalityControllerTest {
 	public void setUp() throws Exception {
 		this.UFC = new UserFunctionalityController();
 		this.DBC = new DBController();
-		char U;
 		this.DBC.addNewUserData("Jkoles", "Joe", "Koller", "goodPassword");
 		this.UFC.saveUnversity("Jkoles", this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 	}

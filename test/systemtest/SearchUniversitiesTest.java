@@ -1,4 +1,4 @@
-package cmc.account.systemtest;
+package systemtest;
 
 import static org.junit.Assert.*;
 
@@ -8,26 +8,27 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cmc.account.user.SearchController;
+import cmc.account.user.UserInteraction;
 import cmc.university.University;
 import junit.framework.Assert;
 
-//Test
-@SuppressWarnings("deprecation")
-public class SearchControllerTest {
-	private University testUni;
-	private ArrayList<University> testSearchResults;
-	private ArrayList<University> recommended; 
-	ArrayList <University> allUnis;
-	private SearchController sc;
-
+public class SearchUniversitiesTest extends UserInteraction {
+	private UserInteraction UI = new UserInteraction();
+	
 	@Before
 	public void setUp() throws Exception {
-		this.testUni = new University("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
-		this.recommended = new ArrayList<University>();
-		this.sc = new SearchController();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testSearchUniversitiesMain() {
+		ArrayList<University> testSearchResults = new ArrayList<University>();
 		
-		String school = "St Johns";
+		String school = "ST JOHNS";
 		String state = "Minnesota";
 		String location = "SMALL-CITY";
 		String control = "PRIVATE"; 
@@ -61,29 +62,21 @@ public class SearchControllerTest {
 		String emphasis4 = "PHYSICS";
 		String emphasis5 = "NURSING";
 		
-		this.testSearchResults = this.sc.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
+		testSearchResults = this.UI.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
 				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5);
+		
+		Assert.assertEquals("HAMPHSIRE COLLEGE is returned from search results", "HAMPSHIRE COLLEGE", testSearchResults.get(0).getUniName());
+	}
 	
-		this.allUnis  = new ArrayList<University>();
-		this.allUnis.addAll(this.sc.DBC.getAllUniversities());
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testSearchUniversities() {
-		
-		Assert.assertEquals("St Johns is returned from search results", "St Johns", this.testSearchResults.get(0).getUniName());
-		
-		String school2 = "";
-		String state2 = "";
-		String location2 = "-1";
-		String control2 = "-1"; 
+	public void testSearchUniversitiesNull() {
+		String school2 = null;
+		String state2 = null;
+		String location2 = null;
+		String control2 = null; 
 		int minNumStudents2 = -1;
 		int maxNumStudents2 = -1;
 		int minPercentFemale2 = -1; 
@@ -108,37 +101,15 @@ public class SearchControllerTest {
 		int maxSocialScale2 = -1;
 		int minQOLScale2 = -1; 
 		int maxQOLScale2 = -1;
-		String emphasis12 = ""; 
-		String emphasis22 = "";
-		String emphasis32 = "";
-		String emphasis42 = "";
-		String emphasis52 = "";
+		String emphasis12 = null; 
+		String emphasis22 = null;
+		String emphasis32 = null;
+		String emphasis42 = null;
+		String emphasis52 = null;
 
-		Assert.assertEquals("Null values inputted, no search results returned", 0, this.sc.searchUniversities(school2, state2, location2, control2, minNumStudents2, maxNumStudents2, 
+		Assert.assertEquals("Null values inputted, no search results returned", 0, this.UI.searchUniversities(school2, state2, location2, control2, minNumStudents2, maxNumStudents2, 
 				minPercentFemale2, maxPercentFemale2, minSATVerbal2, maxSATVerbal2, minSATMath2, maxSATMath2, minAnnualExpenses2, maxAnnualExpenses2, minPercentFinancialAid2,
 				maxPercentFinancialAid2, minNumApplicants2, maxNumApplicants2, minPercentAdmit2, maxPercentAdmit2, minPercentEnrolled2, maxPercentEnrolled2, minAcademicScale2,
 				maxAcademicScale2, minSocialScale2, maxSocialScale2, minQOLScale2, maxQOLScale2, emphasis12, emphasis22, emphasis32, emphasis42, emphasis52).size());
 	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetAllUniversities() {
-		Assert.assertTrue("Returns arraylist with all universities", this.allUnis.size() > 0);
-		//Whatever is first in DB
-		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testTopRecommendedUniversities() {
-		this.recommended.addAll(this.sc.topRecommendedUnis(this.testUni));
-		Assert.assertNotNull(this.recommended);
-		Assert.assertEquals("The school with the most keys is returned first", "TheSchool", this.recommended.get(0).getUniName());
-	}
-	
-	@SuppressWarnings("deprecation")
-	public void testGetUniName() {
-		Assert.assertSame("St Johns", this.allUnis.get(0).getUniName());
-	}
-
 }

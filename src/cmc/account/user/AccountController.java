@@ -13,7 +13,6 @@ import cmc.account.Account;
  */
 public class AccountController {
 	private DBController DBC;
-	private int test;
 	
 	/** 
 	 * Creates AccountController object
@@ -47,7 +46,7 @@ public class AccountController {
 				u2.setPassWord(passWord);
 			} 
 			
-		//this.DBC.setUser(u2);
+		this.DBC.setUser(u2);
 		}
 		return u2;
 		
@@ -61,14 +60,18 @@ public class AccountController {
 	 */
 	public Account logOn(String userName, String passWord) {
 		Account acc = this.DBC.getAccount(userName);
-
-		String p2 = acc.getPassWord();
-		if (p2.equals(passWord)) {
-			acc.setLoginStatus(true);
-		} else {
-			acc.setLoginStatus(false);
+		if (acc != null) {
+			String p2 = acc.getPassWord();
+			if (p2.equals(passWord)) {
+				acc.setLoginStatus(true);
+			} else {
+				acc.setLoginStatus(false);
+			}
+			return acc;
 		}
-		return acc;
+		else {
+			return null;
+		}
 	}
 	
 	/**
@@ -91,5 +94,15 @@ public class AccountController {
 		acc.setLoginStatus(false);
 			return acc;
 		}
+
+	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.DBC.addNewUser(userName, firstName, lastName, passWord, type);
+		
+	}
+
+	public void deleteUser(String userName) {
+		this.DBC.deleteUser(userName);
+		
+	}
 	}
 	

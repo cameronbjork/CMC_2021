@@ -36,7 +36,7 @@ public class UserInteraction {
 	 * @param passWord the new password for the user account
 	 * @return boolean to confirm or deny if the information was successfully changed
 	 */
-	public boolean userEditUser(String userName, String firstName, String lastName, String passWord) {
+	public Account userEditUser(String userName, String firstName, String lastName, String passWord) {
 		return this.AC.userEditUser(userName, firstName, lastName, passWord);
 
 	}
@@ -99,7 +99,7 @@ public class UserInteraction {
 			int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale, String emphasis1, String emphasis2, 
 			String emphasis3, String emphasis4, String emphasis5) {
 		
-		ArrayList<University> universities = SearchController.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
+		ArrayList<University> universities = SC.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
 				maxPercentFinancialAid, minNumApplicants, maxNumApplicants, minPercentAdmit, maxPercentAdmit, minPercentEnrolled, maxPercentEnrolled, minAcademicScale,
 				maxAcademicScale, minSocialScale, maxSocialScale, minQOLScale, maxQOLScale, emphasis1, emphasis2, emphasis3, emphasis4, emphasis5);
@@ -113,14 +113,10 @@ public class UserInteraction {
 	 * @param uni the university to base the recommended universities off
 	 * @return boolean to confirm or deny the recommended universities 
 	 */
-	public boolean topRecommendedUnis(University uni) {
+	public ArrayList<University> topRecommendedUnis(University uni) {
 		ArrayList<University> recommendedUnis = new ArrayList<>();
-		recommendedUnis.addAll(SearchController.topRecommendedUnis(uni));
-		System.out.println("Recommended Uni's in Order:\n");
-		for (int i = 0; i < recommendedUnis.size(); i++) {
-		System.out.println(recommendedUnis.get(i).getUniName());
-		}
-		return true;
+		recommendedUnis.addAll(SC.topRecommendedUnis(uni));
+		return recommendedUnis;
 	}
 	
 	/**
@@ -140,15 +136,18 @@ public class UserInteraction {
 	 * @return Account object
 	 */
 	public Account logOn(String userName, String passWord) {
+		if (userName != null && passWord != null) {
 		Account result = this.AC.logOn(userName, passWord);
 		return result;
+		}
+		return null;
 	}
 	/**
 	 * A method to log out a user and make the account inactive
 	 * @param userName user name of the user to be logged out
 	 * @return boolean to confirm the account was logged out
 	 */
-	public boolean logOut(String userName) {
+	public Account logOut(String userName) {
 		return this.AC.logOut(userName);
 		
 	}
@@ -203,6 +202,15 @@ public class UserInteraction {
 	 */
 	public boolean saveUniversity(String userName, University uni) {
 		return this.UFC.saveUnversity(userName, uni);
+	}
+	
+	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		this.AC.addUser(userName, firstName, lastName, passWord, type);
+	}
+
+	public void deleteUser(String userName) {
+		this.AC.deleteUser(userName);
+		
 	}
 
 	

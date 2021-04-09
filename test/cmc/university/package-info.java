@@ -5,4 +5,4 @@
  * @author mmurphy002
  *
  */
-package cmc.account.admintest;
+package cmc.university;

@@ -1,4 +1,4 @@
-package cmc.account.user;
+package systemtest;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cmc.account.Account;
+import cmc.account.user.UserInteraction;
 import junit.framework.Assert;
 
 public class LogOnTest extends UserInteraction {
@@ -16,10 +17,12 @@ public class LogOnTest extends UserInteraction {
 	@Before
 	public void setUp() throws Exception {
 		this.UI = new UserInteraction();
+		this.UI.addUser("peter", "Peter", "Ohmann", "securepassword", 'u');
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		this.UI.deleteUser("peter");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -33,7 +36,7 @@ public class LogOnTest extends UserInteraction {
 	@Test
 	public void testLoginAlternate1() {
 		Account test2result = this.UI.logOn("ManMadeBeast", "securepassword");
-		Assert.assertTrue("failed login(wrong user)", test2result.getLoginStatus() == false);
+		Assert.assertTrue("failed login(wrong user)", test2result == null);
 	}
 	//wrong password
 	@SuppressWarnings("deprecation")
@@ -46,8 +49,8 @@ public class LogOnTest extends UserInteraction {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testLoginAlternate3() {
-		Account test4result = this.UI.logOn("", "");
-		Assert.assertTrue("failed login(wrong user)", test4result.getLoginStatus() == false);
+		Account test4result = this.UI.logOn(null, null);
+		Assert.assertTrue("failed login(wrong user)", test4result == null);
 	}
 	
 	

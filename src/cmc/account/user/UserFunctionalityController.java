@@ -30,22 +30,18 @@ public class UserFunctionalityController {
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
-		u2.setSavedUniversities(this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 		return u2.getSavedUniversities();
-		
-		
 	}
 	
 	/**
 	 * This method saves a selected university and puts it in
 	 * a list of university objects
 	 * @param u The user account
-	 * @param uni the university to be saved
+     * @param the university to be saved
 	 */
 	public boolean saveUnversity(String u, University uni) {
 		User u1 = DBC.getUser(u);
-		University uni1 = DBC.getUniversity(uni);
-		u1.setSavedUniversities(uni1);
+		u1.setSavedUniversities(uni);
 		return true;
 	}
 
@@ -62,6 +58,7 @@ public class UserFunctionalityController {
 		
 	}
 	
+	//Do we need this??
 	/**
 	 * A method to display the information of a selected university
 	 * @param uni the name of the university to be displayed

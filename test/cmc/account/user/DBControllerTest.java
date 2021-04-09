@@ -58,5 +58,7 @@ public class DBControllerTest extends DBController {
 		this.DBC.setAllAccounts();
 		Assert.assertTrue(this.DBC.allAccounts.size() > 0);
 	}
+	
+	
 
 }

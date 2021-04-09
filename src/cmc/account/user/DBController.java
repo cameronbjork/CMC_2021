@@ -123,8 +123,8 @@ public class DBController {
 	 */
 	public University getUniversityByName(String uniName) {
 		for (int i = 0; i < this.allUniversities.size(); i++) {
-			if (uniName == this.allUniversities.get(i).getUniName()) {
-				return  this.allUniversities.get(i);
+			if (uniName.equals(this.allUniversities.get(i).getUniName())) {
+				return this.allUniversities.get(i);
 			}
 		}
 		return null;
@@ -196,7 +196,6 @@ public class DBController {
 
 	public void addNewUser(String userName, String firstName, String lastName, String passWord, char type) {
 		this.univDBLib.user_addUser(firstName, lastName, userName, passWord, type);
-		System.out.println(userName);
 		this.setAllAccounts();
 	}
 
@@ -212,7 +211,7 @@ public class DBController {
 		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
 		ArrayList<University> savedUnis = new ArrayList<University>();
 		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
-			if ( allUsersAndSavedSchools[i][0] == userName) {
+			if ( allUsersAndSavedSchools[i][0].equals(userName)) {
 				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
 			}
 		}
@@ -221,7 +220,6 @@ public class DBController {
 
 	public void deleteUser(String userName) {
 		this.univDBLib.user_deleteUser(userName);
-		
 	}
 	
 }

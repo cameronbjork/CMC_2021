@@ -29,9 +29,7 @@ public class UserFunctionalityController {
 	 * @return an array list of university objects
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
-		User u2 = DBC.getUser(username);
-		u2.setSavedUniversities(uni1);
-		return u2.getSavedUniversities();
+
 	}
 	
 	/**

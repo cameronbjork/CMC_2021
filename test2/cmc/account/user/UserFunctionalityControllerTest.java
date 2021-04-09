@@ -13,11 +13,15 @@ public class UserFunctionalityControllerTest {
 
 	private String username;
 	private UserFunctionalityController UFC;
+	private DBController DBC; 
 	
 	@Before
 	public void setUp() throws Exception {
 		this.UFC = new UserFunctionalityController();
-		
+		this.DBC = new DBController();
+		char U;
+		this.DBC.addNewUserData("Jkoles", "Joe", "Koller", "goodPassword");
+		this.UFC.saveUnversity("Jkoles", this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 	}
 
 	@After
@@ -26,8 +30,8 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testDisplayedUniversities() {
-		username = "peter"; 
-		Assert.assertEquals("Test if University list is returned","ST JOHNS UNIVERSITY",this.UFC.displaySavedUniversities(username);
+		username = "Jkoles"; 
+		Assert.assertEquals("Test if University list is returned","ST JOHNS UNIVERSITY", this.UFC.displaySavedUniversities(username));
 		
 	}
 

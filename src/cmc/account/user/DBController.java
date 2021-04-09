@@ -41,7 +41,7 @@ public class DBController {
 	 */
 	public DBController() {
 		this.user1 = new User("peter", "securepassword",'u', "peter","Ohmann", 'Y');
-		this.user1.setSavedUniversities(this.getUniversityByName("ST JOHNS UNIVERSITY"));
+		//this.user1.setSavedUniversities(this.getUniversityByName("ST JOHNS UNIVERSITY"));
 		this.admin1 = new Admin("poop", "notsecurepassword", 'a', "murp", "Dog", 'Y');
 		this.user1.setSavedUniversities(this.uni1);
 		this.uni2 = new University ("St Johns", "Minnesota", "SMALL-CITY", "PRIVATE", 3000, 2, 3, 3, 10000, 50, 1000, 75, 97, 4, 3, 3, "MATH", "HISTORY", "SCIENCE", "PHYSICS", "NURSING");
@@ -128,14 +128,12 @@ public class DBController {
 	 * @return allResults.get(i) - University being returned
 	 */
 	public University getUniversityByName(String uniName) {
-		University uni = null;
-		System.out.println(this.allUniversities.size());
 		for (int i = 0; i < this.allUniversities.size(); i++) {
-			if (uniName == this.allUniversities.get(i).getUniName()) {
-				uni = this.allUniversities.get(i);
+			if (uniName.equals(this.allUniversities.get(i).getUniName())) {
+				return this.allUniversities.get(i);
 			}
 		}
-		return uni;
+		return null;
 	}
 	
 	/** Set a Users data back to DB
@@ -204,7 +202,7 @@ public class DBController {
 		return this.univDBLib.university_getNamesWithEmphases();
 	}
 
-	public void addNewUserData(String userName, String firstName, String lastName, String passWord, char type) {
+	public void addNewUserData(String userName, String firstName, String lastName, String passWord) {
 			//just make a new user
 	}
 	

@@ -24,14 +24,13 @@ public class UserFunctionalityController {
 	
 	/**
 	 * This method displays the user's saved universities and returns an
-	 * array list of saveeed university objects
+	 * array list of saved university objects
 	 * @param username The name of the users account
 	 * @return an array list of university objects
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
 		User u2 = DBC.getUser(username);
-		University uni = this.DBC.getUniversityByName("ST JOHNS UNIVERSITY");
-		u2.setSavedUniversities(uni);
+		u2.setSavedUniversities(this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 		return u2.getSavedUniversities();
 		
 		

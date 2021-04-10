@@ -95,18 +95,72 @@ public class DBControllerTest extends DBController {
 	@Test
 	public void removeUniversityTest() {
 		this.DBC.removeUniversity("MY SCHOOL");
-		Assert.assertNull(this.DBC.getUniversityByName("MY SCHOOL"));
+		Assert.assertNull("MY SCHOOL is removed",this.DBC.getUniversityByName("MY SCHOOL"));
 		this.DBC.addUniversity("MY SCHOOL", "Minnesota", "SMALL-CITY", "PUBLIC", 5000, 25.0, 750.0, 750.0, 10000.99, 10.0, 3500, 50.0, 25.0, 5, 5, 5, "MATH", null, null, null, null);
 		}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void university_getAllUniversitiesAndEmphasisTest() {
-		Assert.assertTrue(this.DBC.university_getAllUniversitiesAndEmphasis().length > 0);
+		Assert.assertTrue("AllUniversitiesAndEmphaasis returned", this.DBC.university_getAllUniversitiesAndEmphasis().length > 0);
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Test
 	public void setAllUniversity() {
-		
+		this.DBC.setAllUniversities();
+		Assert.assertTrue("All uuniversities set to variable", this.DBC.getAllUniversities().size() > 170);
 	}
-
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void removeUniversityEmphasisTest() {
+		this.DBC.removeUniversityEmphasis("MY SCHOOL", "MATH", null, null, null, null);
+		Assert.assertNull("Emphasis is null", this.DBC.getUniversityByName("MY SCHOOL").getEmphasis1());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void setAllUniversityEmphasisTest() {
+		this.DBC.setAllUniversityEmphasis();
+		Assert.assertTrue("All emphasis's are set to their University", this.DBC.getAllUniversities().get(0).getEmphasis1() != null);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void addNewUserTest() {
+		Assert.assertEquals("Peter was added to DB", "peter", this.DBC.getAccount("peter").getUserName());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void addSavedSchoolTest() {
+		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		Assert.assertEquals("ST JOHNS UNIVERSITY added to peter","ST JOHNS UNIVERSITY", this.DBC.getSavedUniversity("peter").get(0).getUniName());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void removeSavedUniversityTest() {
+		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		this.DBC.removeSavedUniversity("peter", "ST JOHNS UNIVERSITY");
+		Assert.assertTrue("Peter has no saved Universities",this.DBC.getSavedUniversity("peter").size() == 0);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void getSavedUniversityTest() {
+		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		Assert.assertEquals("ST JOHNS UNIVERSITY added to peter","ST JOHNS UNIVERSITY", this.DBC.getSavedUniversity("peter").get(0).getUniName());
+		this.DBC.removeSavedUniversity("peter", "ST JOHNS UNIVERSITY");
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void deleteUserTest() {
+		this.DBC.deleteUser("peter");
+		System.out.println(this.DBC.getAccount("peter").getUserName());
+		Assert.assertNull("Peter not found in DB", this.DBC.getAccount("peter"));
+	}
+	
 }

@@ -24,6 +24,7 @@ import dblibrary.project.csci230.*;
 public class DBController {
 	private ArrayList<University> allUniversities;
 	protected ArrayList<Account> allAccounts;
+	private String[][] allUnisAndEmph;
 
 	
 	private UniversityDBLibrary univDBLib;
@@ -36,6 +37,7 @@ public class DBController {
 		this.univDBLib = new UniversityDBLibrary("brogrammers", "brogrammers", "csci230");
 		
 		this.allUniversities = new ArrayList<University>();
+		this.allUnisAndEmph = this.univDBLib.university_getNamesWithEmphases();
 		this.setAllUniversities();
 		this.setAllUniversityEmphasis();
 
@@ -55,7 +57,6 @@ public class DBController {
 	public User getUser(String userName) {
 		for (int i = 0; i < this.allAccounts.size(); i++) {
 			if (this.allAccounts.get(i).getUserName() == userName) {
-				System.out.println(this.allAccounts.get(i).getUserName());
 				return (User) this.getAccount(userName);
 		}
 	}
@@ -154,11 +155,6 @@ public class DBController {
 		this.univDBLib.university_addUniversity(uniName,  uniState,  uniLocation,  uniControl,
 				 numOfStudents,  percentFemale,  satVerbal,  satMath,  annualExpenses,  percentFinAid, 
 				 numApplicants,  percentAdmit,  percentEnrolled,  academicScale,  socialScale,  qOLScale);
-		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis1);
-		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis2);
-		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis3);
-		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis4);
-		this.univDBLib.university_addUniversityEmphasis(uniName, emphasis5);
 		this.setAllUniversities();
 		this.setAllUniversityEmphasis();
 	}
@@ -171,14 +167,14 @@ public class DBController {
 			University uniToAdd = new University(allUnis2D[i][0], allUnis2D[i][1], allUnis2D[i][2],allUnis2D[i][3], Integer.parseInt(allUnis2D[i][4]), Double.parseDouble(allUnis2D[i][5]), Double.parseDouble(allUnis2D[i][6]), Integer.parseInt(allUnis2D[i][7]), Double.parseDouble(allUnis2D[i][8]), Double.parseDouble(allUnis2D[i][9]), Integer.parseInt(allUnis2D[i][10]), Double.parseDouble(allUnis2D[i][11]), Double.parseDouble(allUnis2D[i][12]), Integer.parseInt(allUnis2D[i][13]), Integer.parseInt(allUnis2D[i][14]), Integer.parseInt(allUnis2D[i][15]));
 			this.allUniversities.add(uniToAdd);
 		}
-		System.out.println(this.allUniversities.get(179).getUniName());
 		return this.allUniversities;
 	}
 	
 	public void removeUniversity(String school) {
-		this.univDBLib.university_deleteUniversity(school);
-		//this.setAllUniversities();
-		System.out.println(this.getUniversityByName(school).getUniName());
+		University uni = this.getUniversityByName(school);
+		this.removeUniversityEmphasis(uni.getUniName(), uni.getEmphasis1(), uni.getEmphasis2(), uni.getEmphasis3(), uni.getEmphasis4(), uni.getEmphasis5());
+		this.univDBLib.university_deleteUniversity(uni.getUniName());
+		this.setAllUniversities();
 	}
 	
 	/** Return university with emphasis'
@@ -189,16 +185,23 @@ public class DBController {
 		return this.univDBLib.university_getNamesWithEmphases();
 	}
 	
+	public void removeUniversityEmphasis(String school, String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5 ) {
+		this.univDBLib.university_removeUniversityEmphasis(school, emphasis1);
+		this.univDBLib.university_removeUniversityEmphasis(school, emphasis2);
+		this.univDBLib.university_removeUniversityEmphasis(school, emphasis3);
+		this.univDBLib.university_removeUniversityEmphasis(school, emphasis4);
+		this.univDBLib.university_removeUniversityEmphasis(school, emphasis5);
+	}
+	
 	public void setAllUniversityEmphasis() {
-		//Adds emphasis to all Universities
-		String[][] allUnisAndEmph2D = this.univDBLib.university_getNamesWithEmphases();
-		for (int i = 0; i < allUnisAndEmph2D.length; i++) {
+		for (int i = 0; i < this.allUnisAndEmph.length; i++) {
 			for (int j = 0; j < this.allUniversities.size(); j++) {
-				if (allUnisAndEmph2D[i][0] == this.allUniversities.get(j).getUniName()) {
-					this.allUniversities.get(j).setEmphasis(allUnisAndEmph2D[i][1]);
+				if (this.allUnisAndEmph[i][0] == this.allUniversities.get(j).getUniName()) {
+					this.allUniversities.get(j).setEmphasis(this.allUnisAndEmph[i][1]);
 				}
 			}
 		}
+		this.setAllUniversities();
 	}
 
 	public void addNewUser(String userName, String firstName, String lastName, String passWord, char type) {

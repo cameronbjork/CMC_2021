@@ -263,25 +263,30 @@ public class University {
 	}
 
 	public void setEmphasis(String emphToSet) {
-		this.emphasisArray.add(emphToSet);
-		if (this.emphasisArray.size() >= 1) {
-			this.setEmphasis1(this.emphasisArray.get(0));
-		}
+		//System.out.println(emphToSet);
+		if (emphToSet == null) {
+			return;
+		} else {
+			this.emphasisArray.add(emphToSet);
+			if (this.emphasisArray.size() >= 1 ) {
+				this.setEmphasis1(this.emphasisArray.get(0));
+			}
 		
-		if (this.emphasisArray.size() >= 2) {
-			this.setEmphasis2(this.emphasisArray.get(1));
-		}
+			if (this.emphasisArray.size() >= 2) {
+				this.setEmphasis2(this.emphasisArray.get(1));
+			}
 		
-		if (this.emphasisArray.size() >= 3) {
-			this.setEmphasis3(this.emphasisArray.get(2));
-		}
+			if (this.emphasisArray.size() >= 3) {
+				this.setEmphasis3(this.emphasisArray.get(2));
+			}
 		
-		if (this.emphasisArray.size() >= 4) {
-		this.setEmphasis4(this.emphasisArray.get(3));
-		}
+			if (this.emphasisArray.size() >= 4) {
+				this.setEmphasis4(this.emphasisArray.get(3));
+			}
 		
-		if (this.emphasisArray.size() == 5) {
-			this.setEmphasis5(this.emphasisArray.get(4));
+			if (this.emphasisArray.size() == 5) {
+				this.setEmphasis5(this.emphasisArray.get(4));
+			}
 		}
 	}
 

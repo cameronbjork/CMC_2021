@@ -268,6 +268,7 @@ public class SearchController {
 	} 
 			
 			//Check for similar Emphasis
+			//Contains method in set, can simplify
 			String[][] uniAndEmphasis = this.DBC.university_getAllUniversitiesAndEmphasis();
 			for (int j = 0; j < uniAndEmphasis.length; j++) {
 					if (uniAndEmphasis[j][0] == this.uniList.get(i).getUniName()) {
@@ -528,15 +529,7 @@ public class SearchController {
 			String[][] uniAndEmphasis = this.DBC.university_getAllUniversitiesAndEmphasis();
 			for (int j = 0; j < uniAndEmphasis.length; j++) {
 					if (uniAndEmphasis[j][0] == this.uniList.get(i).getUniName()) {
-						if (this.uniList.lastElement().getEmphasis1() != (uniAndEmphasis[j][1])) {
-							distance++;
-						} else if (!this.uniList.lastElement().getEmphasis2().equals(uniAndEmphasis[j][1])) {
-							distance++;
-						} else if (!this.uniList.lastElement().getEmphasis3().equals(uniAndEmphasis[j][1])) {
-							distance++;
-						} else if (!this.uniList.lastElement().getEmphasis4().equals(uniAndEmphasis[j][1])) {
-							distance++;
-						} else if (!this.uniList.lastElement().getEmphasis5().equals(uniAndEmphasis[j][1])) {
+						if (!this.uniList.lastElement().getEmphasis().contains((uniAndEmphasis[j][1]))) {
 							distance++;
 						}
 					}
@@ -566,7 +559,6 @@ public class SearchController {
 		
 		for (int i = 0; i < resultList.size() && uniResultList.size() < 11; i++) {
 				uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
-				//System.out.println(uniResultList.get(i).getUniName());
 		}
 			
 		return uniResultList;

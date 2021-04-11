@@ -30,19 +30,16 @@ public class AccountController {
 	 * @param passWord a string of the users password
 	 */
 	public Account userEditUser(String userName, String firstName, String lastName, String passWord) {
-		Account u2 = this.DBC.getAccount(userName);
+		Account u2 = this.DBC.getUser(userName);
 		if (u2 != null) {
 			if (firstName != null) {
 				u2.setFirstName(firstName);
-				System.out.println("First changed to: " + firstName);
 			}
 			
 			if (lastName != null) {
 				u2.setLastName(lastName);
-				System.out.println("last changed to: " + lastName);
 			}
 			if (passWord != null){
-				System.out.println("Pass changed to: " + passWord);
 				u2.setPassWord(passWord);
 			} 
 			
@@ -59,7 +56,7 @@ public class AccountController {
 	 * @param passWord a string of the users first name
 	 */
 	public Account logOn(String userName, String passWord) {
-		Account acc = this.DBC.getAccount(userName);
+		Account acc = this.DBC.getUser(userName);
 		if (acc != null) {
 			String p2 = acc.getPassWord();
 			if (p2.equals(passWord)) {
@@ -90,7 +87,7 @@ public class AccountController {
 	 * @return boolean
 	 */
 	public Account logOut(String userName) {
-		Account acc = this.DBC.getAccount(userName);
+		Account acc = this.DBC.getUser(userName);
 		acc.setLoginStatus(false);
 			return acc;
 		}

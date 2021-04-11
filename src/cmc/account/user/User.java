@@ -61,7 +61,7 @@ public class User extends Account {
 	 * 
 	 * @param uni1 University to save
 	 */
-	public void setSavedUniversities(University uni1) {
+	public void addSavedUniversities(University uni1) {
 		this.savedUniversities.add(uni1);
 		
 	}

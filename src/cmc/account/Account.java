@@ -33,7 +33,7 @@ public abstract class Account {
 		this.accountType = accountType;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.setStatus(status);
+		this.status = status;
 	}
 
 	/**
@@ -117,14 +117,6 @@ public abstract class Account {
 	}
 
 	/**
-	 * This method gets the login status of a user
-	 * @return the loginStatus
-	 */
-	public boolean isLoginStatus() {
-		return loginStatus;
-	}
-
-	/**
 	 * This method sets the login status of a user
 	 * @param loginStatus the loginStatus to set
 	 */
@@ -141,7 +133,7 @@ public abstract class Account {
 	}
 
 	public char getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(char status) {

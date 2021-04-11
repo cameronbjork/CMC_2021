@@ -28,8 +28,9 @@ public class LogOnTest extends UserInteraction {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testLoginMain() {
+		this.UI.userEditUser("peter", null, null, "securepassword");
 		Account test1result = this.UI.logOn("peter", "securepassword");
-		Assert.assertTrue("successful login",test1result.getLoginStatus() == true);
+		Assert.assertTrue("successful login", test1result.getLoginStatus() == true);
 	}
 	//wrong username
 	@SuppressWarnings("deprecation")

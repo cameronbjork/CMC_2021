@@ -51,8 +51,7 @@ public class UserFunctionalityController {
 	 * @param uni the saved university to be removed
 	 */
 	public boolean removeSavedUniversity(String userName, University uni) {
-		User u1 = DBC.getUser(userName);
-		u1.removeSavedUniversity(uni);
+		this.DBC.removeSavedUniversity(userName, uni.getUniName());
 		return true;
 		
 	}

@@ -30,17 +30,17 @@ public class DBControllerTest extends DBController {
 	public void testGetAccount() {
 		//for loop doesn't execute
 		this.DBC.clearAllAccounts();
-		Assert.assertNull("Account is null", this.DBC.getAccount("peter"));
+		Assert.assertNull("Account is null", this.DBC.getUser("peter"));
 		this.DBC.setAllAccounts();
 		
 		//for loop does execute
-		Assert.assertEquals("Account is peter", "peter", this.DBC.getAccount("peter").getUserName());
+		Assert.assertEquals("Account is peter", "peter", this.DBC.getUser("peter").getUserName());
 		
 		//userName matches
-		Assert.assertEquals("Account is peter", "peter", this.DBC.getAccount("peter").getUserName());
+		Assert.assertEquals("Account is peter", "peter", this.DBC.getUser("peter").getUserName());
 		
 		//userName doesn't match
-		Assert.assertNull("Account is null", this.DBC.getAccount("wawa"));
+		Assert.assertNull("Account is null", this.DBC.getUser("wawa"));
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -53,14 +53,14 @@ public class DBControllerTest extends DBController {
 	@Test
 	public void clearAllAccountsTest() {
 		this.DBC.clearAllAccounts();
-		Assert.assertEquals("When accounts are cleared, size is 0", this.DBC.allAccounts.size(), 0);
+		Assert.assertEquals("When accounts are cleared, size is 0", 0, this.DBC.allUsers.size());
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void setAllAccountsTest() {
 		this.DBC.setAllAccounts();
-		Assert.assertTrue(this.DBC.allAccounts.size() > 0);
+		Assert.assertTrue(this.DBC.allUsers.size() > 0);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -72,10 +72,10 @@ public class DBControllerTest extends DBController {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void setUserTest() {
-		Account acc = this.DBC.getAccount("peter");
+		Account acc = this.DBC.getUser("peter");
 		acc.setPassWord("securepassword1");
 		this.DBC.setUser(acc);
-		Assert.assertEquals("peter password set to securepassword1", "securepassword1", this.DBC.getAccount("peter").getPassWord());
+		Assert.assertEquals("peter password set to securepassword1", "securepassword1", this.DBC.getUser("peter").getPassWord());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -115,21 +115,22 @@ public class DBControllerTest extends DBController {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void removeUniversityEmphasisTest() {
-		this.DBC.removeUniversityEmphasis("MY SCHOOL", "MATH", null, null, null, null);
-		Assert.assertNull("Emphasis is null", this.DBC.getUniversityByName("MY SCHOOL").getEmphasis1());
+		this.DBC.removeUniversityEmphasis(this.DBC.getUniversityByName("MY SCHOOL"));
+		Assert.assertTrue("Emphasis is empty", this.DBC.getUniversityByName("MY SCHOOL").getEmphasis().isEmpty());
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void setAllUniversityEmphasisTest() {
 		this.DBC.setAllUniversityEmphasis();
-		Assert.assertTrue("All emphasis's are set to their University", this.DBC.getAllUniversities().get(0).getEmphasis1() != null);
+		//Assert.assertTrue("All emphasis's are set to their University", this.DBC.getAllUniversities().get(0).getEmphasis1() != null);
+	//Peter said okay, only verifying doesn't crash
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void addNewUserTest() {
-		Assert.assertEquals("Peter was added to DB", "peter", this.DBC.getAccount("peter").getUserName());
+		Assert.assertEquals("Peter was added to DB", "peter", this.DBC.getUser("peter").getUserName());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -159,8 +160,7 @@ public class DBControllerTest extends DBController {
 	@Test
 	public void deleteUserTest() {
 		this.DBC.deleteUser("peter");
-		System.out.println(this.DBC.getAccount("peter").getUserName());
-		Assert.assertNull("Peter not found in DB", this.DBC.getAccount("peter"));
+		Assert.assertNull("Peter not found in DB", this.DBC.getUser("peter"));
 	}
 	
 }

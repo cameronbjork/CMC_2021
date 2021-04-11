@@ -5,6 +5,8 @@ package cmc.university;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Cameron Bjork
@@ -27,12 +29,8 @@ public class University {
 	private int academicScale;
 	private int socialScale;
 	private int qOLScale;
-	private ArrayList<String> emphasisArray;
-	private String emphasis1;
-	private String emphasis2;
-	private String emphasis3;
-	private String emphasis4;
-	private String emphasis5;
+	//Make set, ArrayList will double up values
+	private Set<String> emphasisArray;
 	
 	/**
 	 * Constructs University Object
@@ -81,9 +79,38 @@ public class University {
 		this.socialScale = socialScale;
 		this.qOLScale = qOLScale;
 		
-		this.emphasisArray = new ArrayList<String>();
+		this.emphasisArray = new HashSet<String>();
+		this.setEmphasis(emphasisStudy1);
+		this.setEmphasis(emphasisStudy2);
+		this.setEmphasis(emphasisStudy3);
 	}
 	
+	
+	/**
+	 * Constructs University Object
+	 * 
+	 * @param uniName Name of Univeristy
+	 * @param uniState State of University
+	 * @param uniLocation Location of University
+	 * @param uniControl Control of University
+	 * @param numOfStudents Number of students at University
+	 * @param percentFemale Percent of female students at University
+	 * @param satVerbal Average SAT verbal score
+	 * @param satMath Average SAT math score
+	 * @param annualExpenses Cost to go to University
+	 * @param percentFinAid Percentage of financial aid given by University
+	 * @param numApplicants Number of Applicants at University
+	 * @param percentAdmit  Percent of students admitted to University
+	 * @param percentEnrolled Percent of students enrolled to University
+	 * @param academicScale 1-5 scale based on academics
+	 * @param socialScale 1-5 scale based on social life
+	 * @param qOLScale 1-5 scale based on quality of life
+	 * @param emphasisStudy1 1st emphasis of school
+	 * @param emphasisStudy2 2nd emphasis of school
+	 * @param emphasisStudy3 3rd emphasis of school
+	 * @param emphasisStudy4 4th emphasis of school
+	 * @param emphasisStudy5 5th emphasis of school
+	 */
 	public University(String uniName, String uniState, String uniLocation, String uniControl, int numOfStudents,
 			double percentFemale, double satVerbal, double satMath, double annualExpenses, double percentFinAid,
 			int numApplicants, double percentAdmit, double percentEnrolled, int academicScale, int socialScale, int qOLScale) {
@@ -103,6 +130,8 @@ public class University {
 		this.academicScale = academicScale;
 		this.socialScale = socialScale;
 		this.qOLScale = qOLScale;
+		
+		this.emphasisArray  = new HashSet<String>();
 	}
 
 	/** Get name of University
@@ -179,10 +208,10 @@ public class University {
 	
 	/** Set SAT Verbal of University
 	 * 
-	 * @param satVerbal SAT Verbal
+	 * @param d SAT Verbal
 	 */
-	public void setSatVerbal(int satVerbal) {
-		this.satVerbal = satVerbal;
+	public void setSatVerbal(double d) {
+		this.satVerbal = d;
 	}
 	
 	/** Get SAT Math of University
@@ -195,22 +224,22 @@ public class University {
 	
 	/** Set SAT Math of University
 	 * 
-	 * @param satMath SAT Math
+	 * @param d SAT Math
 	 */
-	public void setSatMath(int satMath) {
-		this.satMath = satMath;
+	public void setSatMath(double d) {
+		this.satMath = d;
 	}
 	public double getAnnualExpenses() {
 		return annualExpenses;
 	}
-	public void setAnnualExpenses(int annualExpenses) {
-		this.annualExpenses = annualExpenses;
+	public void setAnnualExpenses(double d) {
+		this.annualExpenses = d;
 	}
 	public double getPercentFinAid() {
 		return percentFinAid;
 	}
-	public void setPercentFinAid(int percentFinAid) {
-		this.percentFinAid = percentFinAid;
+	public void setPercentFinAid(double d) {
+		this.percentFinAid = d;
 	}
 	public int getNumApplicants() {
 		return numApplicants;
@@ -221,14 +250,14 @@ public class University {
 	public double getPercentAdmit() {
 		return percentAdmit;
 	}
-	public void setPercentAdmit(int percentAdmit) {
-		this.percentAdmit = percentAdmit;
+	public void setPercentAdmit(double d) {
+		this.percentAdmit = d;
 	}
 	public double getPercentEnrolled() {
 		return percentEnrolled;
 	}
-	public void setPercentEnrolled(int percentEnrolled) {
-		this.percentEnrolled = percentEnrolled;
+	public void setPercentEnrolled(double d) {
+		this.percentEnrolled = d;
 	}
 	public int getAcademicScale() {
 		return academicScale;
@@ -258,76 +287,23 @@ public class University {
 		return this.uniControl;
 	}
 	
-	public ArrayList<String> getEmphasis() {
+	
+	//Use to get all emphasis
+	public Set<String> getEmphasis() {
 		return this.emphasisArray;
 	}
 
 	public void setEmphasis(String emphToSet) {
-		//System.out.println(emphToSet);
 		if (emphToSet == null) {
 			return;
 		} else {
 			this.emphasisArray.add(emphToSet);
-			if (this.emphasisArray.size() >= 1 ) {
-				this.setEmphasis1(this.emphasisArray.get(0));
-			}
-		
-			if (this.emphasisArray.size() >= 2) {
-				this.setEmphasis2(this.emphasisArray.get(1));
-			}
-		
-			if (this.emphasisArray.size() >= 3) {
-				this.setEmphasis3(this.emphasisArray.get(2));
-			}
-		
-			if (this.emphasisArray.size() >= 4) {
-				this.setEmphasis4(this.emphasisArray.get(3));
-			}
-		
-			if (this.emphasisArray.size() == 5) {
-				this.setEmphasis5(this.emphasisArray.get(4));
-			}
 		}
 	}
-
-	public String getEmphasis1() {
-		return emphasis1;
-	}
-
-	public void setEmphasis1(String emphasis1) {
-		this.emphasis1 = emphasis1;
-	}
-
-	public String getEmphasis2() {
-		return emphasis2;
-	}
-
-	public void setEmphasis2(String emphasis2) {
-		this.emphasis2 = emphasis2;
-	}
-
-	public String getEmphasis3() {
-		return emphasis3;
-	}
-
-	public void setEmphasis3(String emphasis3) {
-		this.emphasis3 = emphasis3;
-	}
-
-	public String getEmphasis4() {
-		return emphasis4;
-	}
-
-	public void setEmphasis4(String emphasis4) {
-		this.emphasis4 = emphasis4;
-	}
-
-	public String getEmphasis5() {
-		return emphasis5;
-	}
-
-	public void setEmphasis5(String emphasis5) {
-		this.emphasis5 = emphasis5;
-	}
 	
+	public void removeEmphasis(String emphToRemove) {
+		this.emphasisArray.remove(emphToRemove);
+	}
+
+
 }

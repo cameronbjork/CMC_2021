@@ -5,6 +5,7 @@ package cmc.account.user;
 
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import cmc.account.Account;
 import cmc.account.admin.Admin;
@@ -23,8 +24,9 @@ import dblibrary.project.csci230.*;
  */
 public class DBController {
 	private ArrayList<University> allUniversities;
-	protected ArrayList<Account> allAccounts;
 	private String[][] allUnisAndEmph;
+	protected ArrayList<User> allUsers;
+	protected ArrayList<Admin> allAdmins;
 
 	
 	private UniversityDBLibrary univDBLib;
@@ -41,7 +43,8 @@ public class DBController {
 		this.setAllUniversities();
 		this.setAllUniversityEmphasis();
 
-		this.allAccounts = new ArrayList<Account>();
+		this.allUsers = new ArrayList<User>();
+		this.allAdmins = new ArrayList<Admin>();
 		this.setAllAccounts();
 		
 		}
@@ -55,25 +58,15 @@ public class DBController {
 	 * @return user1 - User that is grabbed from the DB
 	 */
 	public User getUser(String userName) {
-		for (int i = 0; i < this.allAccounts.size(); i++) {
-			if (this.allAccounts.get(i).getUserName() == userName) {
-				return (User) this.getAccount(userName);
+		for (int i = 0; i < this.allUsers.size(); i++) {
+			if (this.allUsers.get(i).getUserName().equals(userName)) {
+				System.out.println(this.allUsers.get(i).getUserName());
+				return this.allUsers.get(i);
 		}
 	}
 		return null;
 }
 	
-	//handle bad username case here and in AC
-	
-	public Account getAccount(String userName) {
-
-		for (int i = 0; i < allAccounts.size(); i++) {			
-			if (allAccounts.get(i).getUserName().equals(userName)) {
-				return allAccounts.get(i);
-				}
-		}
-		return null;
-	}
 
 	/** Returns an ArrayList of all the universities in the DB
 	 * 	
@@ -83,21 +76,17 @@ public class DBController {
 		return this.allUniversities;
 	}
 	
-	public void clearAllAccounts() {
-		this.allAccounts.clear();
-	}
-	
 	public void setAllAccounts() {
-		this.allAccounts.clear();
+		this.allAdmins.clear();
+		this.allUsers.clear();
 		//Adds all Accounts to a list
 		String[][] allUsers = this.univDBLib.user_getUsers();
-		this.allAccounts = new ArrayList<Account>();
 		for (int i = 0; i < allUsers.length; i++) {
 			if (allUsers[i][4].charAt(0) == 'a') {
-				this.allAccounts.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+				this.allAdmins.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
 			}
 			else {
-				this.allAccounts.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
+				this.allUsers.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
 			}
 			}
 	}
@@ -172,10 +161,12 @@ public class DBController {
 	
 	public void removeUniversity(String school) {
 		University uni = this.getUniversityByName(school);
-		this.removeUniversityEmphasis(uni.getUniName(), uni.getEmphasis1(), uni.getEmphasis2(), uni.getEmphasis3(), uni.getEmphasis4(), uni.getEmphasis5());
+		this.removeUniversityEmphasis(uni);
 		this.univDBLib.university_deleteUniversity(uni.getUniName());
 		this.setAllUniversities();
 	}
+	
+	
 	
 	/** Return university with emphasis'
 	 * 
@@ -185,19 +176,20 @@ public class DBController {
 		return this.univDBLib.university_getNamesWithEmphases();
 	}
 	
-	public void removeUniversityEmphasis(String school, String emphasis1, String emphasis2, String emphasis3, String emphasis4, String emphasis5 ) {
-		this.univDBLib.university_removeUniversityEmphasis(school, emphasis1);
-		this.univDBLib.university_removeUniversityEmphasis(school, emphasis2);
-		this.univDBLib.university_removeUniversityEmphasis(school, emphasis3);
-		this.univDBLib.university_removeUniversityEmphasis(school, emphasis4);
-		this.univDBLib.university_removeUniversityEmphasis(school, emphasis5);
+	public void removeUniversityEmphasis(University uni) {
+		Set<String> emphs = uni.getEmphasis();
+		for (String emph : emphs) {
+		this.univDBLib.university_removeUniversityEmphasis(uni.getUniName(), emph);
+		}
+		emphs.clear();
 	}
 	
 	public void setAllUniversityEmphasis() {
 		for (int i = 0; i < this.allUnisAndEmph.length; i++) {
 			for (int j = 0; j < this.allUniversities.size(); j++) {
-				if (this.allUnisAndEmph[i][0] == this.allUniversities.get(j).getUniName()) {
+				if (this.allUnisAndEmph[i][0].equals(this.allUniversities.get(j).getUniName())) {
 					this.allUniversities.get(j).setEmphasis(this.allUnisAndEmph[i][1]);
+					
 				}
 			}
 		}
@@ -210,26 +202,42 @@ public class DBController {
 	}
 
 	public void addSavedSchool(String userName, String school) {
+		this.getUser(userName).addSavedUniversities(this.getUniversityByName(school));
 		this.univDBLib.user_saveSchool(userName, school);
 	}
 	
 	public void removeSavedUniversity(String userName, String school) {
+		this.getUser(userName).removeSavedUniversity(this.getUniversityByName(school));
 		this.univDBLib.user_removeSchool(userName, school);
 	}
 	
 	public ArrayList<University> getSavedUniversity(String userName) {
-		String[][] allUsersAndSavedSchools = this.univDBLib.user_getUsernamesWithSavedSchools();
-		ArrayList<University> savedUnis = new ArrayList<University>();
-		for (int i = 0; i < allUsersAndSavedSchools.length; i++) {
-			if ( allUsersAndSavedSchools[i][0].equals(userName)) {
-				savedUnis.add(this.getUniversityByName(allUsersAndSavedSchools[i][1]));
-			}
+		return this.getUser(userName).getSavedUniversities();
+	}
+	
+	//Use getter, and remove from User
+	public void removeAllSavedUniversities(String userName) {
+		ArrayList<University> savedUnis =  new ArrayList<University>();
+		savedUnis.addAll(this.getSavedUniversity(userName));
+		if (savedUnis != null) {
+		for (int i = 0; i < savedUnis.size(); i++) {
+			this.removeSavedUniversity(userName, savedUnis.get(i).getUniName());
+			
 		}
-		return savedUnis;
+		}
 	}
 
 	public void deleteUser(String userName) {
+		//this.removeAllSavedUniversities(userName);
 		this.univDBLib.user_deleteUser(userName);
+	}
+
+
+
+	public void clearAllAccounts() {
+		this.allUsers.clear();
+		this.allAdmins.clear();
+		
 	}
 	
 }

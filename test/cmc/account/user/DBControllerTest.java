@@ -136,14 +136,14 @@ public class DBControllerTest extends DBController {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void addSavedSchoolTest() {
-		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		this.DBC.addSavedSchool("peter", this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 		Assert.assertEquals("ST JOHNS UNIVERSITY added to peter","ST JOHNS UNIVERSITY", this.DBC.getSavedUniversity("peter").get(0).getUniName());
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void removeSavedUniversityTest() {
-		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		this.DBC.addSavedSchool("peter", this.DBC.getUniversityByName("ST JOHNS UNIVERSITY"));
 		this.DBC.removeSavedUniversity("peter", "ST JOHNS UNIVERSITY");
 		Assert.assertTrue("Peter has no saved Universities",this.DBC.getSavedUniversity("peter").size() == 0);
 	}
@@ -151,7 +151,7 @@ public class DBControllerTest extends DBController {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void getSavedUniversityTest() {
-		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		this.DBC.addSavedSchool("peter", this.getUniversityByName("ST JOHNS UNIVERSITY"));
 		Assert.assertEquals("ST JOHNS UNIVERSITY added to peter","ST JOHNS UNIVERSITY", this.DBC.getSavedUniversity("peter").get(0).getUniName());
 		this.DBC.removeSavedUniversity("peter", "ST JOHNS UNIVERSITY");
 	}

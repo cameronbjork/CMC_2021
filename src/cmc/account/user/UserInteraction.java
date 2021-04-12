@@ -43,12 +43,12 @@ public class UserInteraction {
 	 * @param username the name of the user to find the saved universities of
 	 * @return  boolean to confirm or deny if the saved universities were displayed
 	 */
-	public boolean displaySavedUniversities(String username) {
+	public ArrayList<University> displaySavedUniversities(String username) {
 		ArrayList<University> saved = this.UFC.displaySavedUniversities(username);
 		if (saved != null) {
-		return true;
+		return saved;
 		} else {
-			return false;
+			return null;
 		}
 	}
 
@@ -118,16 +118,6 @@ public class UserInteraction {
 	}
 	
 	/**
-	 * A method to display the results of a search
-	 * @param universities the list of all universities 
-	 * @param i an integer to find the university from the list to be displayed
-	 * @return University object 
-	 */
-	private University displaySearchResult(ArrayList<University> universities, int i) {
-		return universities.get(i);
-		
-	}
-	/**
 	 * A method to log on a user and make the user active
 	 * @param userName the name of the user to be logged on
 	 * @param passWord the password of the user to confirm the ability to log on
@@ -154,11 +144,11 @@ public class UserInteraction {
 	 * @param userName the name of the user to get the profile of
 	 * @return boolean to confirm the profile was displayed
 	 */
-	public boolean displayProfile(String userName) {
+	public User displayProfile(String userName) {
 		if (this.AC.displayProfile(userName) != null) {
-			return true;
+			return this.AC.displayProfile(userName);
 		} else {
-			return false;
+			return null;
 		}
 	}
 /**

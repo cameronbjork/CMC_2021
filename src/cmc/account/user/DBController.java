@@ -60,7 +60,6 @@ public class DBController {
 	public User getUser(String userName) {
 		for (int i = 0; i < this.allUsers.size(); i++) {
 			if (this.allUsers.get(i).getUserName().equals(userName)) {
-				System.out.println(this.allUsers.get(i).getUserName());
 				return this.allUsers.get(i);
 		}
 	}
@@ -201,9 +200,10 @@ public class DBController {
 		this.setAllAccounts();
 	}
 
-	public void addSavedSchool(String userName, String school) {
-		this.getUser(userName).addSavedUniversities(this.getUniversityByName(school));
-		this.univDBLib.user_saveSchool(userName, school);
+	public void addSavedSchool(String userName, University uni) {
+		this.setAllAccounts();
+		this.getUser(userName).addSavedUniversities(uni);
+		this.univDBLib.user_saveSchool(userName, uni.getUniName());
 	}
 	
 	public void removeSavedUniversity(String userName, String school) {

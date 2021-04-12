@@ -186,7 +186,9 @@ public class UserInteraction {
 	}
 	
 	public void addUser(String userName, String firstName, String lastName, String passWord, char type) {
+		if(userName != null && (type == 'u' || type == 'a')) {
 		this.AC.addUser(userName, firstName, lastName, passWord, type);
+		}
 	}
 
 	public void deleteUser(String userName) {

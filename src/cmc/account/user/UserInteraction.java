@@ -151,13 +151,17 @@ public class UserInteraction {
 			return null;
 		}
 	}
+	
+	public void setRecentUniversity(String userName, University uni) {
+		this.SC.setRecentUniversity(userName, uni);
+	}
 /**
  * A method to get the most recent university viewed
  * @param u the most recently searched university to be displayed
  * @return University object
  */
-	public boolean getRecentUniversity(String u, University uni) {
-		this.SC.getRecentUniversity(u, uni);
+	public boolean getRecentUniversity(String u) {
+		this.SC.getRecentUniversity(u);
 		return true;
 }
 
@@ -166,7 +170,7 @@ public class UserInteraction {
 	 * @param userName the name of the user to remove the saved university from
 	 * @param uni the university to be removed
 	 */
-	public boolean removeSavedUniversity(String userName, University uni) {
+	public boolean removeSavedUniversity(String userName, String uni) {
 		this.UFC.removeSavedUniversity(userName, uni);
 		return true;
 	}

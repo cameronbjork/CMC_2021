@@ -40,7 +40,7 @@ public class UserFunctionalityController {
      * @param the university to be saved
 	 */
 	public boolean saveUnversity(String u, String uni) {
-		if (this.displaySavedUniversities(u).contains(this.DBC.getUniversityByName(uni))) {
+		if (this.DBC.getSavedUniversity(u).contains(this.DBC.getUniversityByName(uni))) {
 			return false;
 		}else {
 		this.DBC.addSavedSchool(u,uni);
@@ -54,8 +54,8 @@ public class UserFunctionalityController {
 	 * @param userName the name of the user
 	 * @param uni the saved university to be removed
 	 */
-	public boolean removeSavedUniversity(String userName, University uni) {
-		this.DBC.removeSavedUniversity(userName, uni.getUniName());
+	public boolean removeSavedUniversity(String userName, String uni) {
+		this.DBC.removeSavedUniversity(userName, uni);
 		return true;
 		
 	}

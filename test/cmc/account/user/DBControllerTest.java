@@ -27,7 +27,8 @@ public class DBControllerTest extends DBController {
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testGetAccount() {
+	public void testGetUser() {
+		
 		//for loop doesn't execute
 		this.DBC.clearAllAccounts();
 		Assert.assertNull("Account is null", this.DBC.getUser("peter"));

@@ -40,8 +40,12 @@ public class UserFunctionalityController {
      * @param the university to be saved
 	 */
 	public boolean saveUnversity(String u, String uni) {
+		if (this.DBC.getSavedUniversity(u).contains(uni)) {
+			return false;
+		}else {
 		this.DBC.addSavedSchool(u,this.DBC.getUniversityByName(uni));
 		return true;
+		}
 	}
 
 	/**

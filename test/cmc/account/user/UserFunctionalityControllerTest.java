@@ -19,7 +19,9 @@ public class UserFunctionalityControllerTest extends UserFunctionalityController
 		this.UFC = new UserFunctionalityController();
 		this.DBC = new DBController();
 		this.DBC.addNewUser("Jkoles", "Joe", "Koller", "goodPassword", 'u');
+		//this.DBC.addNewUser("Joles", "name", "lastName", "userName", 'u');
 		this.UFC.saveUnversity("Jkoles", "ST JOHNS UNIVERSITY");
+		
 	}
 
 	@After
@@ -49,10 +51,15 @@ public class UserFunctionalityControllerTest extends UserFunctionalityController
 	@Test
 	public void testRemoveSavedUniversity() {
 		String username = "Jkoles";
-		this.UFC.saveUnversity("Jkoles","YALE");
+		//main scenario 
+		this.UFC.saveUnversity("Jkoles","ST JOHNS UNIVERSITY");
 		Assert.assertTrue("Test if University is removed", this.UFC.removeSavedUniversity(username, "ST JOHNS UNIVERSITY"));
+		
+		//alternate scenario 1, wrong username
+		this.UFC.saveUnversity("Jkoles", "YALE");
+		System.out.println(this.UFC.displaySavedUniversities(username));
+		Assert.assertNull("Incorrect username", this.UFC.removeSavedUniversity("Joles","YALE"));
 	}
-	
 	
 	
 	

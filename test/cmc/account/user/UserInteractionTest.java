@@ -107,6 +107,21 @@ public class UserInteractionTest {
 	@Test
 	public void addUserTest() {
 		Assert.assertNotNull(this.ui.displayProfile("Cam"));
+		//Checking username
+		this.ui.addUser(null, "Bam", "Pamla", "notsecure", 'u');
+		Assert.assertNull(this.ui.displayProfile(null));
+		//Checking firstname
+		this.ui.addUser("Petah", null, "Peetah", "secureforsure", 'u');
+		Assert.assertTrue(this.ui.displayProfile("Petah").getFirstName() != null);
+		//Checking lastname
+		this.ui.addUser("Petah1", "Harry", null, "secureforsur", 'u');
+		Assert.assertTrue(this.ui.displayProfile("Petah1").getLastName() != null);
+		//Checking password
+		this.ui.addUser("Petah2", "Legit", "Beast", null, 'u');
+		Assert.assertTrue(this.ui.displayProfile("Petah2").getPassWord() != null);
+		//Checking type
+		this.ui.addUser("Petah3", "Iam", "Amonster", "securefornothing", 'p');
+		Assert.assertTrue(this.ui.displayProfile("Petah3") != null );
 	}
 	
 	@SuppressWarnings("deprecation")

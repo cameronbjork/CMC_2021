@@ -16,10 +16,12 @@ import systemtest.SearchUniversitiesTest;
 import systemtest.TopRecommendedUnisTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({SearchControllerTest.class, LogOnTest.class, LogOutTest.class,
-	SearchUniversitiesTest.class, TopRecommendedUnisTest.class, UserFunctionalityControllerTest.class,
-	DBControllerTest.class, UniversityTest.class, AccountTest.class, AdminTest.class,
-	UserTest.class})
+@SuiteClasses({UserFunctionalityControllerTest.class})
 public class AllTests {
 
 }
+
+//@SuiteClasses({SearchControllerTest.class, LogOnTest.class, LogOutTest.class,
+	//SearchUniversitiesTest.class, TopRecommendedUnisTest.class, UserFunctionalityControllerTest.class,
+	//DBControllerTest.class, UniversityTest.class, AccountTest.class, AdminTest.class,
+	//UserTest.class})

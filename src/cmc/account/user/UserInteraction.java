@@ -152,7 +152,7 @@ public class UserInteraction {
 		}
 	}
 	
-	public void setRecentUniversity(String userName, University uni) {
+	public void setRecentUniversity(String userName, String uni) {
 		this.SC.setRecentUniversity(userName, uni);
 	}
 /**

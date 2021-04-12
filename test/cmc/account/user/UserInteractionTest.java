@@ -25,7 +25,7 @@ public class UserInteractionTest {
 
 	@After
 	public void tearDown() throws Exception {
-		this.ui.deleteUser("Cam");
+		//this.ui.deleteUser("Cam");
 	}
 
 	@SuppressWarnings("deprecation")

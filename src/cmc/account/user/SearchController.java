@@ -575,9 +575,9 @@ public class SearchController {
 		// Implement to Web Interface
 	}
 
-	public void setRecentUniversity(String userName, University uni) {
-		User u1 = this.DBC.getUser(userName);
-		u1.setRecentUniversity(uni);
+	public void setRecentUniversity(String userName, String uni) {
+		User u1 = (this.DBC.getUser(userName));
+		u1.setRecentUniversity(this.DBC.getUniversityByName(uni));
 		this.DBC.setUser(u1);
 	}
 }

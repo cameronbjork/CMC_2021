@@ -170,7 +170,7 @@ public class UserInteraction {
 	 * @param userName the name of the user to remove the saved university from
 	 * @param uni the university to be removed
 	 */
-	public boolean removeSavedUniversity(String userName, University uni) {
+	public boolean removeSavedUniversity(String userName, String uni) {
 		this.UFC.removeSavedUniversity(userName, uni);
 		return true;
 	}

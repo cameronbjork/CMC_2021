@@ -8,6 +8,7 @@ import cmc.account.user.AccountControllerTest;
 import cmc.account.user.DBControllerTest;
 import cmc.account.user.SearchControllerTest;
 import cmc.account.user.UserFunctionalityControllerTest;
+import cmc.account.user.UserInteractionTest;
 import cmc.account.user.UserTest;
 import cmc.university.UniversityTest;
 import systemtest.LogOnTest;
@@ -16,12 +17,10 @@ import systemtest.SearchUniversitiesTest;
 import systemtest.TopRecommendedUnisTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({UserFunctionalityControllerTest.class})
+@SuiteClasses({UniversityTest.class, AccountTest.class, AdminTest.class,
+	UserTest.class, AccountControllerTest.class, SearchControllerTest.class,
+	UserFunctionalityControllerTest.class, DBControllerTest.class, UserInteractionTest.class, 
+	LogOnTest.class, LogOutTest.class, SearchUniversitiesTest.class, TopRecommendedUnisTest.class})
 public class AllTests {
 
 }
-
-//@SuiteClasses({SearchControllerTest.class, LogOnTest.class, LogOutTest.class,
-	//SearchUniversitiesTest.class, TopRecommendedUnisTest.class, UserFunctionalityControllerTest.class,
-	//DBControllerTest.class, UniversityTest.class, AccountTest.class, AdminTest.class,
-	//UserTest.class})

@@ -47,7 +47,7 @@ public class UserFunctionalityControllerTest extends UserFunctionalityController
 	public void testRemoveSavedUniversity() {
 		String username = "Jkoles";
 		this.UFC.saveUnversity("Jkoles","YALE");
-		Assert.assertTrue("Test if University is removed", this.UFC.removeSavedUniversity(username, this.DBC.getUniversityByName("ST JOHNS UNIVERSITY")));
+		Assert.assertTrue("Test if University is removed", this.UFC.removeSavedUniversity(username, "ST JOHNS UNIVERSITY"));
 	}
 	
 	

@@ -200,10 +200,10 @@ public class DBController {
 		this.setAllAccounts();
 	}
 
-	public void addSavedSchool(String userName, University uni) {
+	public void addSavedSchool(String userName, String uni) {
 		this.setAllAccounts();
-		this.getUser(userName).addSavedUniversities(uni);
-		this.univDBLib.user_saveSchool(userName, uni.getUniName());
+		this.getUser(userName).addSavedUniversities(this.getUniversityByName(uni));
+		this.univDBLib.user_saveSchool(userName, uni);
 	}
 	
 	public void removeSavedUniversity(String userName, String school) {

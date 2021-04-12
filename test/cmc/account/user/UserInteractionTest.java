@@ -51,6 +51,7 @@ public class UserInteractionTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void topRecommendedUnisTest() {
+		this.searchResults = this.ui.searchUniversities("St", "Minnesota","CHICAGO", "COMMUNITY", 1000, 3000, 65, 70, 2, 4, 2, 4, 9000, 1100, 49, 51, 999, 1001, 74, 76, 96, 98, 3, 5, 3, 5, 3, 5, "MATH", "NULL", "NULL", "NULL", "NULL");
 		Assert.assertTrue(this.ui.topRecommendedUnis(this.searchResults.get(0)) != null);
 	}
 	
@@ -79,6 +80,40 @@ public class UserInteractionTest {
 	@Test
 	public void displayRecentUniversityTest() {
 		Assert.assertNotNull(this.ui.getRecentUniversity("Cam"));
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void setRecentUniversityTest() {
+		Assert.assertNotNull(this.ui.getRecentUniversity("Cam"));
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void saveUniversityTest() {
+		this.ui.saveUniversity("Cam", "ALBANY");
+		Assert.assertNotNull(this.ui.displayProfile("Cam").getSavedUniversities());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void removeSavedUniversitiesTest() {
+		this.ui.saveUniversity("Cam", "ALBANY");
+		this.ui.removeSavedUniversity("Cam", "ALBANY");
+		Assert.assertTrue(this.ui.displayProfile("Cam").getSavedUniversities().size() == 0);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void addUserTest() {
+		Assert.assertNotNull(this.ui.displayProfile("Cam"));
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void deleteUserTest() {
+		this.ui.deleteUser("Cam");
+		Assert.assertNull(this.ui.displayProfile("Cam"));
 	}
 
 }

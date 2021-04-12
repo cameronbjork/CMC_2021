@@ -200,10 +200,10 @@ public class DBController {
 		this.setAllAccounts();
 	}
 
-	public void addSavedSchool(String userName, University uni) {
+	public void addSavedSchool(String userName, String uni) {
 		this.setAllAccounts();
-		this.getUser(userName).addSavedUniversities(uni);
-		this.univDBLib.user_saveSchool(userName, uni.getUniName());
+		this.getUser(userName).addSavedUniversities(this.getUniversityByName(uni));
+		this.univDBLib.user_saveSchool(userName, uni);
 	}
 	
 	public void removeSavedUniversity(String userName, String school) {
@@ -216,15 +216,17 @@ public class DBController {
 	}
 	
 	//Use getter, and remove from User
-	public void removeAllSavedUniversities(String userName) {
+	public boolean removeAllSavedUniversities(String userName) {
 		ArrayList<University> savedUnis =  new ArrayList<University>();
 		savedUnis.addAll(this.getSavedUniversity(userName));
 		if (savedUnis != null) {
 		for (int i = 0; i < savedUnis.size(); i++) {
 			this.removeSavedUniversity(userName, savedUnis.get(i).getUniName());
-			
+		return true;
+		} 	
 		}
-		}
+		return false;
+		
 	}
 
 	public void deleteUser(String userName) {

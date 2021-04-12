@@ -24,6 +24,7 @@ public class AccountControllerTest extends AccountController {
 
 	@After
 	public void tearDown() throws Exception {
+<<<<<<< HEAD
 		this.UI.deleteUser("peter");
 	}
 
@@ -57,4 +58,12 @@ public class AccountControllerTest extends AccountController {
 		Assert.assertTrue("successful logout", testresult.getLoginStatus() == false);
 	}
 
+=======
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testLoginMain() {
+	}
+>>>>>>> 3ac76e504f0df284fcdd269e0ec9918f0444fecd
 }

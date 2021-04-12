@@ -216,15 +216,17 @@ public class DBController {
 	}
 	
 	//Use getter, and remove from User
-	public void removeAllSavedUniversities(String userName) {
+	public boolean removeAllSavedUniversities(String userName) {
 		ArrayList<University> savedUnis =  new ArrayList<University>();
 		savedUnis.addAll(this.getSavedUniversity(userName));
 		if (savedUnis != null) {
 		for (int i = 0; i < savedUnis.size(); i++) {
 			this.removeSavedUniversity(userName, savedUnis.get(i).getUniName());
-			
+		return true;
+		} 	
 		}
-		}
+		return false;
+		
 	}
 
 	public void deleteUser(String userName) {

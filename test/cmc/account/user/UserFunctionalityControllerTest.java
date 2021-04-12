@@ -37,10 +37,13 @@ public class UserFunctionalityControllerTest extends UserFunctionalityController
 	public void testSaveUniversity() {
 		//university is not already in data base
 		String username = "Jkoles";
-		Assert.assertTrue("Test if University is saved", this.UFC.saveUnversity(username, "ST JOHNS UNIVERSITY"));
+		System.out.println(this.DBC.getSavedUniversity(username));
+		Assert.assertTrue("Test if University is saved for the first time", this.UFC.saveUnversity(username, "ALBANY"));
+		this.UFC.saveUnversity(username, "ALBANY");
+		System.out.println(this.DBC.getSavedUniversity(username));		
 		//university is already in the saved universities list
 		this.UFC.saveUnversity(username, ("ALBANY"));
-		Assert.assertFalse("Test if University is not saved because it has already been saved", this.UFC.saveUnversity(username, "ALBANY"));
+		Assert.assertFalse("Test if University is already in the list", this.UFC.saveUnversity(username, "ALBANY"));
 	}
 	
 	@Test

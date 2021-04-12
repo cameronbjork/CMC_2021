@@ -148,6 +148,18 @@ public class DBControllerTest extends DBController {
 		this.DBC.removeSavedUniversity("peter", "ST JOHNS UNIVERSITY");
 		Assert.assertTrue("Peter has no saved Universities",this.DBC.getSavedUniversity("peter").size() == 0);
 	}
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void removeAllSavedUniversitiesTest() {
+		//there are 1+ universities to be removed
+		this.DBC.addSavedSchool("peter", "ST JOHNS UNIVERSITY");
+		//this.DBC.removeAllSavedUniversities("peter");
+		Assert.assertTrue("Peter has no saved Universities",this.DBC.removeAllSavedUniversities("peter"));
+		//no saved Universities
+		Assert.assertFalse("Peter has no saved universities", this.DBC.removeAllSavedUniversities("peter"));
+		
+	}	
 	
 	@SuppressWarnings("deprecation")
 	@Test

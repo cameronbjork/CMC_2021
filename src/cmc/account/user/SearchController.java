@@ -567,14 +567,18 @@ public class SearchController {
 	/** Gets the most recently viewed university from the user
 	 * 
 	 * @param u - username to get recent university from
-	 * @param uni - university to get
 	 * @return University most recent university
 	 */
-	public University getRecentUniversity(String u, University uni) {
+	public University getRecentUniversity(String u) {
 		User u1 = (DBC.getUser(u));
-		u1.setRecentUniversity(uni);
 		return u1.getRecentUniversity();
 		// Implement to Web Interface
 	}
+
+	public void setRecentUniversity(String userName, University uni) {
+		User u1 = this.DBC.getUser(userName);
+		u1.setRecentUniversity(uni);
+		this.DBC.setUser(u1);
 	}
+}
 	

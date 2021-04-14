@@ -111,6 +111,7 @@ public class DBController {
 	public void setUser(Account u2) {
 		// TODO store user back to database
 		this.univDBLib.user_editUser(u2.getUserName(), u2.getFirstName(), u2.getLastName(), u2.getPassWord(), u2.getAccountType(), u2.getStatus());
+		this.setAllAccounts();
 	}
 	
 	/** Admin functionality to add University to Database

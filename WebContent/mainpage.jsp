@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="cmc.account.user.*"%>
+<%@ page language="java" import="cmc.account.user.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,12 +7,12 @@
 </head>
 <body>
 <%UserInteraction ui = (UserInteraction)session.getAttribute("loggedInController"); %>
-<p> Welcome User: <%= ui.displayProfile(ui.getCurrentUser().getFirstName()).getFirstName() %></p>
-<a href="manageprofile.html"><p>Manage My Profile</p></a>
-<a href="manageschools.html"><p>Manage My Saved Schools</p></a>
-<a href="search.html"><p>Search for Schools</p></a>
+Hello User: <%= ui.displayProfile((String)session.getAttribute("Username")).getFirstName()%>
+<p><a href="manageprofile.jsp">Manage My Profile</a></p>
+<p><a href="manageschools.jsp">Manage My Saved Schools</a></p>
+<p><a href="search.jsp">Search for Schools</a></p>
 <br>
-<form action="index.html">
+<form action="index.jsp">
   <input type="submit" value="Log-out"></input>
 </form>
 </body>

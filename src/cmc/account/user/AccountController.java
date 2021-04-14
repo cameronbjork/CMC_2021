@@ -31,7 +31,7 @@ public class AccountController {
 	 * @param passWord a string of the users password
 	 */
 	public Account userEditUser(String userName, String firstName, String lastName, String passWord) {
-		Account u2 = this.DBC.getUser(userName);
+		User u2 = this.DBC.getUser(userName);
 		if (u2 != null) {
 			if (firstName != null) {
 				u2.setFirstName(firstName);
@@ -45,11 +45,17 @@ public class AccountController {
 			} 
 			
 		this.DBC.setUser(u2);
+		this.setCurrentAccount(this.DBC.getUser(userName));
 		}
 		return u2;
 		
 	}
 	
+	private void setCurrentAccount(User u2) {
+		this.currentAccount = new User(u2.getUserName(), u2.getPassWord(), u2.getAccountType(), u2.getFirstName(), u2.getLastName(), u2.getStatus());
+		
+	}
+
 	/**
 	 * This method is used to logon a user and set the appropriate login status
 	 * @return boolean
@@ -79,7 +85,7 @@ public class AccountController {
 	 * @return a User
 	 */
 	public User displayProfile(String userName) {
-		return DBC.getUser(userName);
+		return this.currentAccount;
 	}
 
 	/**

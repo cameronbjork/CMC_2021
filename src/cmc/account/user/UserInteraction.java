@@ -44,12 +44,9 @@ public class UserInteraction {
 	 * @return  boolean to confirm or deny if the saved universities were displayed
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
-		ArrayList<University> saved = this.UFC.displaySavedUniversities(username);
-		if (saved != null) {
+		ArrayList<University> saved = new ArrayList<University>();
+		saved.addAll(this.UFC.displaySavedUniversities(username));
 		return saved;
-		} else {
-			return null;
-		}
 	}
 
 	//Create most recent search method

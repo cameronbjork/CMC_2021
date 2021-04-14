@@ -80,6 +80,7 @@ public class DBController {
 		this.allUsers.clear();
 		//Adds all Accounts to a list
 		String[][] allUsers = this.univDBLib.user_getUsers();
+		
 		for (int i = 0; i < allUsers.length; i++) {
 			if (allUsers[i][4].charAt(0) == 'a') {
 				this.allAdmins.add(new Admin(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
@@ -87,7 +88,15 @@ public class DBController {
 			else {
 				this.allUsers.add(new User(allUsers[i][2], allUsers[i][3], allUsers[i][4].charAt(0), allUsers[i][0], allUsers[i][1], allUsers[i][5].charAt(0)));
 			}
+
 			}
+		String[][] savedUnis = this.univDBLib.user_getUsernamesWithSavedSchools();
+		for (int i = 0; i < savedUnis.length; i++) {
+			if (savedUnis[i][0] == this.allUsers.get(i).getUserName()) {
+				University uni = this.getUniversityByName(savedUnis[i][1]);
+				this.allUsers.get(i).addSavedUniversities(uni);
+			}
+		}
 	}
 	
 	/** Returns a university based on it's name
@@ -96,9 +105,17 @@ public class DBController {
 	 * @return allResults.get(i) - University being returned
 	 */
 	public University getUniversityByName(String uniName) {
-		for (int i = 0; i < this.allUniversities.size(); i++) {
-			if (uniName.equals(this.allUniversities.get(i).getUniName())) {
-				return this.allUniversities.get(i);
+		ArrayList<University> allUnis = new ArrayList<University>();
+		
+		String[][] allUnis2D = this.univDBLib.university_getUniversities();
+		for (int i = 0; i < allUnis2D.length; i++) {
+			University uniToAdd = new University(allUnis2D[i][0], allUnis2D[i][1], allUnis2D[i][2],allUnis2D[i][3], Integer.parseInt(allUnis2D[i][4]), Double.parseDouble(allUnis2D[i][5]), Double.parseDouble(allUnis2D[i][6]), Integer.parseInt(allUnis2D[i][7]), Double.parseDouble(allUnis2D[i][8]), Double.parseDouble(allUnis2D[i][9]), Integer.parseInt(allUnis2D[i][10]), Double.parseDouble(allUnis2D[i][11]), Double.parseDouble(allUnis2D[i][12]), Integer.parseInt(allUnis2D[i][13]), Integer.parseInt(allUnis2D[i][14]), Integer.parseInt(allUnis2D[i][15]));
+			allUnis.add(uniToAdd);
+		}
+		
+		for (int i = 0; i < allUnis.size(); i++) {
+			if (uniName.equals(allUnis.get(i).getUniName())) {
+				return allUnis.get(i);
 			}
 		}
 		return null;
@@ -202,18 +219,26 @@ public class DBController {
 	}
 
 	public void addSavedSchool(String userName, String uni) {
-		this.setAllAccounts();
-		this.getUser(userName).addSavedUniversities(this.getUniversityByName(uni));
 		this.univDBLib.user_saveSchool(userName, uni);
+		this.setAllAccounts();
 	}
 	
 	public void removeSavedUniversity(String userName, String school) {
-		this.getUser(userName).removeSavedUniversity(this.getUniversityByName(school));
 		this.univDBLib.user_removeSchool(userName, school);
+		this.setAllAccounts();
 	}
 	
 	public ArrayList<University> getSavedUniversity(String userName) {
-		return this.getUser(userName).getSavedUniversities();
+		String[][] savedUnis = this.univDBLib.user_getUsernamesWithSavedSchools();
+		ArrayList<University> returnUni = new ArrayList<University>();
+		for (int i = 0; i < savedUnis.length; i++) {
+			for(int j = 0; j < this.allUsers.size();j++) {
+			if (savedUnis[i][0] == this.allUsers.get(j).getUserName()) {
+				returnUni.add(this.getUniversityByName(savedUnis[i][1]));
+			}
+			}
+		}
+		return returnUni;
 	}
 	
 	//Use getter, and remove from User

@@ -78,7 +78,7 @@
 
      <tr>
       <th> by ACADEMIICS SCALE (1-5)</th>
-      <th> between <input type="text" name="minAcademicScale"> and <input type="text" name="maxAdademicScale"></th>
+      <th> between <input type="text" name="minAcademicScale"> and <input type="text" name="maxAcademicScale"></th>
      </tr>
 
      <tr>
@@ -88,7 +88,7 @@
 
      <tr>
       <th> by QUALITY OF LIFE SCALE(1-5)</th>
-      <th> between <input type="text" name="minStudents"> and <input type="text" name="maxStudents"></th>
+      <th> between <input type="text" name="minQOL"> and <input type="text" name="maxQOL"></th>
      </tr>
 
      <tr>

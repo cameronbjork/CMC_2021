@@ -12,11 +12,12 @@
 	    <td>School</td>
 	  </tr>
 	  <% UserInteraction ui = (UserInteraction)session.getAttribute("loggedInController");
-	  	for (int i=0; i < ui.displaySavedUniversities((String)session.getAttribute("Username")).size(); i++) {%>
+	  	for (int i=0; i < 3; i++) {
+	   %>
 	  <tr>
-	   <td> <input type= "submit" name="Remove" value="Remove"></td>
-	   <td><%=ui.displaySavedUniversities((String)session.getAttribute("Username")).get(i).getUniName() %></td>
-	   <td> <input type= "submit" name="View" value="View"></td>
+	   <td> <input type= "submit" name="Remove" value="Remove"></input></td>
+	   <td><%= ui.displaySavedUniversities((String)session.getAttribute("Username")).get(i).getUniName() %></td>
+	   <td> <input type= "submit" name="View" value="View"></input></td>
 	  </tr>
 	  <% }%>
 </table>

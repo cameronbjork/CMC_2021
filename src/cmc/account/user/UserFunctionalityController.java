@@ -40,13 +40,10 @@ public class UserFunctionalityController {
      * @param the university to be saved
 	 */
 	public boolean saveUnversity(String u, String uni) {
-		if (this.DBC.getSavedUniversity(u).contains(this.DBC.getUniversityByName(uni))) {
-			return false;
-		}else {
 		this.DBC.addSavedSchool(u,uni);
 		return true;
 		}
-	}
+
 
 	/**
 	 * This method removes a selected saved university from 
@@ -66,9 +63,9 @@ public class UserFunctionalityController {
 	 * @param uni the name of the university to be displayed
 	 * @return
 	 */
-	//public University displayUniversity(University uni) {
-		//return this.DBC.getUniversity(uni);
+	public University displayUniversity(String uni) {
+		return this.DBC.getUniversityByName(uni);
 		
-	//}
+	}
 	
 }

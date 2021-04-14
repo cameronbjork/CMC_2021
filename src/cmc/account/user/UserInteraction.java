@@ -44,9 +44,7 @@ public class UserInteraction {
 	 * @return  boolean to confirm or deny if the saved universities were displayed
 	 */
 	public ArrayList<University> displaySavedUniversities(String username) {
-		ArrayList<University> saved = new ArrayList<University>();
-		saved.addAll(this.UFC.displaySavedUniversities(username));
-		return saved;
+		return this.UFC.displaySavedUniversities(username);
 	}
 
 	//Create most recent search method
@@ -93,6 +91,7 @@ public class UserInteraction {
 			int minPercentAdmit, int maxPercentAdmit, int minPercentEnrolled, int maxPercentEnrolled, int minAcademicScale, int maxAcademicScale, 
 			int minSocialScale, int maxSocialScale, int minQOLScale, int maxQOLScale, String emphasis1, String emphasis2, 
 			String emphasis3, String emphasis4, String emphasis5) {
+		
 		
 		ArrayList<University> universities = SC.searchUniversities(school, state, location, control, minNumStudents, maxNumStudents, 
 				minPercentFemale, maxPercentFemale, minSATVerbal, maxSATVerbal, minSATMath, maxSATMath, minAnnualExpenses, maxAnnualExpenses, minPercentFinancialAid,
@@ -192,6 +191,10 @@ public class UserInteraction {
 	public void deleteUser(String userName) {
 		this.AC.deleteUser(userName);
 		
+	}
+	
+	public University displayUniversity(String uniName) {
+		return this.UFC.displayUniversity(uniName);
 	}
 
 	

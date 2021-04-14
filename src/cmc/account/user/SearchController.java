@@ -312,7 +312,7 @@ public class SearchController {
 		for (int i = 0; i < resultList.size() && uniResultList.size() < 11; i++) {
 			uniResultList.add(this.DBC.getUniversityByName(resultList.get(i).getKey()));
 		}
-			
+		System.out.println(uniResultList.toString());
 		return uniResultList;
 	}
 

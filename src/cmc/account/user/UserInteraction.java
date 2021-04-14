@@ -123,12 +123,9 @@ public class UserInteraction {
 	 * @param passWord the password of the user to confirm the ability to log on
 	 * @return Account object
 	 */
-	public Account logOn(String userName, String passWord) {
-		if (userName != null && passWord != null) {
-		Account result = this.AC.logOn(userName, passWord);
+	public int logOn(String userName, String passWord) {
+		int result = this.AC.logOn(userName, passWord);
 		return result;
-		}
-		return null;
 	}
 	/**
 	 * A method to log out a user and make the account inactive

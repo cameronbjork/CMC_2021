@@ -55,19 +55,20 @@ public class AccountController {
 	 * @param userName a string of the users userName name	  
 	 * @param passWord a string of the users first name
 	 */
-	public Account logOn(String userName, String passWord) {
+	public int logOn(String userName, String passWord) {
 		Account acc = this.DBC.getUser(userName);
 		if (acc != null) {
 			String p2 = acc.getPassWord();
 			if (p2.equals(passWord)) {
 				acc.setLoginStatus(true);
+				return 0;
 			} else {
 				acc.setLoginStatus(false);
+				return -2;
 			}
-			return acc;
 		}
 		else {
-			return null;
+			return -1;
 		}
 	}
 	

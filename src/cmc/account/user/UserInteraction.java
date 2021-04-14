@@ -127,6 +127,10 @@ public class UserInteraction {
 		int result = this.AC.logOn(userName, passWord);
 		return result;
 	}
+	
+	public User getCurrentUser() {
+		return this.AC.getCurrentAccount();
+	}
 	/**
 	 * A method to log out a user and make the account inactive
 	 * @param userName user name of the user to be logged out

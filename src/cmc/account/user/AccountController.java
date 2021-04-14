@@ -13,6 +13,7 @@ import cmc.account.Account;
  */
 public class AccountController {
 	private DBController DBC;
+	private User currentAccount;
 	
 	/** 
 	 * Creates AccountController object
@@ -56,14 +57,14 @@ public class AccountController {
 	 * @param passWord a string of the users first name
 	 */
 	public int logOn(String userName, String passWord) {
-		Account acc = this.DBC.getUser(userName);
-		if (acc != null) {
-			String p2 = acc.getPassWord();
+		this.currentAccount = new User(this.DBC.getUser(userName).getUserName(), this.DBC.getUser(userName).getPassWord(), this.DBC.getUser(userName).getAccountType(), this.DBC.getUser(userName).getFirstName(), this.DBC.getUser(userName).getLastName(),this.DBC.getUser(userName).getStatus());
+		if (currentAccount != null) {
+			String p2 = this.currentAccount.getPassWord();
 			if (p2.equals(passWord)) {
-				acc.setLoginStatus(true);
+				this.currentAccount.setLoginStatus(true);
 				return 0;
 			} else {
-				acc.setLoginStatus(false);
+				this.currentAccount.setLoginStatus(false);
 				return -2;
 			}
 		}
@@ -88,7 +89,8 @@ public class AccountController {
 	 * @return boolean
 	 */
 	public Account logOut(String userName) {
-		Account acc = this.DBC.getUser(userName);
+		User acc = this.DBC.getUser(userName);
+		this.currentAccount = null;
 		acc.setLoginStatus(false);
 			return acc;
 		}
@@ -100,6 +102,11 @@ public class AccountController {
 
 	public void deleteUser(String userName) {
 		this.DBC.deleteUser(userName);
+		
+	}
+
+	public User getCurrentAccount() {
+		return this.currentAccount;
 		
 	}
 	}
